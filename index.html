@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/starter-template.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Holtwood+One+SC|Graduate|Rock+Salt' rel='stylesheet' type='text/css'>
+    <script src="js/lib/jquery-2.0.3.min.js" type="text/javascript"></script>
+    <script src="js/lib/knockout-3.0.0.js" type="text/javascript"></script>
+    <script src="js/lib/pager.js" type="text/javascript"></script>
+    <script src="js/lib/underscore-min.js" type="text/javascript"></script>
+    <script src="js/lib/bootstrap.min.js" type="text/javascript"></script>
+    <script src="js/lib/seedrandom.js" type="text/javascript"></script>
+    <script src="js/lib/pickRandom.js" type="text/javascript"></script>
+    <script src="js/genball.min.js" type="text/javascript"></script>
+    <script src="js/game.js" type="text/javascript"></script>
+    <script src="js/app.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-default">
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span></button> <a class="navbar-brand" href="#">FAUX</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Teams</a>
+
+                    <ul class="dropdown-menu" data-bind="foreach: teams">
+                        <li><a data-bind="page-href: 'team/'+$index(), text: name"></a></li>
+                    </ul>
+                </li>
+
+                <li><a data-bind="page-href: 'scores'">Scores</a></li>
+            </ul>
+        </div>
+    </nav>
+
+       <div class="container" style="padding-top: 30px;">
+        <div data-bind="page: {id: 'scores', role: 'start' }">
+            <div class="container">
+                <div class="row">
+                    <h2>Scores</h2>
+                </div>
+                <div class="row" data-bind="foreach: currentGames">
+                    <div class="col-md-6">
+                        <div class="col-md-8">
+                            <table class="table table-striped">
+                                <colgroup>
+                                    <col class="col-md-3">
+                                    <col class="col-md-1">
+                                    <col class="col-md-1">
+                                    <col class="col-md-1">
+                                    <col class="col-md-1">
+                                    <col class="col-md-1">
+                                </colgroup>
+
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        
+                                        <th></th>
+
+                                        <th>1</th>
+
+                                        <th>2</th>
+
+                                        <th>3</th>
+
+                                        <th>4</th>
+
+                                        <th>F</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td >
+                                            <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="50" height="50" data-bind="html: teams['home'].logo">
+                                    </svg>
+                                        </td>
+
+                                        <td><a data-bind="page-href: '../team/'+teams['home'].id, text: teams['home'].name"></a></td>
+                                        
+                                        <td data-bind="text: homeOne"></td>
+                                        <td data-bind="text: homeTwo"></td>
+                                        <td data-bind="text: homeThree"></td>
+                                        <td data-bind="text: homeFour"></td>
+                                        <td data-bind="text: homeTotal"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="50" height="50" data-bind="html: teams['away'].logo">
+                                    </svg>
+                                        </td>
+
+                                        <td><a data-bind="page-href: '../team/'+teams['away'].id, text: teams['away'].name"></a></td>
+
+                                        <td data-bind="text: awayOne"></td>
+                                        <td data-bind="text: awayTwo"></td>
+                                        <td data-bind="text: awayThree"></td>
+                                        <td data-bind="text: awayFour"></td>
+                                        <td data-bind="text: awayTotal"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div data-bind="if: plays().length > 0">
+                                <h5>Last Play</h5>
+                                <div>
+                                <b data-bind="text:_.last(plays()).quarter"></b>
+                                <b data-bind="text:_.last(plays()).clock"></b>
+                                </div>
+                                <div data-bind="text: _.last(plays()).commentary"></div>
+                            </div>
+
+                            <div>
+                                <a data-bind="page-href: '../game/'+$index()">Play by play</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
