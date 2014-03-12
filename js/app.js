@@ -26,6 +26,9 @@ $(document).ready(function () {
 				);
 			},vm);
 
+			vm.loadGame =function(vm){
+				vm(viewModel.games()[arguments[1].currentId]);
+			};
 
 
 			return vm;
@@ -56,12 +59,12 @@ $.when(
 			viewModel.teams.push(teamGenerator.newTeam())
 		});
 
-		var gameData = genball.generators.game(playData[0], kickdata[0], viewModel.teams()[0], viewModel.teams()[1], 0, new Date().getTime(), false);
+		var gameData = genball.generators.game(playData[0], kickdata[0], viewModel.teams()[0], viewModel.teams()[1], 0, 1394596238748, false);
 
 		viewModel.games.push(game(gameData));
 
        setInterval(function(){
-           _.each(viewModel.games(), function(game){
+           _.each(viewModel.currentGames(), function(game){
 	           game.playUntil(new Date().getTime());
            })
        }, 1000 , true)
