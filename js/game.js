@@ -27,6 +27,21 @@ var game = function(data){
 		return this.downFormatter(play.down) + " and " + play.distance + " at " + this.atFormatter(play);
 	};
 
+	data.clock = function(clock){
+		if(_.isUndefined(clock)){
+			return "0:00";
+		}
+		var seconds = Math.floor(clock % 60).toString();
+		if(seconds.length < 2 ){
+			seconds = "0".concat(seconds);
+		}
+		var minutes = Math.floor((clock / 60))
+		if(_.isNaN(minutes)){
+			minutes = "0";
+		}
+		return minutes + ":" + seconds;
+	}
+
 
 	data.homeOne = ko.computed(function(){
 		return data.scoreboard.homeScores.first();

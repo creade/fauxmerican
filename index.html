@@ -15,6 +15,7 @@
     <script src="js/lib/pickRandom.js" type="text/javascript"></script>
     <script src="js/genball.min.js" type="text/javascript"></script>
     <script src="js/game.js" type="text/javascript"></script>
+    <script src="js/team.js" type="text/javascript"></script>
     <script src="js/app.js" type="text/javascript"></script>
 </head>
 
@@ -114,7 +115,7 @@
                                 <h5>Last Play</h5>
                                 <div>
                                 <b data-bind="text:_.last(plays()).quarter"></b>
-                                <b data-bind="text:_.last(plays()).clock"></b>
+                                <b data-bind="text:clock(_.last(plays()).clock)"></b>
                                 </div>
                                 <div data-bind="text: _.last(plays()).commentary"></div>
                             </div>
@@ -277,6 +278,239 @@
                                 <div class="container" data-bind="template:{ name: 'pbpTemplate', foreach: allPlays}"></div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                <div data-bind="page: {id: 'team'}">
+            <div data-bind="page: {id: '?', withOnShow: loadTeam}">
+                <div class="container">
+                    <div class="row">
+                                <h2 class="col-md-8" data-bind="text: institution.name + ' ' + name"></h2>
+                                <div class="col-md-3">
+                                    <svg class="pull-right" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="120" height="120" data-bind="html: logo">
+                                    </svg>
+                                </div>
+                                <div class="col-md-1"></div>
+                    </div>
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#roster" data-toggle="tab">Roster</a></li>
+                        <li><a href="#stats" data-toggle="tab">Stats</a></li>
+                        <li><a href="#coaches" data-toggle="tab">Coaches</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="roster">
+                            
+
+                            <div class="row">
+                                <h3>Roster</h3>
+
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>NUM</th>
+
+                                            <th>NAME</th>
+                                            <th>ELIG</th>
+                                            <th>POS</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody data-bind="foreach: players">
+                                        <tr>
+                                            <td data-bind="text: number"></td>
+
+                                            <td data-bind="text: fullName"></td>
+                                            <td data-bind="text: year"></td>
+                                            <td data-bind="text: position"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    
+                    <div class="tab-pane" id="stats">
+                            <div class="row">
+                                <h3>Passing</h3>
+
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>NAME</th>
+
+                                            <th>POS</th>
+
+                                            <th>C</th>
+
+                                            <th>PA</th>
+
+                                            <th>%</th>
+
+                                            <th>YDS</th>
+
+                                            <th>TD</th>
+
+                                            <th>INT</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody data-bind="foreach: getPassingPlayers()">
+                                        <tr>
+                                            <td data-bind="text: fullName"></td>
+
+                                            <td data-bind="text: position"></td>
+
+                                            <td data-bind="text: seasonStats['C'] || '0'"></td>
+
+                                            <td data-bind="text: seasonStats['PA']"></td>
+
+                                            <td data-bind="text: ((((seasonStats['C'] || 0) / (seasonStats['PA'] || 0)) || 0)*100).toFixed(1)"></td>
+
+                                            <td data-bind="text: seasonStats['PY'] || '0'"></td>
+
+                                            <td data-bind="text: seasonStats['PTD'] || '0'"></td>
+
+                                            <td data-bind="text: seasonStats['INT'] || '0'"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row">
+                                <h3>Rushing</h3>
+
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>NAME</th>
+
+                                            <th>POS</th>
+
+                                            <th>CAR</th>
+
+                                            <th>YDS</th>
+
+                                            <th>AVG</th>
+
+                                            <th>TD</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody data-bind="foreach: getRushingPlayers()">
+                                        <tr>
+                                            <td data-bind="text: fullName"></td>
+
+                                            <td data-bind="text: position"></td>
+
+                                            <td data-bind="text: seasonStats['RA']"></td>
+
+                                            <td data-bind="text: seasonStats['RYDS'] || '0'"></td>
+
+                                            <td data-bind="text: (seasonStats['RYDS'] / seasonStats['RA']).toFixed(1) || '0'"></td>
+
+                                            <td data-bind="text: seasonStats['RTDS'] || '0'"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="row">
+                                <h3>Receiving</h3>
+
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>NAME</th>
+
+                                            <th>POS</th>
+
+                                            <th>REC</th>
+
+                                            <th>YDS</th>
+
+                                            <th>TD</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody data-bind="foreach: getRecevingPlayers()">
+                                        <tr>
+                                            <td data-bind="text: fullName"></td>
+
+                                            <td data-bind="text: position"></td>
+
+                                            <td data-bind="text: seasonStats['R']"></td>
+
+                                            <td data-bind="text: seasonStats['RECY'] || '0'"></td>
+
+                                            <td data-bind="text: seasonStats['RECTD'] || '0'"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <h3>Kicking</h3>
+
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>NAME</th>
+
+                                            <th>POS</th>
+
+                                            <th>XPM</th>
+
+                                            <th>XPA</th>
+
+                                            <th>XP%</th>
+
+                                            <th>FGM</th>
+
+                                            <th>FGA</th>
+
+                                            <th>FG%</th>
+
+                                            <th>LNG</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody data-bind="foreach: getKickingPlayers()">
+                                        <tr>
+                                            <td data-bind="text: fullName"></td>
+
+                                            <td data-bind="text: position"></td>
+
+                                            <td data-bind="text: seasonStats['XPM'] || '0'"></td>
+
+                                            <td data-bind="text: seasonStats['XPA'] || '0'"></td>
+
+                                            <td data-bind="text: ((((seasonStats['XPM'] || 0) / (seasonStats['XPA'] || 0)) || 0)*100).toFixed(1)"></td>
+                                            
+                                            <td data-bind="text: seasonStats['FGM'] || '0'"></td>
+
+                                            <td data-bind="text: seasonStats['FGA'] || '0'"></td>
+                                            
+                                            <td data-bind="text: ((((seasonStats['FGM'] || 0) / (seasonStats['FGA'] || 0)) || 0)*100).toFixed(1)"></td>
+
+                                            <td data-bind="text: seasonStats['FGL'] || ''"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="coaches">
+                            <div class="row">
+                                <h3>Coaches</h3>
+
+                                <h5 data-bind="text: 'Head Coach: ' + coach.fullName"></h5>
+
+                                <h5 data-bind="text: 'Offenisve Coordinator: ' + OC.fullName"></h5>
+
+                                <h5 data-bind="text: 'Defensive Coordinator: ' + DC.fullName"></h5>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

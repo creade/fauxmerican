@@ -30,7 +30,10 @@ $(document).ready(function () {
 				vm(viewModel.games()[arguments[1].currentId]);
 			};
 
-
+			vm.loadTeam=function(vm){
+				vm(team(viewModel.teams()[arguments[1].currentId]));
+			};
+			
 			return vm;
 	}();
 
@@ -45,6 +48,7 @@ $.when(
 	$.getJSON("img/logos.json")
 	).done(function (data, firstNames, lastNames, playData,kickdata,xpmSkill, logos) {
 		var teamGenerator = genball.generators.teams(data, firstNames, lastNames, xpmSkill, logos);
+		var schedule = genball.generators.schedule().schedule();
 		var seed;
 		if (window.location.hash.split("/")[1]){
 			seed = window.location.hash.split("/")[1];
@@ -55,14 +59,17 @@ $.when(
 		console.log("SEED: " + seed)
 		Math.seedrandom(seed);
 		
-		_.times(12, function(){
+		_.times(10, function(){
 			viewModel.teams.push(teamGenerator.newTeam())
 		});
 
-		var gameData = genball.generators.game(playData[0], kickdata[0], viewModel.teams()[0], viewModel.teams()[1], 0, 1394596238748, false);
+		_.each(schedule[0], function(matchup, index){
+			viewModel.games.push(game(genball.generators.game(
+				playData[0], kickdata[0], viewModel.teams()[matchup[0]],
+				viewModel.teams()[matchup[1]], index, new Date().setDate(24), seed + index, false)));
+		})
 
-		viewModel.games.push(game(gameData));
-
+		
        setInterval(function(){
            _.each(viewModel.currentGames(), function(game){
 	           game.playUntil(new Date().getTime());
