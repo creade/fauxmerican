@@ -129,6 +129,17 @@ _.mixin({
     });
 
 _.mixin({
+    bound: function(min, max, number){
+        if (number > max){
+            return max;
+        } else if (number < min){
+            return min;
+        }
+        return number;
+    }
+})
+
+_.mixin({
     randomBetween: function (min, max) {
         return Math.floor(Math.random() * (max - min) + min);
     }})

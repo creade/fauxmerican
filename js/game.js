@@ -55,9 +55,15 @@ var game = function(data){
 	data.homeFour = ko.computed(function(){
 		return data.scoreboard.homeScores.fourth();
 	})
+	
+	data.homeOT = ko.computed(function(){
+		return data.scoreboard.homeScores.OT();
+	})
+
 	data.homeTotal = ko.computed(function(){
 		return data.scoreboard.homeScores.total();
 	})
+
 	data.awayOne = ko.computed(function(){
 		return data.scoreboard.awayScores.first();
 	})
@@ -69,6 +75,10 @@ var game = function(data){
 	})
 	data.awayFour = ko.computed(function(){
 		return data.scoreboard.awayScores.fourth();
+	})
+
+	data.awayOT = ko.computed(function(){
+		return data.scoreboard.awayScores.OT();
 	})
 	data.awayTotal = ko.computed(function(){
 		return data.scoreboard.awayScores.total();
@@ -219,6 +229,9 @@ var game = function(data){
 		return playsForQ(4);
 	});
 
+	data.oTPlays = ko.computed(function(){
+		return playsForQ(5);
+	});
 
 	data.allPlays = ko.computed(function(){
 		var drives = _.groupBy(data.plays(), 'driveNumber');

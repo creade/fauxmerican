@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html>
+
 <head>
     <title></title>
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -23,7 +24,8 @@
 
     <nav class="navbar navbar-default">
         <div class="navbar-header">
-            <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span></button> <a class="navbar-brand" href="#">FAUX</a>
+            <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span>
+            </button> <a class="navbar-brand" href="#">FAUX</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -32,38 +34,49 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Teams</a>
 
                     <ul class="dropdown-menu" data-bind="foreach: teams">
-                        <li><a data-bind="page-href: 'team/'+$index(), text: name"></a></li>
+                        <li>
+                            <a data-bind="page-href: 'team/'+$index(), text: name"></a>
+                        </li>
                     </ul>
                 </li>
 
-                <li><a data-bind="page-href: 'scores'">Scores</a></li>
+                <li><a data-bind="page-href: 'scores'">Scores</a>
+                </li>
+                <li><a data-bind="page-href: 'standings'">Standings</a>
+                </li>
             </ul>
         </div>
     </nav>
 
-       <div class="container" style="padding-top: 30px;">
+    <div class="container" style="padding-top: 30px;">
         <div data-bind="page: {id: 'scores', role: 'start' }">
             <div class="container">
                 <div class="row">
                     <h2>Scores</h2>
                 </div>
-                <div class="row" data-bind="foreach: currentGames">
+                <select data-bind="options: [0,1,2,3,4,5,6,7,8], selectedOptions: currentWeek" size="5"></select>
+                <div class="row" data-bind="foreach: weeks()[viewModel.currentWeek()]">
                     <div class="col-md-6">
                         <div class="col-md-8">
                             <table class="table table-striped">
                                 <colgroup>
                                     <col class="col-md-3">
-                                    <col class="col-md-1">
-                                    <col class="col-md-1">
-                                    <col class="col-md-1">
-                                    <col class="col-md-1">
-                                    <col class="col-md-1">
+                                        <col class="col-md-1">
+                                            <col class="col-md-1">
+                                                <col class="col-md-1">
+                                                    <col class="col-md-1">
+
+                                                        <!-- ko if: hasOT -->
+                                                        <col class="col-md-1">
+                                                            <!-- /ko-->
+
+                                                            <col class="col-md-1">
                                 </colgroup>
 
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        
+
                                         <th></th>
 
                                         <th>1</th>
@@ -74,38 +87,51 @@
 
                                         <th>4</th>
 
+                                        <!-- ko if: hasOT -->
+                                        <th>OT</th>
+                                        <!-- /ko-->
                                         <th>F</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     <tr>
-                                        <td >
+                                        <td>
                                             <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="50" height="50" data-bind="html: teams['home'].logo">
-                                    </svg>
+                                            </svg>
                                         </td>
 
-                                        <td><a data-bind="page-href: '../team/'+teams['home'].id, text: teams['home'].name"></a></td>
-                                        
+                                        <td>
+                                            <a data-bind="page-href: '../team/'+teams['home'].id, text: teams['home'].name"></a>
+                                        </td>
+
                                         <td data-bind="text: homeOne"></td>
                                         <td data-bind="text: homeTwo"></td>
                                         <td data-bind="text: homeThree"></td>
                                         <td data-bind="text: homeFour"></td>
+                                        <!-- ko if: hasOT-->
+                                        <td data-bind="text: homeOT"></td>
+                                        <!-- /ko-->
                                         <td data-bind="text: homeTotal"></td>
                                     </tr>
 
                                     <tr>
                                         <td>
                                             <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="50" height="50" data-bind="html: teams['away'].logo">
-                                    </svg>
+                                            </svg>
                                         </td>
 
-                                        <td><a data-bind="page-href: '../team/'+teams['away'].id, text: teams['away'].name"></a></td>
+                                        <td>
+                                            <a data-bind="page-href: '../team/'+teams['away'].id, text: teams['away'].name"></a>
+                                        </td>
 
                                         <td data-bind="text: awayOne"></td>
                                         <td data-bind="text: awayTwo"></td>
                                         <td data-bind="text: awayThree"></td>
                                         <td data-bind="text: awayFour"></td>
+                                        <!-- ko if: hasOT-->
+                                        <td data-bind="text: awayOT"></td>
+                                        <!-- /ko-->
                                         <td data-bind="text: awayTotal"></td>
                                     </tr>
                                 </tbody>
@@ -114,14 +140,14 @@
                             <div data-bind="if: plays().length > 0">
                                 <h5>Last Play</h5>
                                 <div>
-                                <b data-bind="text:_.last(plays()).quarter"></b>
-                                <b data-bind="text:clock(_.last(plays()).clock)"></b>
+                                    <b data-bind="text:_.last(plays()).quarter"></b>
+                                    <b data-bind="text:clock(_.last(plays()).clock)"></b>
                                 </div>
                                 <div data-bind="text: _.last(plays()).commentary"></div>
                             </div>
 
                             <div>
-                                <a data-bind="page-href: '../game/'+$index()">Play by play</a>
+                                <a data-bind="page-href: '../game/'+gameId">Play by play</a>
                             </div>
                         </div>
                     </div>
@@ -129,30 +155,55 @@
             </div>
         </div>
 
+        <div data-bind="page: {id: 'standings'}">
+            <div class="container">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Team</th>
+                            <th>Wins</th>
+                            <th>Losses</th>
+                            <th>Skill</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: teamsByWins">
+                        <tr>
+                            <td>
+                                <a data-bind="page-href: '../../team/'+id, text: name"></a>
+                            </td>
+                            <td data-bind="text: wins"></td>
+                            <td data-bind="text: losses"></td>
+                            <td data-bind="text: skill"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
         <div data-bind="page: {id: 'game'}">
             <div data-bind="page: {id: '?', withOnShow: loadGame}">
 
                 <div class="row">
-                    
+
                     <div class="col-xs-6 col-md-3">
-                        <h3 >
+                        <h3>
                              <small data-bind="text: teams.away.institution.name"></small>
                         </h3>
                     </div>
 
                     <div class="col-xs-6 col-md-3">
-                        <h3 >
+                        <h3>
                             <small data-bind="text: teams.home.institution.name"></small>
                         </h3>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6 col-md-3">
-                       <svg  viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="75" height="75" data-bind="html: teams.away.logo"></svg>
+                        <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="75" height="75" data-bind="html: teams.away.logo"></svg>
                     </div>
 
                     <div class="col-xs-6 col-md-3">
-                        <svg  viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="75" height="75" data-bind="html: teams.home.logo"></svg>
+                        <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="75" height="75" data-bind="html: teams.home.logo"></svg>
                     </div>
                 </div>
                 <div class="row">
@@ -160,18 +211,18 @@
                         <h2>
                             <a data-bind="page-href: '../../team/'+teams.away.id, text: teams.away.name"></a>
                         </h2>
-                        <h2  data-bind="text: scoreboard.awayScores.total"></h2>
+                        <h2 data-bind="text: scoreboard.awayScores.total"></h2>
                     </div>
 
                     <div class="col-xs-6 col-md-3">
                         <h2>
                             <a data-bind="page-href: '../../team/'+teams.home.id, text: teams.home.name"></a>
                         </h2>
-                        <h2  data-bind="text: scoreboard.homeScores.total"></h2>
+                        <h2 data-bind="text: scoreboard.homeScores.total"></h2>
                     </div>
                 </div>
 
-                
+
 
                 <div class="row">
                     <div class="col-md-3">
@@ -188,6 +239,9 @@
                                 <col class="col-md-1">
                                 <col class="col-md-1">
                                 <col class="col-md-1">
+                                <!-- ko if: hasOT -->
+                                <col class="col-md-1">
+                                <!-- /ko-->
                                 <col class="col-md-1">
                             </colgroup>
 
@@ -202,7 +256,9 @@
                                     <th>3</th>
 
                                     <th>4</th>
-
+                                    <!-- ko if: hasOT -->
+                                    <th>OT</th>
+                                    <!-- /ko-->
                                     <th>F</th>
                                 </tr>
                             </thead>
@@ -211,21 +267,27 @@
                                 <tr>
                                     <td data-bind="text: teams.away.shortName"></td>
 
-                                        <td data-bind="text: awayOne"></td>
-                                        <td data-bind="text: awayTwo"></td>
-                                        <td data-bind="text: awayThree"></td>
-                                        <td data-bind="text: awayFour"></td>
-                                        <td data-bind="text: awayTotal"></td>
+                                    <td data-bind="text: awayOne"></td>
+                                    <td data-bind="text: awayTwo"></td>
+                                    <td data-bind="text: awayThree"></td>
+                                    <td data-bind="text: awayFour"></td>
+                                    <!-- ko if: hasOT -->
+                                    <td data-bind="text: awayOT"></td>
+                                    <!-- /ko-->
+                                    <td data-bind="text: awayTotal"></td>
                                 </tr>
 
                                 <tr>
                                     <td data-bind="text: teams.home.shortName"></td>
 
-                                        <td data-bind="text: homeOne"></td>
-                                        <td data-bind="text: homeTwo"></td>
-                                        <td data-bind="text: homeThree"></td>
-                                        <td data-bind="text: homeFour"></td>
-                                        <td data-bind="text: homeTotal"></td>
+                                    <td data-bind="text: homeOne"></td>
+                                    <td data-bind="text: homeTwo"></td>
+                                    <td data-bind="text: homeThree"></td>
+                                    <td data-bind="text: homeFour"></td>
+                                    <!-- ko if: hasOT -->
+                                    <td data-bind="text: homeOT"></td>
+                                    <!-- /ko-->
+                                    <td data-bind="text: homeTotal"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -234,47 +296,69 @@
                     <div class="col-md-6">
                         <h4>Top Performers</h4>
 
-                        <p><b>Passing:</b><!-- ko text: topPasser() --><!-- /ko--></p>
+                        <p><b>Passing:</b>
+                            <!-- ko text: topPasser() -->
+                            <!-- /ko-->
+                        </p>
 
-                        <p><b>Rushing:</b><!-- ko text: topRusher() --><!-- /ko--></p>
+                        <p><b>Rushing:</b>
+                            <!-- ko text: topRusher() -->
+                            <!-- /ko-->
+                        </p>
 
-                        <p><b>Receiving:</b><!-- ko text: topReceiver() --><!-- /ko--></p>
+                        <p><b>Receiving:</b>
+                            <!-- ko text: topReceiver() -->
+                            <!-- /ko-->
+                        </p>
                     </div>
                 </div>
 
                 <div class="row">
                     <ul class="nav nav-tabs">
-                        <li class="active" data-bind="if: plays().length > 0"><a data-toggle="tab" href="#play-by-play">Play-By-Play</a></li>
+                        <li class="active" data-bind="if: plays().length > 0"><a data-toggle="tab" href="#play-by-play">Play-By-Play</a>
+                        </li>
                     </ul>
 
                     <div class="tab-pane active" id="play-by-play" data-bind="if: plays().length > 0">
                         <div class="tab-content">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a data-toggle="tab" href="#first">1st</a></li>
+                                <li class="active"><a data-toggle="tab" href="#first">1st</a>
+                                </li>
 
-                                <li data-bind="if: _.last(plays()).quarter >= 2"><a data-toggle="tab" href="#second">2nd</a></li>
+                                <li data-bind="if: _.last(plays()).quarter >= 2"><a data-toggle="tab" href="#second">2nd</a>
+                                </li>
 
-                                <li data-bind="if: _.last(plays()).quarter >= 3"><a data-toggle="tab" href="#third">3rd</a></li>
+                                <li data-bind="if: _.last(plays()).quarter >= 3"><a data-toggle="tab" href="#third">3rd</a>
+                                </li>
 
-                                <li data-bind="if: _.last(plays()).quarter >= 4"><a data-toggle="tab" href="#fourth">4th</a></li>
+                                <li data-bind="if: _.last(plays()).quarter >= 4"><a data-toggle="tab" href="#fourth">4th</a>
+                                </li>
 
-                                <li><a data-toggle="tab" href="#all">All</a></li>
+                                <li data-bind="if: _.last(plays()).quarter >= 5"><a data-toggle="tab" href="#OT">OT</a>
+                                </li>
+
+                                <li><a data-toggle="tab" href="#all">All</a>
+                                </li>
                             </ul>
 
-                            <div class="tab-pane active" id="first" >
+                            <div class="tab-pane active" id="first">
                                 <div class="container" data-bind="template:{ name: 'pbpTemplate', foreach: firstPlays}"></div>
                             </div>
-                            <div class="tab-pane" id="second" >
+                            <div class="tab-pane" id="second">
                                 <div class="container" data-bind="template:{ name: 'pbpTemplate', foreach: secondPlays}"></div>
                             </div>
-                            <div class="tab-pane" id="third" >
+                            <div class="tab-pane" id="third">
                                 <div class="container" data-bind="template:{ name: 'pbpTemplate', foreach: thirdPlays}"></div>
                             </div>
-                            <div class="tab-pane" id="fourth" >
+                            <div class="tab-pane" id="fourth">
                                 <div class="container" data-bind="template:{ name: 'pbpTemplate', foreach: fourthPlays}"></div>
                             </div>
 
-                            <div class="tab-pane" id="all" >
+                            <div class="tab-pane" id="OT">
+                                <div class="container" data-bind="template:{ name: 'pbpTemplate', foreach: oTPlays}"></div>
+                            </div>
+
+                            <div class="tab-pane" id="all">
                                 <div class="container" data-bind="template:{ name: 'pbpTemplate', foreach: allPlays}"></div>
                             </div>
                         </div>
@@ -283,25 +367,28 @@
             </div>
         </div>
 
-                <div data-bind="page: {id: 'team'}">
+        <div data-bind="page: {id: 'team'}">
             <div data-bind="page: {id: '?', withOnShow: loadTeam}">
                 <div class="container">
                     <div class="row">
-                                <h2 class="col-md-8" data-bind="text: institution.name + ' ' + name"></h2>
-                                <div class="col-md-3">
-                                    <svg class="pull-right" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="120" height="120" data-bind="html: logo">
-                                    </svg>
-                                </div>
-                                <div class="col-md-1"></div>
+                        <h2 class="col-md-8" data-bind="text: institution.name + ' ' + name"></h2>
+                        <div class="col-md-3">
+                            <svg class="pull-right" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="120" height="120" data-bind="html: logo">
+                            </svg>
+                        </div>
+                        <div class="col-md-1"></div>
                     </div>
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="#roster" data-toggle="tab">Roster</a></li>
-                        <li><a href="#stats" data-toggle="tab">Stats</a></li>
-                        <li><a href="#coaches" data-toggle="tab">Coaches</a></li>
+                        <li class="active"><a href="#roster" data-toggle="tab">Roster</a>
+                        </li>
+                        <li><a href="#stats" data-toggle="tab">Stats</a>
+                        </li>
+                        <li><a href="#coaches" data-toggle="tab">Coaches</a>
+                        </li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="roster">
-                            
+
 
                             <div class="row">
                                 <h3>Roster</h3>
@@ -330,8 +417,8 @@
                             </div>
                         </div>
 
-                    
-                    <div class="tab-pane" id="stats">
+
+                        <div class="tab-pane" id="stats">
                             <div class="row">
                                 <h3>Passing</h3>
 
@@ -486,11 +573,11 @@
                                             <td data-bind="text: seasonStats['XPA'] || '0'"></td>
 
                                             <td data-bind="text: ((((seasonStats['XPM'] || 0) / (seasonStats['XPA'] || 0)) || 0)*100).toFixed(1)"></td>
-                                            
+
                                             <td data-bind="text: seasonStats['FGM'] || '0'"></td>
 
                                             <td data-bind="text: seasonStats['FGA'] || '0'"></td>
-                                            
+
                                             <td data-bind="text: ((((seasonStats['FGM'] || 0) / (seasonStats['FGA'] || 0)) || 0)*100).toFixed(1)"></td>
 
                                             <td data-bind="text: seasonStats['FGL'] || ''"></td>
@@ -515,7 +602,7 @@
                 </div>
             </div>
         </div>
-        
+
         <script type="text/html" id="pbpTemplate">
             <table class="table">
                 <thead>
@@ -558,6 +645,7 @@
                  
                 </tbody>
             </table>
-    </script>
+        </script>
 </body>
+
 </html>
