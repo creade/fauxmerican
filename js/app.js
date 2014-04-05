@@ -29,6 +29,12 @@ $(document).ready(function () {
 			);
         });
 
+        vm.gamesForCurrentWeek = ko.computed(function(){
+        	return _.select(vm.games(), function(match){
+        		return match.week === viewModel.currentWeek();
+        	});
+        })
+
 
 
         vm.loadGame = function (vm) {
@@ -43,6 +49,11 @@ $(document).ready(function () {
         };
         vm.currentWeek = ko.observable(0);
         vm.thisWeek = ko.observable(8);
+
+        vm.formatLocalDate = function(tzMoment){
+        	return moment(tzMoment.valueOf()).format('dddd, MMMM Do YYYY, h:mm A')
+        }
+
         return vm;
     }();
 
@@ -69,45 +80,43 @@ $(document).ready(function () {
         console.log("SEED: " + seed)
         Math.seedrandom(seed);
 
-        var schedule = genball.generators.schedule().schedule();
+        var schedule = genball.generators.schedule().schedule(14);
 
         _.times(10, function () {
             viewModel.teams.push(teamGenerator.newTeam())
         });
 
-        _.each(schedule, function (week) {
-            var matches = _.map(week, function (matchup) {
-                var gameToAdd = game(genball.generators.game(
-                    playData[0], kickdata[0], viewModel.teams()[matchup.teams[0]],
-                    viewModel.teams()[matchup.teams[1]], matchup.id, new Date().setDate(24), seed + matchup.id, false));
-                viewModel.games.push(gameToAdd);
-                return gameToAdd;
-            })
-            viewModel.weeks.push(matches);
+
+
+        _.each(schedule, function (match) {
+            var gameToAdd = game(genball.generators.game(
+            	playData[0], kickdata[0], viewModel.teams()[match.teams[0]],
+                viewModel.teams()[match.teams[1]], match.id, match.time, seed + match.id, match.week, false));
+
+            viewModel.games.push(gameToAdd);
         });
-
-        _.chain(_.range(0, viewModel.thisWeek()))
-            .map(function (weekNumber) {
-                return viewModel.weeks()[weekNumber];
-            })
-            .each(function (matches) {
-                _.each(matches, function (game) {
-                    game.playUntil(new Date().getTime());
-                    viewModel.completedGames.push(game);
-                })
-            });
-
+		
+ 		_.each(viewModel.games(), function (match) {
+ 			if(match.completed()){
+ 				return;
+ 			}
+            match.playUntil(new Date().getTime());
+              if (match.completed()) {
+                viewModel.completedGames.push(match);
+        	}
+        });
 
 
         setInterval(function () {
-        	if(viewModel.games().length !== viewModel.completedGames().length){
-	            _.each(viewModel.weeks()[viewModel.thisWeek()], function (game) {
-	                game.playUntil(new Date().getTime());
-	                if (game.completed()) {
-	                    viewModel.completedGames.push(game);
-                	}
-            	})
-        	}
+ 			_.each(viewModel.games(), function (match) {
+ 				if(match.completed()){
+ 					return;
+ 				}
+            	match.playUntil(new Date().getTime());
+              	if (match.completed()) {
+                    viewModel.completedGames.push(match);
+        		}
+        	});
         }, 1000, true)
 
         pager.Href.hash = '#!/' + seed + "/";
