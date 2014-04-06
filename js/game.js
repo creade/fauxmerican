@@ -48,7 +48,11 @@ var game = function(data){
 		}
 		return minutes + ":" + seconds;
 	}
-
+	data.scoringPlays = ko.computed(function(){
+		return _.sortBy(data.scoreboard.scoringPlays(), function(play){
+			return play.driveNumber;
+		});
+	})
 
 	data.homeOne = ko.computed(function(){
 		return data.scoreboard.homeScores.first();
@@ -91,7 +95,7 @@ var game = function(data){
 		return data.scoreboard.awayScores.total();
 	})
 
-	var getPassingPlayers = function(team){
+	data.getPassingPlayers = function(team){
     	return _.chain(team.players)
     	.select(function(player){
     		var stats = player.stats[data.gameId]; 
@@ -109,7 +113,7 @@ var game = function(data){
 		.reverse()
 		.value();
 	};
-	var getRushingPlayers = function(team){
+	data.getRushingPlayers = function(team){
 		return _.chain(team.players)
 	    	.select(function(player){
 				var stats = player.stats[data.gameId]; 
@@ -127,7 +131,7 @@ var game = function(data){
 			.reverse()
 			.value();
 	};
-	var getRecevingPlayers = function(team){
+	data.getRecevingPlayers = function(team){
 		return _.chain(team.players)
 	    	.select(function(player){
 				var stats = player.stats[data.gameId]; 
@@ -146,8 +150,36 @@ var game = function(data){
 			.value();
 	};
 
+	data.getKickingPlayers = function(team){
+		return _.chain(team.players)
+	    	.select(function(player){
+				var stats = player.stats[data.gameId]; 
+				return !!stats && (stats["XPA"] || stats["FGA"]);
+			})
+			.map(function(player){
+				return {
+					player: player
+				}
+			})
+			.value();
+	};
+
+	data.getPuntingPlayers = function(team){
+		return _.chain(team.players)
+	    	.select(function(player){
+				var stats = player.stats[data.gameId]; 
+				return !!stats && stats["P"];
+			})
+			.map(function(player){
+				return {
+					player: player
+				}
+			})
+			.value();
+	};
+
 	var getTopPasser = function(){
-		var teamTops = _.compact([getPassingPlayers(data.teams.home)[0], getPassingPlayers(data.teams.away)[0]]);
+		var teamTops = _.compact([data.getPassingPlayers(data.teams.home)[0], data.getPassingPlayers(data.teams.away)[0]]);
 		if (teamTops.length !== 0){
 		
 			var topPasser = _.max(teamTops, function(player){
@@ -168,7 +200,7 @@ var game = function(data){
 	};
 	
 	var getTopRusher = function(){
-		var teamTops = _.compact([getRushingPlayers(data.teams.home)[0], getRushingPlayers(data.teams.away)[0]]);
+		var teamTops = _.compact([data.getRushingPlayers(data.teams.home)[0], data.getRushingPlayers(data.teams.away)[0]]);
 		if (teamTops.length !== 0){
 		var topRusher = _.max(teamTops, function(player){
 			return player.points;
@@ -183,7 +215,7 @@ var game = function(data){
 	};
 
 	var getTopReceiver = function(){
-		var teamTops = _.compact([getRecevingPlayers(data.teams.home)[0], getRecevingPlayers(data.teams.away)[0]]);
+		var teamTops = _.compact([data.getRecevingPlayers(data.teams.home)[0], data.getRecevingPlayers(data.teams.away)[0]]);
 		if (teamTops.length !== 0){
 		var topReceiver = _.max(teamTops, function(player){
 			return player.points;
