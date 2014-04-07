@@ -585,7 +585,7 @@
                                                 <tr>
                                                     <td data-bind="text: player.fullName"></td>
                                                     <td data-bind="text: player.position"></td>
-                                                    <td data-bind="text: player.stats[$parent.gameId]['FGA'] ? (player.stats[$parent.gameId]['FGM'] || '') + ' - '+ (player.stats[$parent.gameId]['FGA'] || '') : ''"></td>
+                                                    <td data-bind="text: player.stats[$parent.gameId]['FGA'] ? (player.stats[$parent.gameId]['FGM'] || '0') + ' - '+ (player.stats[$parent.gameId]['FGA'] || '0') : ''"></td>
                                                     <td data-bind="text: player.stats[$parent.gameId]['FGL'] || ''"></td>
                                                     <td data-bind="text: player.stats[$parent.gameId]['XPM'] + ' - ' + player.stats[$parent.gameId]['XPA']"></td>
                                                 </tr>
@@ -609,7 +609,7 @@
                                                 <tr>
                                                     <td data-bind="text: player.fullName"></td>
                                                     <td data-bind="text: player.position"></td>
-                                                    <td data-bind="text: player.stats[$parent.gameId]['FGA'] ? (player.stats[$parent.gameId]['FGM'] || '') + ' - '+ (player.stats[$parent.gameId]['FGA'] || '') : ''"></td>
+                                                    <td data-bind="text: player.stats[$parent.gameId]['FGA'] ? (player.stats[$parent.gameId]['FGM'] || '0') + ' - '+ (player.stats[$parent.gameId]['FGA'] || '0') : ''"></td>
                                                     <td data-bind="text: player.stats[$parent.gameId]['FGL'] || ''"></td>
                                                     <td data-bind="text: player.stats[$parent.gameId]['XPM'] + ' - ' + player.stats[$parent.gameId]['XPA']"></td>
                                                 </tr>

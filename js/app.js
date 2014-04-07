@@ -80,7 +80,7 @@ $(document).ready(function () {
         console.log("SEED: " + seed)
         Math.seedrandom(seed);
 
-        var schedule = genball.generators.schedule().schedule(14);
+        var schedule = genball.generators.schedule().schedule(1);
 
         _.times(10, function () {
             viewModel.teams.push(teamGenerator.newTeam())
