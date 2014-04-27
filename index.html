@@ -355,7 +355,7 @@
                                                 <td data-bind="text: teams.away.stats[gameId]['PY'] + teams.away.stats[gameId]['RYDS']"></td>
                                             </tr>
                                             <tr>
-                                                <td colspan="3">Passing</td>
+                                                <td colspan="3"><b>Passing</b></td>
                                             </tr>
                                             <tr>
                                                 <td>Yards</td>
@@ -373,7 +373,7 @@
                                                 <td data-bind="text: (((teams.away.stats[gameId]['PY'] || 0) / (teams.away.stats[gameId]['PA'] || 0)) || 0).toFixed(1)"></td>
                                             </tr>
                                             <tr>
-                                                <td colspan="3">Rushing</td>
+                                                <td colspan="3"><b>Rushing</b></td>
                                             </tr>
                                             <tr>
                                                 <td>Yards</td>
@@ -391,7 +391,7 @@
                                                 <td data-bind="text: (((teams.away.stats[gameId]['RYDS'] || 0) / (teams.away.stats[gameId]['RA'] || 0)) || 0).toFixed(1)"></td>
                                             </tr>
                                             <tr>
-                                                <td colspan="3">Turnovers</td>
+                                                <td colspan="3"><b>Turnovers</b></td>
                                             </tr>
                                             <tr>
                                                 <td>Interceptions</td>
@@ -576,6 +576,52 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.home.logo"></svg>
+                                    <h4 data-bind="text: teams.home.name + ' Defense'"></h4>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th data-bind="style: { borderBottomColor: teams.home.color }">NAME</th>
+                                                <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
+                                                <th data-bind="style: { borderBottomColor: teams.home.color }">FUMB REC.</th>
+                                                <th data-bind="style: { borderBottomColor: teams.home.color }">INT</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-bind="foreach: getDefensivePlayers(teams.home)">
+                                            <tr>
+                                                <td data-bind="text: player.fullName"></td>
+                                                <td data-bind="text: player.position"></td>
+                                                <td data-bind="text: player.stats[$parent.gameId]['FR'] || ''"></td>
+                                                <td data-bind="text: player.stats[$parent.gameId]['INTD'] || ''"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-6">
+                                    <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.away.logo"></svg>
+                                    <h4 data-bind="text: teams.away.name + ' Defense'"></h4>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th data-bind="style: { borderBottomColor: teams.away.color }">NAME</th>
+                                                <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
+                                                <th data-bind="style: { borderBottomColor: teams.away.color }">FUMB REC.</th>
+                                                <th data-bind="style: { borderBottomColor: teams.away.color }">INT</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-bind="foreach: getDefensivePlayers(teams.away)">
+                                            <tr>
+                                                <td data-bind="text: player.fullName"></td>
+                                                <td data-bind="text: player.position"></td>
+                                                <td data-bind="text: player.stats[$parent.gameId]['FR'] || ''"></td>
+                                                <td data-bind="text: player.stats[$parent.gameId]['INTD'] || ''"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.home.logo"></svg>
                                     <h4 data-bind="text: teams.home.name + ' Kicking'"></h4>
                                     <table class="table">
                                         <thead>
@@ -593,7 +639,7 @@
                                                 <td data-bind="text: player.position"></td>
                                                 <td data-bind="text: player.stats[$parent.gameId]['FGA'] ? (player.stats[$parent.gameId]['FGM'] || '0') + ' - '+ (player.stats[$parent.gameId]['FGA'] || '0') : ''"></td>
                                                 <td data-bind="text: player.stats[$parent.gameId]['FGL'] || ''"></td>
-                                                <td data-bind="text: player.stats[$parent.gameId]['XPM'] + ' - ' + player.stats[$parent.gameId]['XPA']"></td>
+                                                <td data-bind="text: player.stats[$parent.gameId]['XPM'] ? (player.stats[$parent.gameId]['FGM'] || '0') + ' - '+ (player.stats[$parent.gameId]['XPA'] || '0') : ''"></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -617,12 +663,13 @@
                                                 <td data-bind="text: player.position"></td>
                                                 <td data-bind="text: player.stats[$parent.gameId]['FGA'] ? (player.stats[$parent.gameId]['FGM'] || '0') + ' - '+ (player.stats[$parent.gameId]['FGA'] || '0') : ''"></td>
                                                 <td data-bind="text: player.stats[$parent.gameId]['FGL'] || ''"></td>
-                                                <td data-bind="text: player.stats[$parent.gameId]['XPM'] + ' - ' + player.stats[$parent.gameId]['XPA']"></td>
+                                                <td data-bind="text: player.stats[$parent.gameId]['XPM'] ? (player.stats[$parent.gameId]['FGM'] || '0') + ' - '+ (player.stats[$parent.gameId]['XPA'] || '0') : ''"></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.home.logo"></svg>
@@ -672,6 +719,86 @@
                                                 <td data-bind="text: player.stats[$parent.gameId]['PUYDS']"></td>
                                                 <td data-bind="text: (player.stats[$parent.gameId]['PUYDS'] / player.stats[$parent.gameId]['P']).toFixed(1) || '0'"></td>
                                                 <td data-bind="text: player.stats[$parent.gameId]['PL']"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.home.logo"></svg>
+                                    <h4 data-bind="text: teams.home.name + ' Returns'"></h4>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="2"></th>
+                                                <th colspan="4" class="text-center">KICKOFFS</th>
+                                                <th colspan="4" class="text-center">PUNTS</th>
+                                            </tr>
+                                            <tr>
+                                                <th data-bind="style: { borderBottomColor: teams.home.color }">NAME</th>
+                                                <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
+                                                <th data-bind="style: { borderBottomColor: teams.home.color }">ATT</th>
+                                                <th data-bind="style: { borderBottomColor: teams.home.color }">YDS</th>
+                                                <th data-bind="style: { borderBottomColor: teams.home.color }">LNG</th>
+                                                <th data-bind="style: { borderBottomColor: teams.home.color }">TD</th>
+                                                <th data-bind="style: { borderBottomColor: teams.home.color }">ATT</th>
+                                                <th data-bind="style: { borderBottomColor: teams.home.color }">YDS</th>
+                                                <th data-bind="style: { borderBottomColor: teams.home.color }">LNG</th>
+                                                <th data-bind="style: { borderBottomColor: teams.home.color }">TD</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-bind="foreach: getReturnPlayers(teams.home)">
+                                            <tr>
+                                                <td data-bind="text: fullName"></td>
+                                                <td data-bind="text: position"></td>
+                                                <td data-bind="text: stats[$parent.gameId]['KOR'] || ''"></td>
+                                                <td data-bind="text: stats[$parent.gameId]['KORYDS'] || ''"></td>
+                                                <td data-bind="text: stats[$parent.gameId]['KORL'] || ''"></td>
+                                                <td data-bind="text: stats[$parent.gameId]['KORTD'] || ''"></td>
+                                                <td data-bind="text: stats[$parent.gameId]['PR'] || ''"></td>
+                                                <td data-bind="text: stats[$parent.gameId]['PRYDS'] || ''"></td>
+                                                <td data-bind="text: stats[$parent.gameId]['PRL'] || ''"></td>
+                                                <td data-bind="text: stats[$parent.gameId]['PRTD'] || ''"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                 <div class="col-md-6">
+                                    <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.away.logo"></svg>
+                                    <h4 data-bind="text: teams.away.name + ' Returns'"></h4>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="2"></th>
+                                                <th colspan="4" class="text-center">KICKOFFS</th>
+                                                <th colspan="4" class="text-center">PUNTS</th>
+                                            </tr>
+                                            <tr>
+                                                <th data-bind="style: { borderBottomColor: teams.away.color }">NAME</th>
+                                                <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
+                                                <th data-bind="style: { borderBottomColor: teams.away.color }">ATT</th>
+                                                <th data-bind="style: { borderBottomColor: teams.away.color }">YDS</th>
+                                                <th data-bind="style: { borderBottomColor: teams.away.color }">LNG</th>
+                                                <th data-bind="style: { borderBottomColor: teams.away.color }">TD</th>
+                                                <th data-bind="style: { borderBottomColor: teams.away.color }">ATT</th>
+                                                <th data-bind="style: { borderBottomColor: teams.away.color }">YDS</th>
+                                                <th data-bind="style: { borderBottomColor: teams.away.color }">LNG</th>
+                                                <th data-bind="style: { borderBottomColor: teams.away.color }">TD</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-bind="foreach: getReturnPlayers(teams.away)">
+                                            <tr>
+                                                <td data-bind="text: fullName"></td>
+                                                <td data-bind="text: position"></td>
+                                                <td data-bind="text: stats[$parent.gameId]['KOR'] || ''"></td>
+                                                <td data-bind="text: stats[$parent.gameId]['KORYDS'] || ''"></td>
+                                                <td data-bind="text: stats[$parent.gameId]['KORL'] || ''"></td>
+                                                <td data-bind="text: stats[$parent.gameId]['KORTD'] || ''"></td>
+                                                <td data-bind="text: stats[$parent.gameId]['PR'] || ''"></td>
+                                                <td data-bind="text: stats[$parent.gameId]['PRYDS'] || ''"></td>
+                                                <td data-bind="text: stats[$parent.gameId]['PRL'] || ''"></td>
+                                                <td data-bind="text: stats[$parent.gameId]['PRTD'] || ''"></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -785,20 +912,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <a data-bind="page-href: '../team/'+teams['home'].id, text: teams['away'].institution.shortName"></a>
-                                                    </td>
-                                                    <td data-bind="text: homeOne"></td>
-                                                    <td data-bind="text: homeTwo"></td>
-                                                    <td data-bind="text: homeThree"></td>
-                                                    <td data-bind="text: homeFour"></td>
-                                                    <!-- ko if: hasOT-->
-                                                    <td data-bind="text: homeOT"></td>
-                                                    <!-- /ko-->
-                                                    <td data-bind="text: homeTotal"></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <a data-bind="page-href: '../team/'+teams['away'].id, text: teams['home'].institution.shortName"></a>
+                                                        <a data-bind="page-href: '../'+teams['away'].id, text: teams['away'].institution.shortName"></a>
                                                     </td>
                                                     <td data-bind="text: awayOne"></td>
                                                     <td data-bind="text: awayTwo"></td>
@@ -808,6 +922,19 @@
                                                     <td data-bind="text: awayOT"></td>
                                                     <!-- /ko-->
                                                     <td data-bind="text: awayTotal"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <a data-bind="page-href: '../'+teams['home'].id, text: teams['home'].institution.shortName"></a>
+                                                    </td>
+                                                    <td data-bind="text: homeOne"></td>
+                                                    <td data-bind="text: homeTwo"></td>
+                                                    <td data-bind="text: homeThree"></td>
+                                                    <td data-bind="text: homeFour"></td>
+                                                    <!-- ko if: hasOT-->
+                                                    <td data-bind="text: homeOT"></td>
+                                                    <!-- /ko-->
+                                                    <td data-bind="text: homeTotal"></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -853,7 +980,7 @@
                                             <tbody>
                                                 <tr>
                                                     <td>
-                                                        <a data-bind="page-href: '../team/'+teams['home'].id, text: teams['away'].institution.shortName"></a>
+                                                        <a data-bind="page-href: '../'+teams['away'].id, text: teams['away'].institution.shortName"></a>
                                                     </td>
                                                     <td data-bind="text: homeOne"></td>
                                                     <td data-bind="text: homeTwo"></td>
@@ -866,7 +993,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <a data-bind="page-href: '../team/'+teams['away'].id, text: teams['home'].institution.shortName"></a>
+                                                        <a data-bind="page-href: '../'+teams['home'].id, text: teams['home'].institution.shortName"></a>
                                                     </td>
                                                     <td data-bind="text: awayOne"></td>
                                                     <td data-bind="text: awayTwo"></td>
@@ -881,164 +1008,190 @@
                                         </table>
                                     </div>
                                 </div>
-
                                 <div class="row">
-                                    <br/>
+                                    <div class="col-xs-4 col-md-offset-4 text-center">
+                                        <a data-bind="page-href: '../../game/'+gameId">Play by play</a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4 col-md-offset-4">
+                                        <h4>Top Performers</h4>
+                                        <p>
+                                            <b>Passing:</b>
+                                            <!-- ko text: topPasser() -->
+                                            <!-- /ko-->
+                                        </p>
+                                        <p>
+                                            <b>Rushing:</b>
+                                            <!-- ko text: topRusher() -->
+                                            <!-- /ko-->
+                                        </p>
+                                        <p>
+                                            <b>Receiving:</b>
+                                            <!-- ko text: topReceiver() -->
+                                            <!-- /ko-->
+                                        </p>    
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 text-right" data-bind="text: teams.home.stadium"></div>
+                                </div>
+                                <div class="row">
+                                    <hr/>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tab-pane" id="roster">
-                        <div class="row">
-                            <h3>Roster</h3>
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>NUM</th>
-                                        <th>NAME</th>
-                                        <th>ELIG</th>
-                                        <th>POS</th>
-                                    </tr>
-                                </thead>
-                                <tbody data-bind="foreach: players">
-                                    <tr>
-                                        <td data-bind="text: number"></td>
-                                        <td data-bind="text: fullName"></td>
-                                        <td data-bind="text: year"></td>
-                                        <td data-bind="text: position"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                        <div class="tab-pane" id="roster">
+                            <div class="row">
+                                <h3>Roster</h3>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>NUM</th>
+                                            <th>NAME</th>
+                                            <th>ELIG</th>
+                                            <th>POS</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-bind="foreach: players">
+                                        <tr>
+                                            <td data-bind="text: number"></td>
+                                            <td data-bind="text: fullName"></td>
+                                            <td data-bind="text: year"></td>
+                                            <td data-bind="text: position"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="stats">
+                            <div class="row">
+                                <h3>Passing</h3>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>NAME</th>
+                                            <th>POS</th>
+                                            <th>C</th>
+                                            <th>PA</th>
+                                            <th>%</th>
+                                            <th>YDS</th>
+                                            <th>TD</th>
+                                            <th>INT</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-bind="foreach: getPassingPlayers()">
+                                        <tr>
+                                            <td data-bind="text: fullName"></td>
+                                            <td data-bind="text: position"></td>
+                                            <td data-bind="text: seasonStats['C'] || '0'"></td>
+                                            <td data-bind="text: seasonStats['PA']"></td>
+                                            <td data-bind="text: ((((seasonStats['C'] || 0) / (seasonStats['PA'] || 0)) || 0)*100).toFixed(1)"></td>
+                                            <td data-bind="text: seasonStats['PY'] || '0'"></td>
+                                            <td data-bind="text: seasonStats['PTD'] || '0'"></td>
+                                            <td data-bind="text: seasonStats['INT'] || '0'"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <h3>Rushing</h3>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>NAME</th>
+                                            <th>POS</th>
+                                            <th>CAR</th>
+                                            <th>YDS</th>
+                                            <th>AVG</th>
+                                            <th>TD</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-bind="foreach: getRushingPlayers()">
+                                        <tr>
+                                            <td data-bind="text: fullName"></td>
+                                            <td data-bind="text: position"></td>
+                                            <td data-bind="text: seasonStats['RA']"></td>
+                                            <td data-bind="text: seasonStats['RYDS'] || '0'"></td>
+                                            <td data-bind="text: (seasonStats['RYDS'] / seasonStats['RA']).toFixed(1) || '0'"></td>
+                                            <td data-bind="text: seasonStats['RTDS'] || '0'"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <h3>Receiving</h3>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>NAME</th>
+                                            <th>POS</th>
+                                            <th>REC</th>
+                                            <th>YDS</th>
+                                            <th>TD</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-bind="foreach: getRecevingPlayers()">
+                                        <tr>
+                                            <td data-bind="text: fullName"></td>
+                                            <td data-bind="text: position"></td>
+                                            <td data-bind="text: seasonStats['R']"></td>
+                                            <td data-bind="text: seasonStats['RECY'] || '0'"></td>
+                                            <td data-bind="text: seasonStats['RECTD'] || '0'"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <h3>Kicking</h3>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>NAME</th>
+                                            <th>POS</th>
+                                            <th>XPM</th>
+                                            <th>XPA</th>
+                                            <th>XP%</th>
+                                            <th>FGM</th>
+                                            <th>FGA</th>
+                                            <th>FG%</th>
+                                            <th>LNG</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-bind="foreach: getKickingPlayers()">
+                                        <tr>
+                                            <td data-bind="text: fullName"></td>
+                                            <td data-bind="text: position"></td>
+                                            <td data-bind="text: seasonStats['XPM'] || '0'"></td>
+                                            <td data-bind="text: seasonStats['XPA'] || '0'"></td>
+                                            <td data-bind="text: ((((seasonStats['XPM'] || 0) / (seasonStats['XPA'] || 0)) || 0)*100).toFixed(1)"></td>
+                                            <td data-bind="text: seasonStats['FGM'] || '0'"></td>
+                                            <td data-bind="text: seasonStats['FGA'] || '0'"></td>
+                                            <td data-bind="text: ((((seasonStats['FGM'] || 0) / (seasonStats['FGA'] || 0)) || 0)*100).toFixed(1)"></td>
+                                            <td data-bind="text: seasonStats['FGL'] || ''"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="coaches">
+                            <div class="row">
+                                <h3>Coaches</h3>
+                                <h5 data-bind="text: 'Head Coach: ' + coach.fullName"></h5>
+                                <h5 data-bind="text: 'Offenisve Coordinator: ' + OC.fullName"></h5>
+                                <h5 data-bind="text: 'Defensive Coordinator: ' + DC.fullName"></h5>
+                            </div>
                         </div>
                     </div>
-                    <div class="tab-pane" id="stats">
-                        <div class="row">
-                            <h3>Passing</h3>
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>NAME</th>
-                                        <th>POS</th>
-                                        <th>C</th>
-                                        <th>PA</th>
-                                        <th>%</th>
-                                        <th>YDS</th>
-                                        <th>TD</th>
-                                        <th>INT</th>
-                                    </tr>
-                                </thead>
-                                <tbody data-bind="foreach: getPassingPlayers()">
-                                    <tr>
-                                        <td data-bind="text: fullName"></td>
-                                        <td data-bind="text: position"></td>
-                                        <td data-bind="text: seasonStats['C'] || '0'"></td>
-                                        <td data-bind="text: seasonStats['PA']"></td>
-                                        <td data-bind="text: ((((seasonStats['C'] || 0) / (seasonStats['PA'] || 0)) || 0)*100).toFixed(1)"></td>
-                                        <td data-bind="text: seasonStats['PY'] || '0'"></td>
-                                        <td data-bind="text: seasonStats['PTD'] || '0'"></td>
-                                        <td data-bind="text: seasonStats['INT'] || '0'"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="row">
-                            <h3>Rushing</h3>
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>NAME</th>
-                                        <th>POS</th>
-                                        <th>CAR</th>
-                                        <th>YDS</th>
-                                        <th>AVG</th>
-                                        <th>TD</th>
-                                    </tr>
-                                </thead>
-                                <tbody data-bind="foreach: getRushingPlayers()">
-                                    <tr>
-                                        <td data-bind="text: fullName"></td>
-                                        <td data-bind="text: position"></td>
-                                        <td data-bind="text: seasonStats['RA']"></td>
-                                        <td data-bind="text: seasonStats['RYDS'] || '0'"></td>
-                                        <td data-bind="text: (seasonStats['RYDS'] / seasonStats['RA']).toFixed(1) || '0'"></td>
-                                        <td data-bind="text: seasonStats['RTDS'] || '0'"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="row">
-                            <h3>Receiving</h3>
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>NAME</th>
-                                        <th>POS</th>
-                                        <th>REC</th>
-                                        <th>YDS</th>
-                                        <th>TD</th>
-                                    </tr>
-                                </thead>
-                                <tbody data-bind="foreach: getRecevingPlayers()">
-                                    <tr>
-                                        <td data-bind="text: fullName"></td>
-                                        <td data-bind="text: position"></td>
-                                        <td data-bind="text: seasonStats['R']"></td>
-                                        <td data-bind="text: seasonStats['RECY'] || '0'"></td>
-                                        <td data-bind="text: seasonStats['RECTD'] || '0'"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="row">
-                            <h3>Kicking</h3>
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>NAME</th>
-                                        <th>POS</th>
-                                        <th>XPM</th>
-                                        <th>XPA</th>
-                                        <th>XP%</th>
-                                        <th>FGM</th>
-                                        <th>FGA</th>
-                                        <th>FG%</th>
-                                        <th>LNG</th>
-                                    </tr>
-                                </thead>
-                                <tbody data-bind="foreach: getKickingPlayers()">
-                                    <tr>
-                                        <td data-bind="text: fullName"></td>
-                                        <td data-bind="text: position"></td>
-                                        <td data-bind="text: seasonStats['XPM'] || '0'"></td>
-                                        <td data-bind="text: seasonStats['XPA'] || '0'"></td>
-                                        <td data-bind="text: ((((seasonStats['XPM'] || 0) / (seasonStats['XPA'] || 0)) || 0)*100).toFixed(1)"></td>
-                                        <td data-bind="text: seasonStats['FGM'] || '0'"></td>
-                                        <td data-bind="text: seasonStats['FGA'] || '0'"></td>
-                                        <td data-bind="text: ((((seasonStats['FGM'] || 0) / (seasonStats['FGA'] || 0)) || 0)*100).toFixed(1)"></td>
-                                        <td data-bind="text: seasonStats['FGL'] || ''"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="coaches">
-                        <div class="row">
-                            <h3>Coaches</h3>
-                            <h5 data-bind="text: 'Head Coach: ' + coach.fullName"></h5>
-                            <h5 data-bind="text: 'Offenisve Coordinator: ' + OC.fullName"></h5>
-                            <h5 data-bind="text: 'Defensive Coordinator: ' + DC.fullName"></h5>
-                        </div>
-                    </div>
-                </div>
 
+                </div>
             </div>
         </div>
     </div>
     </div>
-    </div>
 
     <script type="text/html" id="pbpTemplate">
-    <table class="table">
+ <table class="table">
     <thead>
         <tr>
             <td>

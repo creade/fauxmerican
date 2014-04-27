@@ -164,6 +164,28 @@ var game = function(data){
 			.value();
 	};
 
+	
+	data.getDefensivePlayers = function(team){
+		return _.chain(team.players)
+	    	.select(function(player){
+				var stats = player.stats[data.gameId]; 
+				return !!stats && (stats["FR"] || stats["INTD"]);
+			})
+			.map(function(player){
+				return {
+					player: player
+				}
+			})
+			.value();
+	};
+	
+	data.getReturnPlayers = function(team){
+		return _.select(team.players, function(player){
+				var stats = player.stats[data.gameId]; 
+				return !!stats && (stats["PR"] || stats["KOR"]);
+			});
+	};
+
 	data.getPuntingPlayers = function(team){
 		return _.chain(team.players)
 	    	.select(function(player){
