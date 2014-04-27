@@ -1,6 +1,10 @@
 body {
   padding-top: 50px;
 }
+
+.score{
+  font-size: 60px;
+}
 .starter-template {
   padding: 40px 15px;
   text-align: center;

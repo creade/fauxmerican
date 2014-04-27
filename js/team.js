@@ -1,4 +1,6 @@
-var team = function(team){
+var team = function(team, schedule){
+	team.games = [];
+
 	team.getPassingPlayers = function(){
 		return _.select(team.players, function(player){
 			return player.seasonStats["PA"];
