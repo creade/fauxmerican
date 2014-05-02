@@ -55,20 +55,20 @@ var game = function(data){
 	})
 
 	data.homeOne = ko.computed(function(){
-		return data.scoreboard.homeScores.first();
+		return data.scoreboard.homeScores.quarters()[0];
 	})
 	data.homeTwo = ko.computed(function(){
-		return data.scoreboard.homeScores.second();
+		return data.scoreboard.homeScores.quarters()[1];
 	})
 	data.homeThree = ko.computed(function(){
-		return data.scoreboard.homeScores.third();
+		return data.scoreboard.homeScores.quarters()[2];
 	})
 	data.homeFour = ko.computed(function(){
-		return data.scoreboard.homeScores.fourth();
+		return data.scoreboard.homeScores.quarters()[3];
 	})
 	
-	data.homeOT = ko.computed(function(){
-		return data.scoreboard.homeScores.OT();
+	data.homeOTs = ko.computed(function(){
+		return data.scoreboard.homeScores.quarters.slice(4,4 + data.hasOTs());
 	})
 
 	data.homeTotal = ko.computed(function(){
@@ -76,20 +76,20 @@ var game = function(data){
 	})
 
 	data.awayOne = ko.computed(function(){
-		return data.scoreboard.awayScores.first();
+		return data.scoreboard.awayScores.quarters()[0];
 	})
 	data.awayTwo = ko.computed(function(){
-		return data.scoreboard.awayScores.second();
+		return data.scoreboard.awayScores.quarters()[1];
 	})
 	data.awayThree = ko.computed(function(){
-		return data.scoreboard.awayScores.third();
+		return data.scoreboard.awayScores.quarters()[2];
 	})
 	data.awayFour = ko.computed(function(){
-		return data.scoreboard.awayScores.fourth();
+		return data.scoreboard.awayScores.quarters()[3];
 	})
 
-	data.awayOT = ko.computed(function(){
-		return data.scoreboard.awayScores.OT();
+	data.awayOTs = ko.computed(function(){
+		return data.scoreboard.awayScores.quarters.slice(4,4 + data.hasOTs());
 	})
 	data.awayTotal = ko.computed(function(){
 		return data.scoreboard.awayScores.total();
@@ -113,6 +113,10 @@ var game = function(data){
 		.reverse()
 		.value();
 	};
+
+	data.OTs = ko.computed(function(){
+		return _.range(1, data.hasOTs() + 1);
+	});
 	data.getRushingPlayers = function(team){
 		return _.chain(team.players)
 	    	.select(function(player){
@@ -291,7 +295,13 @@ var game = function(data){
 	});
 
 	data.oTPlays = ko.computed(function(){
-		return playsForQ(5);
+		var quarters = _.range(5, data.hasOTs() + 5);
+		return _.map(quarters, function(quarter){
+			return {
+				quarter: quarter,
+				plays: playsForQ(quarter)
+			}
+		})
 	});
 
 	data.allPlays = ko.computed(function(){

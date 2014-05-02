@@ -65,7 +65,7 @@
                                             <col class="col-md-1">
                                                 <col class="col-md-1">
                                                     <col class="col-md-1">
-                                                        <!-- ko if: hasOT -->
+                                                        <!-- ko foreach: OTs -->
                                                         <col class="col-md-1">
                                                             <!-- /ko-->
                                                             <col class="col-md-1">
@@ -88,8 +88,8 @@
                                         <th>2</th>
                                         <th>3</th>
                                         <th>4</th>
-                                        <!-- ko if: hasOT -->
-                                        <th>OT</th>
+                                        <!-- ko foreach: OTs -->
+                                        <th data-bind="text: 'OT ' + $data"></th>
                                         <!-- /ko-->
                                         <th>F</th>
                                     </tr>
@@ -107,8 +107,8 @@
                                         <td data-bind="text: homeTwo"></td>
                                         <td data-bind="text: homeThree"></td>
                                         <td data-bind="text: homeFour"></td>
-                                        <!-- ko if: hasOT-->
-                                        <td data-bind="text: homeOT"></td>
+                                        <!-- ko foreach: homeOTs-->
+                                        <td data-bind="text: $data"></td>
                                         <!-- /ko-->
                                         <td data-bind="text: homeTotal"></td>
                                     </tr>
@@ -124,8 +124,8 @@
                                         <td data-bind="text: awayTwo"></td>
                                         <td data-bind="text: awayThree"></td>
                                         <td data-bind="text: awayFour"></td>
-                                        <!-- ko if: hasOT-->
-                                        <td data-bind="text: awayOT"></td>
+                                        <!-- ko foreach: awayOTs-->
+                                        <td data-bind="text: $data"></td>
                                         <!-- /ko-->
                                         <td data-bind="text: awayTotal"></td>
                                     </tr>
@@ -217,7 +217,7 @@
                                             <col class="col-md-1">
                                                 <col class="col-md-1">
                                                     <col class="col-md-1">
-                                                        <!-- ko if: hasOT -->
+                                                        <!-- ko foreach: OTs -->
                                                         <col class="col-md-1">
                                                             <!-- /ko-->
                                                             <col class="col-md-1">
@@ -229,8 +229,8 @@
                                         <th>2</th>
                                         <th>3</th>
                                         <th>4</th>
-                                        <!-- ko if: hasOT -->
-                                        <th>OT</th>
+                                        <!-- ko foreach: OTs -->
+                                        <th data-bind="text: 'OT ' + $data"></th>
                                         <!-- /ko-->
                                         <th>F</th>
                                     </tr>
@@ -242,8 +242,8 @@
                                         <td data-bind="text: awayTwo"></td>
                                         <td data-bind="text: awayThree"></td>
                                         <td data-bind="text: awayFour"></td>
-                                        <!-- ko if: hasOT -->
-                                        <td data-bind="text: awayOT"></td>
+                                        <!-- ko foreach: awayOTs-->
+                                        <td data-bind="text: $data"></td>
                                         <!-- /ko-->
                                         <td data-bind="text: awayTotal"></td>
                                     </tr>
@@ -253,8 +253,8 @@
                                         <td data-bind="text: homeTwo"></td>
                                         <td data-bind="text: homeThree"></td>
                                         <td data-bind="text: homeFour"></td>
-                                        <!-- ko if: hasOT -->
-                                        <td data-bind="text: homeOT"></td>
+                                        <!-- ko foreach: homeOTs-->
+                                        <td data-bind="text: $data"></td>
                                         <!-- /ko-->
                                         <td data-bind="text: homeTotal"></td>
                                     </tr>
@@ -819,8 +819,9 @@
                                     </li>
                                     <li data-bind="if: _.last(plays()).quarter >= 4"><a data-toggle="tab" href="#fourth">4th</a>
                                     </li>
-                                    <li data-bind="if: _.last(plays()).quarter >= 5"><a data-toggle="tab" href="#OT">OT</a>
-                                    </li>
+                                    <!-- ko foreach: oTPlays-->
+                                    <li><a data-toggle="tab" data-bind="attr: {href: '#OT' + quarter}, text: 'OT ' + (quarter - 4)"></a></li>
+                                    <!-- /ko-->
                                     <li><a data-toggle="tab" href="#all">All</a>
                                     </li>
                                 </ul>
@@ -837,9 +838,11 @@
                                     <div class="tab-pane" id="fourth">
                                         <div class="container" data-bind="template:{ name: 'pbpTemplate', foreach: fourthPlays}"></div>
                                     </div>
-                                    <div class="tab-pane" id="OT">
-                                        <div class="container" data-bind="template:{ name: 'pbpTemplate', foreach: oTPlays}"></div>
+                                    <!-- ko foreach: oTPlays-->
+                                    <div class="tab-pane" data-bind="attr: {id: 'OT' + quarter}">
+                                        <div class="container" data-bind="template:{ name: 'oTPbpTemplate', foreach: plays}"></div>
                                     </div>
+                                    <!-- /ko-->
                                     <div class="tab-pane" id="all">
                                         <div class="container" data-bind="template:{ name: 'pbpTemplate', foreach: allPlays}"></div>
                                     </div>
@@ -909,8 +912,8 @@
                                                         <th>2</th>
                                                         <th>3</th>
                                                         <th>4</th>
-                                                        <!-- ko if: hasOT -->
-                                                        <th>OT</th>
+                                                        <!-- ko foreach: OTs -->
+                                                        <th data-bind="text: 'OT ' + $data"></th>
                                                         <!-- /ko-->
                                                         <th>F</th>
                                                     </tr>
@@ -924,8 +927,8 @@
                                                         <td data-bind="text: awayTwo"></td>
                                                         <td data-bind="text: awayThree"></td>
                                                         <td data-bind="text: awayFour"></td>
-                                                        <!-- ko if: hasOT-->
-                                                        <td data-bind="text: awayOT"></td>
+                                                        <!-- ko foreach: awayOTs-->
+                                                        <td data-bind="text: $data"></td>
                                                         <!-- /ko-->
                                                         <td data-bind="text: awayTotal"></td>
                                                     </tr>
@@ -937,8 +940,8 @@
                                                         <td data-bind="text: homeTwo"></td>
                                                         <td data-bind="text: homeThree"></td>
                                                         <td data-bind="text: homeFour"></td>
-                                                        <!-- ko if: hasOT-->
-                                                        <td data-bind="text: homeOT"></td>
+                                                        <!-- ko foreach: homeOTs-->
+                                                        <td data-bind="text: $data"></td>
                                                         <!-- /ko-->
                                                         <td data-bind="text: homeTotal"></td>
                                                     </tr>
@@ -977,8 +980,8 @@
                                                         <th>2</th>
                                                         <th>3</th>
                                                         <th>4</th>
-                                                        <!-- ko if: hasOT -->
-                                                        <th>OT</th>
+                                                        <!-- ko foreach: OTs -->
+                                                        <th data-bind="text: 'OT ' + $data"></th>
                                                         <!-- /ko-->
                                                         <th>F</th>
                                                     </tr>
@@ -992,8 +995,8 @@
                                                         <td data-bind="text: homeTwo"></td>
                                                         <td data-bind="text: homeThree"></td>
                                                         <td data-bind="text: homeFour"></td>
-                                                        <!-- ko if: hasOT-->
-                                                        <td data-bind="text: homeOT"></td>
+                                                        <!-- ko foreach: homeOTs-->
+                                                        <td data-bind="text: $data"></td>
                                                         <!-- /ko-->
                                                         <td data-bind="text: homeTotal"></td>
                                                     </tr>
@@ -1005,8 +1008,8 @@
                                                         <td data-bind="text: awayTwo"></td>
                                                         <td data-bind="text: awayThree"></td>
                                                         <td data-bind="text: awayFour"></td>
-                                                        <!-- ko if: hasOT-->
-                                                        <td data-bind="text: awayOT"></td>
+                                                        <!-- ko foreach: awayOTs-->
+                                                        <td data-bind="text: $data"></td>
                                                         <!-- /ko-->
                                                         <td data-bind="text: awayTotal"></td>
                                                     </tr>
@@ -1247,6 +1250,57 @@
         <!-- ko foreach: _.rest($data) -->
         <tr>
             <td data-bind="text: $parents[1].downAndDistance($data)"></td>
+
+            <td data-bind="text: commentary"></td>
+
+            <td data-bind="text: homeScore"></td>
+
+            <td data-bind="text: awayScore"></td>
+        </tr>
+        <!-- /ko-->
+
+    </tbody>
+</table>
+    </script>
+    <script type="text/html" id="oTPbpTemplate">
+ <table class="table">
+    <thead>
+        <tr>
+            <td>
+                <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="39" height="39" data-bind="html: $parents[1].teams[$data[0].possession].logo">
+                </svg>
+                <h4 data-bind="text: $data[0].possession"></h4>
+            </td>
+
+            <td></td>
+
+            <td>
+                <h4>
+                    <small data-bind="text: $parents[1].teams.home.name"></small>
+                </h4>
+            </td>
+
+            <td>
+                <h4>
+                    <small data-bind="text: $parents[1].teams.away.name"></small>
+                </h4>
+            </td>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td data-bind="text: $parents[1].downAndDistance($data[0]), style: { borderTopColor: $parents[1].teams[$data[0].possession].color}"></td>
+
+            <td data-bind="text: $data[0].commentary, style: { borderTopColor: $parents[1].teams[$data[0].possession].color}"></td>
+
+            <td data-bind="text: $data[0].homeScore, style: { borderTopColor: $parents[1].teams.home.color }"></td>
+
+            <td data-bind="text: $data[0].awayScore, style: { borderTopColor: $parents[1].teams.away.color }"></td>
+        </tr>
+        <!-- ko foreach: _.rest($data) -->
+        <tr>
+            <td data-bind="text: $parents[2].downAndDistance($data)"></td>
 
             <td data-bind="text: commentary"></td>
 
