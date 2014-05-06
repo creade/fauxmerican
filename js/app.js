@@ -49,6 +49,11 @@ $(document).ready(function () {
         vm.loadTeam = function (vm) {
             vm(viewModel.teams()[arguments[1].currentId]);
         };
+
+        vm.loadStats = function (vm) {
+            vm(stats(viewModel.teams()));
+        };
+        
         vm.currentWeek = ko.observable(0);
         vm.thisWeek = ko.observable(8);
 

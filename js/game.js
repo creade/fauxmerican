@@ -1,10 +1,17 @@
 var game = function(data){
-    data.quarters = {
+    var quarterNames = {
         1: "1st",
         2: "2nd",
         3: "3rd",
-        4: "4th",
-        5: "OT"
+        4: "4th"
+    }
+
+    data.getQuarterName = function(quarter){
+    	if(quarter < 5){
+    		return quarterNames[quarter];
+    	}
+
+    	return "OT " + quarter;
     }
 
 	var otherTeam = function(team){
@@ -135,7 +142,7 @@ var game = function(data){
 			.reverse()
 			.value();
 	};
-	data.getRecevingPlayers = function(team){
+	data.getReceivingPlayers = function(team){
 		return _.chain(team.players)
 	    	.select(function(player){
 				var stats = player.stats[data.gameId]; 
@@ -241,7 +248,7 @@ var game = function(data){
 	};
 
 	var getTopReceiver = function(){
-		var teamTops = _.compact([data.getRecevingPlayers(data.teams.home)[0], data.getRecevingPlayers(data.teams.away)[0]]);
+		var teamTops = _.compact([data.getReceivingPlayers(data.teams.home)[0], data.getReceivingPlayers(data.teams.away)[0]]);
 		if (teamTops.length !== 0){
 		var topReceiver = _.max(teamTops, function(player){
 			return player.points;
