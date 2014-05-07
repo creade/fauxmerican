@@ -6,7 +6,9 @@ body {
 .team-row {
   margin-top: 20px;
 }
-
+.score{
+  font-size: 60px;
+}
 .page-container {
   background-color: white;
   border-radius: 4px;

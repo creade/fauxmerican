@@ -63,94 +63,8 @@
                         <select id="week" data-bind="options: [0,1,2,3,4,5,6,7,8], value: currentWeek, optionsText: function(item){ return item + 1}"></select>
                     </div>
                 </div>
-                <div class="row" data-bind="foreach: gamesForCurrentWeek">
-                    <div class="col-md-6">
-                        <div class="col-md-8">
-                            <h5 data-bind="text: $parent.formatLocalDate(startTime)"></h5>
-                            <table class="table table-striped">
-                                <colgroup>
-                                    <col class="col-md-3">
-                                        <col class="col-md-1">
-                                            <col class="col-md-1">
-                                                <col class="col-md-1">
-                                                    <col class="col-md-1">
-                                                        <!-- ko foreach: OTs -->
-                                                        <col class="col-md-1">
-                                                            <!-- /ko-->
-                                                            <col class="col-md-1">
-                                </colgroup>
-                                <thead>
-                                    <tr>
-                                        <!-- ko if: plays().length === 0 -->
-                                        <th></th>
-                                        <th></th>
-                                        <!-- /ko-->
-                                        <!-- ko if: plays().length !== 0 && !completed()-->
-                                        <th data-bind="text:getQuarterName(_.last(plays()).quarter)"></th>
-                                        <th data-bind="text:clock(_.last(plays()).clock)"></th>
-                                        <!-- /ko-->
-                                        <!-- ko if: plays().length !== 0 && completed()-->
-                                        <th>Final</th>
-                                        <th></th>
-                                        <!-- /ko-->
-                                        <th>1</th>
-                                        <th>2</th>
-                                        <th>3</th>
-                                        <th>4</th>
-                                        <!-- ko foreach: OTs -->
-                                        <th data-bind="text: 'OT ' + $data"></th>
-                                        <!-- /ko-->
-                                        <th>F</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="50" height="50" data-bind="html: teams['home'].logo">
-                                            </svg>
-                                        </td>
-                                        <td>
-                                            <a data-bind="page-href: '../team/'+teams['home'].id, text: teams['home'].name"></a>
-                                        </td>
-                                        <td data-bind="text: homeOne"></td>
-                                        <td data-bind="text: homeTwo"></td>
-                                        <td data-bind="text: homeThree"></td>
-                                        <td data-bind="text: homeFour"></td>
-                                        <!-- ko foreach: homeOTs-->
-                                        <td data-bind="text: $data"></td>
-                                        <!-- /ko-->
-                                        <td data-bind="text: homeTotal"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="50" height="50" data-bind="html: teams['away'].logo">
-                                            </svg>
-                                        </td>
-                                        <td>
-                                            <a data-bind="page-href: '../team/'+teams['away'].id, text: teams['away'].name"></a>
-                                        </td>
-                                        <td data-bind="text: awayOne"></td>
-                                        <td data-bind="text: awayTwo"></td>
-                                        <td data-bind="text: awayThree"></td>
-                                        <td data-bind="text: awayFour"></td>
-                                        <!-- ko foreach: awayOTs-->
-                                        <td data-bind="text: $data"></td>
-                                        <!-- /ko-->
-                                        <td data-bind="text: awayTotal"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <div>
-                                <div data-bind="if: plays().length > 0 && !completed()">
-                                    <h5>Last Play</h5>
-                                    <div data-bind="text: _.last(plays()).commentary"></div>
-                                </div>
-                                <a data-bind="page-href: '../game/'+gameId">Play by play</a>
-                            </div>
-                            <hr>
-                        </div>
-                    </div>
-                </div>
+                <!-- ko template:{ name: 'score-template', foreach: gamesForCurrentWeek} -->
+                <!-- /ko-->
             </div>
         </div>
         <div data-bind="page: {id: 'standings'}">
@@ -903,180 +817,7 @@
                                 </li>
                             </ul>
                             <div class="tab-content">
-                                <div class="tab-pane active" id="schedule" data-bind="foreach: games">
-                                    <div class="row">
-                                        <div class="col-xs-12">
-                                            <h5 data-bind='text: $root.formatLocalDate(startTime)'></h5>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-3 col-xs-4">
-                                            <div class="row">
-                                                <div class="col-xs-6 text-center">
-                                                    <h4 data-bind="text: teams['away'].institution.name"></h4>
-                                                </div>
-                                                <div class="col-xs-6">
-                                                    <svg class="center-block" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="80" height="80" data-bind="html: teams['away'].logo"></svg>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-1 col-xs-2 text-center">
-                                            <span class='score' data-bind="text: awayTotal"></span>
-                                        </div>
-                                        <div class="col-md-4 hidden-sm hidden-xs">
-                                            <table class="table table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <!-- ko if: plays().length === 0 -->
-                                                        <th></th>
-                                                        <!-- /ko-->
-                                                        <!-- ko if: plays().length !== 0 && !completed()-->
-                                                        <th data-bind="text:getQuarterName(_.last(plays()).quarter) + clock(_.last(plays()).clock)"></th>
-                                                        <!-- /ko-->
-                                                        <!-- ko if: plays().length !== 0 && completed()-->
-                                                        <th>Final</th>
-                                                        <!-- /ko-->
-                                                        <th>1</th>
-                                                        <th>2</th>
-                                                        <th>3</th>
-                                                        <th>4</th>
-                                                        <!-- ko foreach: OTs -->
-                                                        <th data-bind="text: 'OT ' + $data"></th>
-                                                        <!-- /ko-->
-                                                        <th>F</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <a data-bind="page-href: '../'+teams['away'].id, text: teams['away'].institution.shortName"></a>
-                                                        </td>
-                                                        <td data-bind="text: awayOne"></td>
-                                                        <td data-bind="text: awayTwo"></td>
-                                                        <td data-bind="text: awayThree"></td>
-                                                        <td data-bind="text: awayFour"></td>
-                                                        <!-- ko foreach: awayOTs-->
-                                                        <td data-bind="text: $data"></td>
-                                                        <!-- /ko-->
-                                                        <td data-bind="text: awayTotal"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <a data-bind="page-href: '../'+teams['home'].id, text: teams['home'].institution.shortName"></a>
-                                                        </td>
-                                                        <td data-bind="text: homeOne"></td>
-                                                        <td data-bind="text: homeTwo"></td>
-                                                        <td data-bind="text: homeThree"></td>
-                                                        <td data-bind="text: homeFour"></td>
-                                                        <!-- ko foreach: homeOTs-->
-                                                        <td data-bind="text: $data"></td>
-                                                        <!-- /ko-->
-                                                        <td data-bind="text: homeTotal"></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="col-md-1 col-xs-2 text-center">
-                                            <span class='score' data-bind="text: homeTotal"></span>
-                                        </div>
-                                        <div class="col-md-3 col-xs-4">
-                                            <div class="row">
-                                                <div class="col-xs-6">
-                                                    <svg class="center-block" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="80" height="80" data-bind="html: teams['home'].logo"></svg>
-                                                </div>
-                                                <div class="col-xs-6 text-center">
-                                                    <h4 data-bind="text: teams['home'].institution.name"></h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="visible-sm visible-xs row">
-                                        <div class="col-xs-12">
-                                            <table class="table table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <!-- ko if: plays().length === 0 -->
-                                                        <th></th>
-                                                        <!-- /ko-->
-                                                        <!-- ko if: plays().length !== 0 && !completed()-->
-                                                        <th data-bind="text:getQuarterName(_.last(plays()).quarter) + clock(_.last(plays()).clock)"></th>
-                                                        <!-- /ko-->
-                                                        <!-- ko if: plays().length !== 0 && completed()-->
-                                                        <th>Final</th>
-                                                        <!-- /ko-->
-                                                        <th>1</th>
-                                                        <th>2</th>
-                                                        <th>3</th>
-                                                        <th>4</th>
-                                                        <!-- ko foreach: OTs -->
-                                                        <th data-bind="text: 'OT ' + $data"></th>
-                                                        <!-- /ko-->
-                                                        <th>F</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <a data-bind="page-href: '../'+teams['away'].id, text: teams['away'].institution.shortName"></a>
-                                                        </td>
-                                                        <td data-bind="text: homeOne"></td>
-                                                        <td data-bind="text: homeTwo"></td>
-                                                        <td data-bind="text: homeThree"></td>
-                                                        <td data-bind="text: homeFour"></td>
-                                                        <!-- ko foreach: homeOTs-->
-                                                        <td data-bind="text: $data"></td>
-                                                        <!-- /ko-->
-                                                        <td data-bind="text: homeTotal"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <a data-bind="page-href: '../'+teams['home'].id, text: teams['home'].institution.shortName"></a>
-                                                        </td>
-                                                        <td data-bind="text: awayOne"></td>
-                                                        <td data-bind="text: awayTwo"></td>
-                                                        <td data-bind="text: awayThree"></td>
-                                                        <td data-bind="text: awayFour"></td>
-                                                        <!-- ko foreach: awayOTs-->
-                                                        <td data-bind="text: $data"></td>
-                                                        <!-- /ko-->
-                                                        <td data-bind="text: awayTotal"></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-4 col-md-offset-4 text-center">
-                                            <a data-bind="page-href: '../../game/'+gameId">Play by play</a>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-4 col-md-offset-4">
-                                            <h4>Top Performers</h4>
-                                            <p>
-                                                <b>Passing:</b>
-                                                <!-- ko text: topPasser() -->
-                                                <!-- /ko-->
-                                            </p>
-                                            <p>
-                                                <b>Rushing:</b>
-                                                <!-- ko text: topRusher() -->
-                                                <!-- /ko-->
-                                            </p>
-                                            <p>
-                                                <b>Receiving:</b>
-                                                <!-- ko text: topReceiver() -->
-                                                <!-- /ko-->
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-12 text-right" data-bind="text: teams.home.stadium"></div>
-                                    </div>
-                                    <div class="row">
-                                        <hr/>
-                                    </div>
-                                </div>
+                                <div class="tab-pane active" id="schedule" data-bind="template:{ name: 'score-template', foreach: games}"></div>
                                 <div class="tab-pane" id="roster">
                                     <div class="row">
                                         <div class="col-xs-12">
@@ -1717,7 +1458,180 @@
     </tbody>
 </table>
     </script>
-
+     <script type="text/html" id="score-template">
+ <div class="row">
+    <hr/>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <h5 data-bind='text: $root.formatLocalDate(startTime)'></h5>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-3 col-xs-4">
+        <div class="row">
+            <div class="col-xs-6 text-center">
+                <h4 data-bind="text: teams['away'].institution.name"></h4>
+            </div>
+            <div class="col-xs-6">
+                <svg class="center-block" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="80" height="80" data-bind="html: teams['away'].logo"></svg>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1 col-xs-2 text-center">
+        <span class='score' data-bind="text: awayTotal"></span>
+    </div>
+    <div class="col-md-4 hidden-sm hidden-xs">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <!-- ko if: plays().length === 0 -->
+                    <th></th>
+                    <!-- /ko-->
+                    <!-- ko if: plays().length !== 0 && !completed()-->
+                    <th data-bind="text:getQuarterName(_.last(plays()).quarter) + clock(_.last(plays()).clock)"></th>
+                    <!-- /ko-->
+                    <!-- ko if: plays().length !== 0 && completed()-->
+                    <th>Final</th>
+                    <!-- /ko-->
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <!-- ko foreach: OTs -->
+                    <th data-bind="text: 'OT ' + $data"></th>
+                    <!-- /ko-->
+                    <th>F</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a data-bind="page-href: '../'+teams['away'].id, text: teams['away'].institution.shortName"></a>
+                    </td>
+                    <td data-bind="text: awayOne"></td>
+                    <td data-bind="text: awayTwo"></td>
+                    <td data-bind="text: awayThree"></td>
+                    <td data-bind="text: awayFour"></td>
+                    <!-- ko foreach: awayOTs-->
+                    <td data-bind="text: $data"></td>
+                    <!-- /ko-->
+                    <td data-bind="text: awayTotal"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <a data-bind="page-href: '../'+teams['home'].id, text: teams['home'].institution.shortName"></a>
+                    </td>
+                    <td data-bind="text: homeOne"></td>
+                    <td data-bind="text: homeTwo"></td>
+                    <td data-bind="text: homeThree"></td>
+                    <td data-bind="text: homeFour"></td>
+                    <!-- ko foreach: homeOTs-->
+                    <td data-bind="text: $data"></td>
+                    <!-- /ko-->
+                    <td data-bind="text: homeTotal"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-1 col-xs-2 text-center">
+        <span class='score' data-bind="text: homeTotal"></span>
+    </div>
+    <div class="col-md-3 col-xs-4">
+        <div class="row">
+            <div class="col-xs-6">
+                <svg class="center-block" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="80" height="80" data-bind="html: teams['home'].logo"></svg>
+            </div>
+            <div class="col-xs-6 text-center">
+                <h4 data-bind="text: teams['home'].institution.name"></h4>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="visible-sm visible-xs row">
+    <div class="col-xs-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <!-- ko if: plays().length === 0 -->
+                    <th></th>
+                    <!-- /ko-->
+                    <!-- ko if: plays().length !== 0 && !completed()-->
+                    <th data-bind="text:getQuarterName(_.last(plays()).quarter) + clock(_.last(plays()).clock)"></th>
+                    <!-- /ko-->
+                    <!-- ko if: plays().length !== 0 && completed()-->
+                    <th>Final</th>
+                    <!-- /ko-->
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                    <th>4</th>
+                    <!-- ko foreach: OTs -->
+                    <th data-bind="text: 'OT ' + $data"></th>
+                    <!-- /ko-->
+                    <th>F</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <a data-bind="page-href: '../'+teams['away'].id, text: teams['away'].institution.shortName"></a>
+                    </td>
+                    <td data-bind="text: homeOne"></td>
+                    <td data-bind="text: homeTwo"></td>
+                    <td data-bind="text: homeThree"></td>
+                    <td data-bind="text: homeFour"></td>
+                    <!-- ko foreach: homeOTs-->
+                    <td data-bind="text: $data"></td>
+                    <!-- /ko-->
+                    <td data-bind="text: homeTotal"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <a data-bind="page-href: '../'+teams['home'].id, text: teams['home'].institution.shortName"></a>
+                    </td>
+                    <td data-bind="text: awayOne"></td>
+                    <td data-bind="text: awayTwo"></td>
+                    <td data-bind="text: awayThree"></td>
+                    <td data-bind="text: awayFour"></td>
+                    <!-- ko foreach: awayOTs-->
+                    <td data-bind="text: $data"></td>
+                    <!-- /ko-->
+                    <td data-bind="text: awayTotal"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-4 col-md-offset-4 text-center">
+        <a data-bind="page-href: '../../game/'+gameId">Play by play</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-4 col-md-offset-4">
+        <h4>Top Performers</h4>
+        <p>
+            <b>Passing:</b>
+            <!-- ko text: topPasser() -->
+            <!-- /ko-->
+        </p>
+        <p>
+            <b>Rushing:</b>
+            <!-- ko text: topRusher() -->
+            <!-- /ko-->
+        </p>
+        <p>
+            <b>Receiving:</b>
+            <!-- ko text: topReceiver() -->
+            <!-- /ko-->
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 text-right" data-bind="text: teams.home.stadium"></div>
+</div>
+                                    </script>
 
 </body>
 
