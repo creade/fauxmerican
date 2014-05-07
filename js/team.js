@@ -141,6 +141,8 @@ var team = function(team, schedule) {
             .value();
     };
 
+    team.teamPath = "../"
+
     team.getStatPlayers = function() {
         var stats = {};
         stats.passingPlayers = [];

@@ -1507,7 +1507,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <a data-bind="page-href: '../'+teams['away'].id, text: teams['away'].institution.shortName"></a>
+                        <a data-bind="page-href: $parent.teamPath+teams['away'].id, text: teams['away'].institution.shortName"></a>
                     </td>
                     <td data-bind="text: awayOne"></td>
                     <td data-bind="text: awayTwo"></td>
@@ -1520,7 +1520,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <a data-bind="page-href: '../'+teams['home'].id, text: teams['home'].institution.shortName"></a>
+                        <a data-bind="page-href: $parent.teamPath+teams['home'].id, text: teams['home'].institution.shortName"></a>
                     </td>
                     <td data-bind="text: homeOne"></td>
                     <td data-bind="text: homeTwo"></td>
@@ -1575,7 +1575,7 @@
             <tbody>
                 <tr>
                     <td>
-                        <a data-bind="page-href: '../'+teams['away'].id, text: teams['away'].institution.shortName"></a>
+                        <a data-bind="page-href:  $parent.teamPath+teams['away'].id, text: teams['away'].institution.shortName"></a>
                     </td>
                     <td data-bind="text: homeOne"></td>
                     <td data-bind="text: homeTwo"></td>
@@ -1588,7 +1588,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <a data-bind="page-href: '../'+teams['home'].id, text: teams['home'].institution.shortName"></a>
+                        <a data-bind="page-href:  $parent.teamPath+teams['home'].id, text: teams['home'].institution.shortName"></a>
                     </td>
                     <td data-bind="text: awayOne"></td>
                     <td data-bind="text: awayTwo"></td>

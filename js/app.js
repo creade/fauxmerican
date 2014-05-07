@@ -11,6 +11,7 @@ $(document).ready(function () {
         vm.completedGames = ko.observableArray();
         vm.upcomingGames = ko.observableArray();
         vm.weeks = ko.observableArray();
+        vm.teamPath = "../team/"
 
         vm.completedGames.subscribe(function(){
 			viewModel.teamsByWins(
