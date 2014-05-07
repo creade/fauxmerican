@@ -1,69 +1,16 @@
 body {
   padding-top: 50px;
+  background-image: url(../img/meshback.jpg);
 }
 
-.score{
-  font-size: 60px;
-}
-.starter-template {
-  padding: 40px 15px;
-  text-align: center;
-}
-.modal-dialog {
-  width: 90%;
-  height: 90%;
-  padding: 0;
+.team-row {
+  margin-top: 20px;
 }
 
-.modal-content {
-  height: 90%;
-  border-radius: 0;
+.page-container {
+  background-color: white;
+  border-radius: 4px;
 }
-
-.modal-backdrop.in {
-	opacity: 1;
-}
-
-
-#realigning {
-	font-size: 10.9vw;
-}
-
-.block {
-  text-align: center;
-}
- 
-.block:before {
-  content: '';
-  display: inline-block;
-  height: 100%; 
-  vertical-align: middle;
-  margin-right: -0.25em; /* Adjusts for spacing */
-    
-  /* For visualization 
-  background: #808080; width: 5px;
-  */
- }
- 
-.centered {
-  display: inline-block;
-  vertical-align: middle;
-  
- }
-
- @keyframes blink {  
-    0% { color: red; }
-    100% { color: black; }
-}
-@-webkit-keyframes blink {
-    0% { color: red; }
-    100% { color: black; }
-}
-.blink {
-    -webkit-animation: blink 0.5s linear infinite;
-    -moz-animation: blink 0.5s linear infinite;
-    animation: blink 0.5s linear infinite;
-} 
 
 .pbp-logo {
   padding-right: 6px;
