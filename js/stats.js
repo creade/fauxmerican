@@ -44,8 +44,14 @@ var stats = function(teams) {
     });
 
 	statsVM.defensivePlayers = _.sortBy(statsVM.defensivePlayers, function(player) {
+        return -1 * (player.player.seasonStats["FR"] || 0);
+    });
+
+
+	statsVM.defensivePlayers = _.sortBy(statsVM.defensivePlayers, function(player) {
         return -1 * (player.player.seasonStats["INTD"] || 0);
     });
+
 
 	statsVM.returnPlayers = _.sortBy(statsVM.returnPlayers, function(player) {
         return -1 * (player.player.seasonStats["PRYDS"] || 0);

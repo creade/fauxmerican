@@ -11,7 +11,7 @@ var game = function(data){
     		return quarterNames[quarter];
     	}
 
-    	return "OT " + quarter;
+    	return "OT " + quarter - 4;
     }
 
 	var otherTeam = function(team){
