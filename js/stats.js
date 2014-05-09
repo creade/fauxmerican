@@ -39,8 +39,12 @@ var stats = function(teams) {
         return -1 * player.player.seasonStats["RECY"];
     });
 	
-	statsVM.kickingPlayers = _.sortBy(statsVM.kickingPlayers, function(player) {
+    statsVM.kickingPlayers = _.sortBy(statsVM.kickingPlayers, function(player) {
         return -1 * player.player.seasonStats["FGM"];
+    });
+
+	statsVM.puntingPlayers = _.sortBy(statsVM.puntingPlayers, function(player) {
+        return -1 * player.player.seasonStats["PUYDS"];
     });
 
 	statsVM.defensivePlayers = _.sortBy(statsVM.defensivePlayers, function(player) {

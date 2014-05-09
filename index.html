@@ -21,6 +21,7 @@
     <script src="js/team.js" type="text/javascript"></script>
     <script src="js/app.js" type="text/javascript"></script>
     <script src="js/stats.js" type="text/javascript"></script>
+    <script src="js/standings.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -67,7 +68,7 @@
                 <!-- /ko-->
             </div>
         </div>
-        <div data-bind="page: {id: 'standings'}">
+        <div data-bind="page: {id: 'standings', withOnShow: loadStandings}">
             <div class="container page-container">
                 <div class="row">
                     <div class="col-xs-12">

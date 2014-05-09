@@ -1,5 +1,5 @@
-$(document).ready(function () {
-    viewModel = function () {
+$(document).ready(function() {
+    viewModel = function() {
         vm = {};
         vm.teams = ko.observableArray();
 
@@ -11,55 +11,41 @@ $(document).ready(function () {
         vm.completedGames = ko.observableArray();
         vm.upcomingGames = ko.observableArray();
         vm.weeks = ko.observableArray();
-        vm.teamPath = "../team/"
+        vm.teamPath = "../team/";
 
-        vm.completedGames.subscribe(function(){
-			viewModel.teamsByWins(
-				_.chain(vm.teams())
-				.sortBy(function(team){
-					return team.record.losses;
-				})
-				.map(function(team){
-					return {
-						id: team.id,
-						name: team.institution.name,
-						wins: team.record.wins,
-						losses: team.record.losses,
-						skill: team.skill
-					}
-				})
-				.value()
-			);
-        });
 
-        vm.gamesForCurrentWeek = ko.computed(function(){
-        	return _.select(vm.games(), function(match){
-        		return match.week === viewModel.currentWeek();
-        	});
+        vm.gamesForCurrentWeek = ko.computed(function() {
+            return _.select(vm.games(), function(match) {
+                return match.week === viewModel.currentWeek();
+            });
         })
 
 
 
-        vm.loadGame = function (vm) {
+        vm.loadGame = function(vm) {
             var gameId = arguments[1].currentId;
-            vm(_.find(viewModel.games(), function (game) {
+            vm(_.find(viewModel.games(), function(game) {
                 return game.gameId.toString() === gameId;
             }));
         };
 
-        vm.loadTeam = function (vm) {
+        vm.loadTeam = function(vm) {
             vm(viewModel.teams()[arguments[1].currentId]);
         };
 
-        vm.loadStats = function (vm) {
+        vm.loadStats = function(vm) {
             vm(stats(viewModel.teams()));
         };
-        
+
+        vm.loadStandings = function(vm) {
+            vm(standings(viewModel.teams()));
+        }
+
         vm.currentWeek = ko.observable(0);
         vm.thisWeek = ko.observable(8);
 
-        vm.formatLocalDate = function(tzMoment){
-        	return moment(tzMoment.valueOf()).format('dddd, MMMM Do YYYY, h:mm A')
+        vm.formatLocalDate = function(tzMoment) {
+            return moment(tzMoment.valueOf()).format('dddd, MMMM Do YYYY, h:mm A')
         }
 
         return vm;
@@ -75,7 +61,7 @@ $(document).ready(function () {
         $.getJSON("js/data/kickdata.json"),
         $.getJSON("js/data/xpm_skill.json"),
         $.getJSON("img/logos.json")
-    ).done(function (data, firstNames, lastNames, playData, kickdata, xpmSkill, logos) {
+    ).done(function(data, firstNames, lastNames, playData, kickdata, xpmSkill, logos) {
 
         var teamGenerator = genball.generators.teams(data, firstNames, lastNames, xpmSkill, logos);
         var seed;
@@ -90,17 +76,17 @@ $(document).ready(function () {
 
         var schedule = genball.generators.schedule().scheduleConcurrent(95);
 
-        _.times(10, function () {
+        _.times(10, function() {
             viewModel.teams.push(team(teamGenerator.newTeam()));
         });
 
 
 
-        _.each(schedule, function (match) {
-            var homeTeam =viewModel.teams()[match.teams[0]];
-            var awayTeam =viewModel.teams()[match.teams[1]];
+        _.each(schedule, function(match) {
+            var homeTeam = viewModel.teams()[match.teams[0]];
+            var awayTeam = viewModel.teams()[match.teams[1]];
             var gameToAdd = game(genball.generators.game(
-            	playData[0], kickdata[0], homeTeam, awayTeam,
+                playData[0], kickdata[0], homeTeam, awayTeam,
                 match.id, match.time, seed + match.id, match.week, false));
 
             viewModel.games.push(gameToAdd);
@@ -111,23 +97,23 @@ $(document).ready(function () {
         });
 
 
-		
- 		_.each(viewModel.upcomingGames(), function (match) {
-            match.playUntil(new Date().getTime());
-              if (match.completed()) {
 
-        	}
+        _.each(viewModel.upcomingGames(), function(match) {
+            match.playUntil(new Date().getTime());
+            if (match.completed()) {
+
+            }
         });
 
 
-        setInterval(function () {
- 			_.each(viewModel.upcomingGames(), function (match) {
-            	match.playUntil(new Date().getTime());
-              	if (match.completed()) {
+        setInterval(function() {
+            _.each(viewModel.upcomingGames(), function(match) {
+                match.playUntil(new Date().getTime());
+                if (match.completed()) {
                     viewModel.completedGames.push(match);
                     viewModel.upcomingGames.remove(match);
-        		}
-        	});
+                }
+            });
         }, 5000)
 
         pager.Href.hash = '#!/' + seed + "/";
