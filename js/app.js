@@ -8,7 +8,6 @@ $(document).ready(function() {
         vm.teamsByWins = ko.observableArray();
 
 
-        vm.completedGames = ko.observableArray();
         vm.upcomingGames = ko.observableArray();
         vm.weeks = ko.observableArray();
         vm.teamPath = "../team/";
@@ -74,7 +73,8 @@ $(document).ready(function() {
         console.log("SEED: " + seed)
         Math.seedrandom(seed);
 
-        var schedule = genball.generators.schedule().scheduleConcurrent(95);
+        var schedule = genball.generators.schedule().scheduleConcurrent(125);
+        var eventSchedule = genball.generators.schedule().scheduleEventsConcurrent(125);
 
         _.times(10, function() {
             viewModel.teams.push(team(teamGenerator.newTeam()));
@@ -93,25 +93,31 @@ $(document).ready(function() {
             viewModel.upcomingGames.push(gameToAdd);
             homeTeam.games.push(gameToAdd);
             awayTeam.games.push(gameToAdd);
-
         });
 
+        _.each(eventSchedule, function(evnt) {
+            viewModel.upcomingGames.push(evnt);
+        });
+
+        viewModel.upcomingGames.sort(function(left, right) {
+            return left.startTime.isSame(right.startTime) ? 0 : (left.startTime.isBefore(right.startTime) ? -1 : 1)
+        })
 
 
         _.each(viewModel.upcomingGames(), function(match) {
-            match.playUntil(new Date().getTime());
-            if (match.completed()) {
-
+            if (match.startTime.isBefore(new Date().getTime())) {
+                match.action(viewModel.teams());
             }
         });
 
 
         setInterval(function() {
             _.each(viewModel.upcomingGames(), function(match) {
-                match.playUntil(new Date().getTime());
-                if (match.completed()) {
-                    viewModel.completedGames.push(match);
-                    viewModel.upcomingGames.remove(match);
+                if (!match.completed && match.startTime.isBefore(new Date().getTime())) {
+                    match.action(viewModel.teams());
+                    if (match.completed()) {
+                        viewModel.upcomingGames.remove(match);
+                    }
                 }
             });
         }, 5000)

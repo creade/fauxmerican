@@ -80,6 +80,7 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th>Ranking</th>
                                     <th>Team</th>
                                     <th>Wins</th>
                                     <th>Losses</th>
@@ -87,6 +88,7 @@
                             </thead>
                             <tbody data-bind="foreach: teamsByWins">
                                 <tr>
+                                    <td data-bind="text: ranking"></td>
                                     <td>
                                         <a data-bind="page-href: '../../team/'+id, text: name"></a>
                                     </td>
@@ -122,15 +124,20 @@
                             <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="75" height="75" data-bind="html: teams.home.logo"></svg>
                         </div>
                     </div>
+
+                            
+
                     <div class="row">
                         <div class="col-xs-6 col-md-3">
                             <h2>
+                                <small data-bind="text: teams['away'].rankings[week]"></small>
                                 <a data-bind="page-href: '../../team/'+teams.away.id, text: teams.away.name"></a>
                             </h2>
                             <h2 data-bind="text: scoreboard.awayScores.total"></h2>
                         </div>
                         <div class="col-xs-6 col-md-3">
                             <h2>
+                                <small data-bind="text: teams['home'].rankings[week]"></small>
                                 <a data-bind="page-href: '../../team/'+teams.home.id, text: teams.home.name"></a>
                             </h2>
                             <h2 data-bind="text: scoreboard.homeScores.total"></h2>
@@ -798,13 +805,27 @@
             <div data-bind="page: {id: '?', withOnShow: loadTeam}">
                 <div class="container page-container">
                     <div class="row team-row">
-                        <h2 class="col-md-8" data-bind="text: institution.name + ' ' + name"></h2>
+                        <div class="col-md-8">
+                            <div class="row">
+                                <h2 class="col-md-12" data-bind="text: institution.name"></h2>        
+                            </div>
+                            <div class="row">
+                                <h1 class="col-md-12">
+                                    <small data-bind="text: _.last(rankings)"></small>
+                                    <!-- ko text: name -->
+                                    <!-- /ko-->
+                                </h1>        
+                            </div>
+                        </div>
+                        
+                        
                         <div class="col-md-3">
                             <svg class="pull-right" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="120" height="120" data-bind="html: logo">
                             </svg>
                         </div>
                         <div class="col-md-1"></div>
                     </div>
+                    
                     <div class="row">
                         <div class="col-xs-12">
                             <ul class="nav nav-tabs">
@@ -1459,6 +1480,7 @@
     </tbody>
 </table>
     </script>
+
      <script type="text/html" id="score-template">
  <div class="row">
     <hr/>
@@ -1476,6 +1498,11 @@
             </div>
             <div class="col-xs-6">
                 <svg class="center-block" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="80" height="80" data-bind="html: teams['away'].logo"></svg>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <h4 data-bind="text: teams['away'].rankings[week]"></h4>
             </div>
         </div>
     </div>
@@ -1547,6 +1574,12 @@
                 <h4 data-bind="text: teams['home'].institution.name"></h4>
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <h4 data-bind="text: teams['home'].rankings[week]"></h4>
+            </div>
+        </div>
+
     </div>
 </div>
 <div class="visible-sm visible-xs row">
