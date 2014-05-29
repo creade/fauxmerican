@@ -1425,7 +1425,14 @@
             <td data-bind="text: awayScore"></td>
         </tr>
         <!-- /ko-->
-
+        <!-- ko if: !!$parents[0].driveSummaries()[$data[0].driveNumber].ending && !_.last($data).quarterChange-->
+        <tr>
+            <td></td>
+            <td data-bind="text: $parents[0].getDriveSummary($data[0].driveNumber)"></td>
+            <td></td>
+                <td></td>
+        </tr>
+        <!-- /ko-->
     </tbody>
 </table>
     </script>
@@ -1474,6 +1481,14 @@
             <td data-bind="text: homeScore"></td>
 
             <td data-bind="text: awayScore"></td>
+        </tr>
+        <!-- /ko-->
+         <!-- ko if: !!$parents[1].driveSummaries()[$data[0].driveNumber].ending && !_.last($data).quarterChange-->
+        <tr>
+            <td></td>
+            <td data-bind="text: $parents[1].getDriveSummary($data[0].driveNumber)"></td>
+            <td></td>
+                <td></td>
         </tr>
         <!-- /ko-->
 
