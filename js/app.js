@@ -73,8 +73,8 @@ $(document).ready(function() {
         console.log("SEED: " + seed)
         Math.seedrandom(seed);
 
-        var schedule = genball.generators.schedule().scheduleConcurrent(125);
-        var eventSchedule = genball.generators.schedule().scheduleEventsConcurrent(125);
+        var schedule = genball.generators.schedule().schedule(6);
+        var eventSchedule = genball.generators.schedule().scheduleEvents(6);
 
         _.times(10, function() {
             viewModel.teams.push(team(teamGenerator.newTeam()));
