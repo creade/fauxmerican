@@ -61,7 +61,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <label for="week">Week</label>
-                        <select id="week" data-bind="options: [0,1,2,3,4,5,6,7,8], value: currentWeek, optionsText: function(item){ return item + 1}"></select>
+                        <select id="week" data-bind="options: weeks, value: currentWeek, optionsText: function(item){ return item + 1}"></select>
                     </div>
                 </div>
                 <!-- ko template:{ name: 'score-template', foreach: gamesForCurrentWeek} -->
@@ -131,14 +131,26 @@
                         <div class="col-xs-6 col-md-3">
                             <h2>
                                 <small data-bind="text: teams['away'].rankings[week]"></small>
+                                <!-- ko if: !teams['away'].outOfConference -->
                                 <a data-bind="page-href: '../../team/'+teams.away.id, text: teams.away.name"></a>
+                                <!-- /ko-->
+                                <!-- ko if: teams['away'].outOfConference -->
+                                    <!-- ko text: teams.away.name  -->
+                                    <!-- /ko-->
+                                <!-- /ko-->
                             </h2>
                             <h2 data-bind="text: scoreboard.awayScores.total"></h2>
                         </div>
                         <div class="col-xs-6 col-md-3">
                             <h2>
                                 <small data-bind="text: teams['home'].rankings[week]"></small>
+                                <!-- ko if: !teams['home'].outOfConference -->
                                 <a data-bind="page-href: '../../team/'+teams.home.id, text: teams.home.name"></a>
+                                <!-- /ko-->
+                                <!-- ko if: teams['home'].outOfConference -->
+                                    <!-- ko text: teams.home.name  -->
+                                    <!-- /ko-->
+                                <!-- /ko-->
                             </h2>
                             <h2 data-bind="text: scoreboard.homeScores.total"></h2>
                         </div>
@@ -1550,7 +1562,13 @@
             <tbody>
                 <tr>
                     <td>
-                        <a data-bind="page-href: $parent.teamPath+teams['away'].id, text: teams['away'].institution.shortName"></a>
+                        <!-- ko if: !teams['away'].outOfConference -->
+                            <a data-bind="page-href: $parent.teamPath+teams['away'].id, text: teams['away'].institution.shortName"></a>
+                        <!-- /ko-->
+                        <!-- ko if: teams['away'].outOfConference -->
+                        <!-- ko text: teams['away'].institution.shortName  -->
+                        <!-- /ko-->
+                        <!-- /ko-->
                     </td>
                     <td data-bind="text: awayOne"></td>
                     <td data-bind="text: awayTwo"></td>
@@ -1563,7 +1581,13 @@
                 </tr>
                 <tr>
                     <td>
-                        <a data-bind="page-href: $parent.teamPath+teams['home'].id, text: teams['home'].institution.shortName"></a>
+                        <!-- ko if: !teams['home'].outOfConference -->
+                            <a data-bind="page-href: $parent.teamPath+teams['home'].id, text: teams['home'].institution.shortName"></a>
+                        <!-- /ko-->
+                        <!-- ko if: teams['home'].outOfConference -->
+                        <!-- ko text: teams['home'].institution.shortName  -->
+                        <!-- /ko-->
+                        <!-- /ko-->
                     </td>
                     <td data-bind="text: homeOne"></td>
                     <td data-bind="text: homeTwo"></td>
@@ -1624,7 +1648,13 @@
             <tbody>
                 <tr>
                     <td>
-                        <a data-bind="page-href:  $parent.teamPath+teams['away'].id, text: teams['away'].institution.shortName"></a>
+                        <!-- ko if: !teams['home'].outOfConference -->
+                            <a data-bind="page-href: $parent.teamPath+teams['home'].id, text: teams['home'].institution.shortName"></a>
+                        <!-- /ko-->
+                        <!-- ko if: teams['home'].outOfConference -->
+                        <!-- ko text: teams['home'].institution.shortName  -->
+                        <!-- /ko--> 
+                        <!-- /ko--> 
                     </td>
                     <td data-bind="text: homeOne"></td>
                     <td data-bind="text: homeTwo"></td>
@@ -1637,7 +1667,13 @@
                 </tr>
                 <tr>
                     <td>
-                        <a data-bind="page-href:  $parent.teamPath+teams['home'].id, text: teams['home'].institution.shortName"></a>
+                    <!-- ko if: !teams['home'].outOfConference -->
+                        <a data-bind="page-href: $parent.teamPath+teams['home'].id, text: teams['home'].institution.shortName"></a>
+                    <!-- /ko-->
+                    <!-- ko if: teams['home'].outOfConference -->
+                        <!-- ko text: teams['home'].institution.shortName  -->
+                        <!-- /ko--> 
+                    <!-- /ko--> 
                     </td>
                     <td data-bind="text: awayOne"></td>
                     <td data-bind="text: awayTwo"></td>

@@ -2,6 +2,7 @@ $(document).ready(function() {
     viewModel = function() {
         vm = {};
         vm.teams = ko.observableArray();
+        vm.otherTeams = ko.observableArray();
 
 
         vm.games = ko.observableArray();
@@ -9,7 +10,8 @@ $(document).ready(function() {
 
 
         vm.upcomingGames = ko.observableArray();
-        vm.weeks = ko.observableArray();
+        vm.bowlGames = ko.observableArray();
+        vm.weeks = ko.observableArray(_.range(0,9));
         vm.teamPath = "../team/";
 
 
@@ -75,9 +77,20 @@ $(document).ready(function() {
 
         var schedule = genball.generators.schedule().schedule(6);
         var eventSchedule = genball.generators.schedule().scheduleEvents(6);
+        var bowlSchedule = genball.generators.schedule().bowlSchedule(6);
 
         _.times(10, function() {
-            viewModel.teams.push(team(teamGenerator.newTeam()));
+            viewModel.teams.push(team(teamGenerator.newTeam(false)));
+        });
+
+        _.times(6, function(index) {
+            var matchId = 100 + index;
+            
+            var gameToAdd = genball.generators.bowlGame(
+                playData[0], kickdata[0], team(teamGenerator.newTeam(true)),
+                matchId, bowlSchedule[index], seed + matchId, false);
+
+            viewModel.bowlGames.push(gameToAdd);
         });
 
 
@@ -103,18 +116,22 @@ $(document).ready(function() {
             return left.startTime.isSame(right.startTime) ? 0 : (left.startTime.isBefore(right.startTime) ? -1 : 1)
         })
 
-
         _.each(viewModel.upcomingGames(), function(match) {
             if (match.startTime.isBefore(new Date().getTime())) {
-                match.action(viewModel.teams());
+                match.action(viewModel);
             }
         });
 
+        _.each(viewModel.upcomingGames(), function(match) {
+            if (match.startTime.isBefore(new Date().getTime()) && !match.completed()) {
+                match.action(viewModel);
+            }
+        });
 
         setInterval(function() {
             _.each(viewModel.upcomingGames(), function(match) {
                 if (!match.completed && match.startTime.isBefore(new Date().getTime())) {
-                    match.action(viewModel.teams());
+                    match.action(viewModel);
                     if (match.completed()) {
                         viewModel.upcomingGames.remove(match);
                     }
