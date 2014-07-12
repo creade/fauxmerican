@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <title>Cover Template for Bootstrap</title>
+
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/intro.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Holtwood+One+SC|Graduate|Lily+Script+One|Roboto:400,700' rel='stylesheet' type='text/css'>
+
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>The Fauxmerican Athletic Conference</h3>
+            </div>
+        </div>
+
+        <div class="row spacer">
+            <div class="col-md-12">
+                <h1 class="text-center">Welcome Commissioner.</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="text-center lead">Everything is set to begin the first exciting season of Fauxmerican football.</p>
+                <p class="text-center lead">All we need you to do is select a KICKOFF SATURDAY for the first full slate of games:</p>
+            </div>
+        </div>
+        <div class="row spacer">
+            <div class="col-md-12">
+                <div class="stitch center-block">
+                    <div class="inner-stitch">
+                        <div class="text-center">
+                            <span data-bind="click: lastSaturday" class="glyphicon glyphicon-chevron-up"></span>
+                        </div>
+                        <h3 class="text-center date-display date-picker" data-bind="text: displayDate"></h3>
+                        <div class="text-center">
+                            <span data-bind="click: nextSaturday" class="date-changer glyphicon glyphicon-chevron-down"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a class="activate-button btn btn-default btn-lg" data-bind="attr: {href: link}">ACTIVATE LEAGUE</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="/js/lib/jquery-2.0.3.min.js"></script>
+    <script src="/js/lib/bootstrap.min.js"></script>
+    <script src="/js/lib/knockout-3.0.0.js"></script>
+    <script src="/js/lib/moment.js"></script>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var viewModel = {};
+        viewModel.currentSaturday = ko.observable(moment().day(6));
+        viewModel.displayDate = ko.computed(function() {
+            return viewModel.currentSaturday().format("dddd, MMMM Do YYYY");
+        });
+        viewModel.nextSaturday = function() {
+            viewModel.currentSaturday(viewModel.currentSaturday().add(7, 'day'))
+        }
+        viewModel.lastSaturday = function() {
+            viewModel.currentSaturday(viewModel.currentSaturday().subtract(7, 'day'))
+        }
+        viewModel.link = ko.computed(function() {
+            return "http://localhost:8000/#!/" + Math.random().toString(36).substring(7) + "-" + viewModel.currentSaturday().week() + "/";
+        });
+
+        ko.applyBindings(viewModel);
+    });
+    </script>
+</body>
+
+
+</html>

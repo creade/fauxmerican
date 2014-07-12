@@ -66,18 +66,22 @@ $(document).ready(function() {
 
         var teamGenerator = genball.generators.teams(data, firstNames, lastNames, xpmSkill, logos);
         var seed;
+        var startWeek;
         if (window.location.hash.split("/")[1]) {
             seed = window.location.hash.split("/")[1];
+            startWeek = parseInt(seed.split("-")[1]);
         } else {
-            seed = Math.random().toString(36).substring(7);
+            startWeek = moment().week();
+            seed = Math.random().toString(36).substring(7) + "-" + startWeek;
             window.location.hash = '#!/' + seed + "/";
+
         }
         console.log("SEED: " + seed)
         Math.seedrandom(seed);
 
-        var schedule = genball.generators.schedule().schedule(6);
-        var eventSchedule = genball.generators.schedule().scheduleEvents(6);
-        var bowlSchedule = genball.generators.schedule().bowlSchedule(6);
+        var schedule = genball.generators.schedule().schedule(startWeek);
+        var eventSchedule = genball.generators.schedule().scheduleEvents(startWeek);
+        var bowlSchedule = genball.generators.schedule().bowlSchedule(startWeek);
 
         _.times(10, function() {
             viewModel.teams.push(team(teamGenerator.newTeam(false)));
