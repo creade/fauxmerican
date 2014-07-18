@@ -10,8 +10,6 @@ var game = function(data) {
         data.playUntil(new Date().getTime());
     }
 
-
-
     data.getQuarterName = function(quarter) {
         if (quarter < 5) {
             return quarterNames[quarter];

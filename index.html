@@ -64,7 +64,7 @@
                         <select id="week" data-bind="options: weeks, value: currentWeek, optionsText: function(item){ return item + 1}"></select>
                     </div>
                 </div>
-                <!-- ko template:{ name: 'score-template', foreach: gamesForCurrentWeek} -->
+                <!-- ko template:{ name: gameTemplate, foreach: gamesForCurrentWeek} -->
                 <!-- /ko-->
             </div>
         </div>
@@ -851,7 +851,7 @@
                                 </li>
                             </ul>
                             <div class="tab-content">
-                                <div class="tab-pane active" id="schedule" data-bind="template:{ name: 'score-template', foreach: games}"></div>
+                                <div class="tab-pane active" id="schedule" data-bind="template:{ name: gameTemplate, foreach: games}"></div>
                                 <div class="tab-pane" id="roster">
                                     <div class="row">
                                         <div class="col-xs-12">
@@ -1713,6 +1713,59 @@
                 </p>
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-12 text-right" data-bind="text: teams.home.stadium"></div>
+        </div>
+    </script>
+
+    <script type="text/html" id="preview-template">
+        <div class="row">
+            <hr/>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-3 col-xs-4">
+                <div class="row">
+                    <div class="col-xs-6 text-center">
+                        <h4 data-bind="text: teams['away'].institution.name"></h4>
+                    </div>
+                    <div class="col-xs-6">
+                        <svg class="center-block" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="80" height="80" data-bind="html: teams['away'].logo"></svg>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <h4 data-bind="text: teams['away'].rankings[week]"></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1 col-xs-2 text-center">
+            </div>
+            <div class="col-xs-4 text-center">
+                <h2 data-bind='text: $root.formatLocalDate(startTime)'></h2>
+            </div>
+            <div class="col-md-1 col-xs-2 text-center">
+            </div>
+            <div class="col-md-3 col-xs-4">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <svg class="center-block" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="80" height="80" data-bind="html: teams['home'].logo"></svg>
+                    </div>
+                    <div class="col-xs-6 text-center">
+                        <h4 data-bind="text: teams['home'].institution.name"></h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <h4 data-bind="text: teams['home'].rankings[week]"></h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        
+        
         <div class="row">
             <div class="col-xs-12 text-right" data-bind="text: teams.home.stadium"></div>
         </div>

@@ -19,7 +19,11 @@ $(document).ready(function() {
             return _.select(vm.games(), function(match) {
                 return match.week === viewModel.currentWeek();
             });
-        })
+        });
+
+        vm.gameTemplate = function(game){
+            return game.startTime > new Date().getTime() ? 'preview-template' : "score-template";
+        }
 
 
 
