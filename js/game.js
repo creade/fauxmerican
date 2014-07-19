@@ -8,6 +8,7 @@ var game = function(data) {
 
     data.action = function() {
         data.playUntil(new Date().getTime());
+        
     }
 
     data.getQuarterName = function(quarter) {
@@ -106,32 +107,32 @@ var game = function(data) {
         return data.scoreboard.awayScores.total();
     })
 
-    data.getDriveSummary = function(driveNumber){
-         var summary = data.driveSummaries()[driveNumber];
+    data.getDriveSummary = function(driveNumber) {
+        var summary = data.driveSummaries()[driveNumber];
 
-         var passes = "";
-         var rushes = "";
-         var yards ="";
+        var passes = "";
+        var rushes = "";
+        var yards = "";
 
-         if (summary.PA && summary.PA > 1){
-            passes = summary.PA  + " Passes, "
-         } else if (summary.PA && summary.PA === 1){
-            passes = summary.PA  + " Pass, "
-         }
+        if (summary.PA && summary.PA > 1) {
+            passes = summary.PA + " Passes, "
+        } else if (summary.PA && summary.PA === 1) {
+            passes = summary.PA + " Pass, "
+        }
 
-         if (summary.RA && summary.RA > 1){
-            rushes = summary.RA  + " Rushes, "
-         } else if (summary.RA && summary.RA === 1){
-            rushes = summary.RA  + " Rush, "
-         }
+        if (summary.RA && summary.RA > 1) {
+            rushes = summary.RA + " Rushes, "
+        } else if (summary.RA && summary.RA === 1) {
+            rushes = summary.RA + " Rush, "
+        }
 
-         if (summary.distance && Math.abs(summary.distance) !== 1){
-            yards = summary.distance  + " Yards: "
-         } else if (summary.distance && Math.abs(summary.distance) === 1){
-            yards = summary.distance  + " Yard: "
-         }
+        if (summary.distance && Math.abs(summary.distance) !== 1) {
+            yards = summary.distance + " Yards: "
+        } else if (summary.distance && Math.abs(summary.distance) === 1) {
+            yards = summary.distance + " Yard: "
+        }
 
-         return "DRIVE TOTALS: " +  passes + rushes + yards + summary.ending;
+        return "DRIVE TOTALS: " + passes + rushes + yards + summary.ending;
 
     }
 

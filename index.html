@@ -851,7 +851,7 @@
                                 </li>
                             </ul>
                             <div class="tab-content">
-                                <div class="tab-pane active" id="schedule" data-bind="template:{ name: gameTemplate, foreach: games}"></div>
+                                <div class="tab-pane active" id="schedule" data-bind="template:{ name: $root.gameTemplate, foreach: games}"></div>
                                 <div class="tab-pane" id="roster">
                                     <div class="row">
                                         <div class="col-xs-12">
@@ -1668,7 +1668,7 @@
                         <tr>
                             <td>
                                 <!-- ko if: !teams['home'].outOfConference -->
-                                <a data-bind="page-href: $parent.teamPath+teams['home'].id, text: teams['home'].institution.shortName"></a>
+                                <a data-bind="page-href: $parent.teamPath+teams['away'].id, text: teams['away'].institution.shortName"></a>
                                 <!-- /ko-->
                                 <!-- ko if: teams['home'].outOfConference -->
                                 <!-- ko text: teams['home'].institution.shortName  -->
