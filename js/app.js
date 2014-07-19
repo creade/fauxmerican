@@ -62,13 +62,12 @@ $(document).ready(function() {
         $.getJSON("js/data/data.json"),
         $.getJSON("js/data/first_names.json"),
         $.getJSON("js/data/last_names.json"),
-        $.getJSON("js/data/play_by_q.json"),
+        $.getJSON("js/data/play_by_q_and_dn.json"),
         $.getJSON("js/data/kickdata.json"),
-        $.getJSON("js/data/xpm_skill.json"),
         $.getJSON("img/logos.json")
-    ).done(function(data, firstNames, lastNames, playData, kickdata, xpmSkill, logos) {
+    ).done(function(data, firstNames, lastNames, playData, kickdata, logos) {
 
-        var teamGenerator = genball.generators.teams(data, firstNames, lastNames, xpmSkill, logos);
+        var teamGenerator = genball.generators.teams(data, firstNames, lastNames, logos);
         var seed;
         var startWeek;
         if (window.location.hash.split("/")[1]) {

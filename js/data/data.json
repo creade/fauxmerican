@@ -2155,11 +2155,6 @@
     "Lon":-106.7283597
   },
   {
-    "N":"Boogertown",
-    "Lat":35.2181939,
-    "Lon":-81.1597994
-  },
-  {
     "N":"Geers Corners",
     "Lat":44.1811744,
     "Lon":-75.3379808
@@ -9737,8 +9732,6 @@
 {"N":"Red Foxes", "L":["paw"], "C":"red"},
 {"N":"Red Hawks", "L":["eagle", "hawk"], "C":"red"},
 {"N":"Red Lions", "L":["lion"], "C":"red"},
-{"N":"Red Men", "L":[], "C":"red"},
-{"N":"Redmen", "L":[], "C":"red"},
 {"N":"Red Raiders", "L":["pirate"], "C":"red"},
 {"N":"Red Storm", "L":[], "C":"red"},
 {"N":"Reddies", "L":[], "C":"red"},

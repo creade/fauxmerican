@@ -1667,11 +1667,11 @@
                         </tr>
                         <tr>
                             <td>
-                                <!-- ko if: !teams['home'].outOfConference -->
+                                <!-- ko if: !teams['away'].outOfConference -->
                                 <a data-bind="page-href: $parent.teamPath+teams['away'].id, text: teams['away'].institution.shortName"></a>
                                 <!-- /ko-->
-                                <!-- ko if: teams['home'].outOfConference -->
-                                <!-- ko text: teams['home'].institution.shortName  -->
+                                <!-- ko if: teams['away'].outOfConference -->
+                                <!-- ko text: teams['away'].institution.shortName  -->
                                 <!-- /ko-->
                                 <!-- /ko-->
                             </td>
