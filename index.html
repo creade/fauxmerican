@@ -117,11 +117,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-6 col-md-3">
-                            <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="75" height="75" data-bind="html: teams.away.logo"></svg>
+                        <div class="col-xs-6 col-md-3" data-bind="html: $root.logo(teams.away.logo, 75)">
+                            
                         </div>
-                        <div class="col-xs-6 col-md-3">
-                            <svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="75" height="75" data-bind="html: teams.home.logo"></svg>
+                        <div class="col-xs-6 col-md-3" data-bind="html: $root.logo(teams.home.logo, 75)">
                         </div>
                     </div>
 
@@ -253,19 +252,17 @@
                                                 <thead>
                                                     <th colspan="5"></th>
                                                     <th data-bind="style: { borderBottomColor: teams.home.color }">
-                                                        <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.home.logo"></svg>
+                                                        <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
                                                         <h6 class="text-center" data-bind="text: teams.home.shortName, style: { borderTopColor: teams.home.color }"></h6>
                                                     </th>
                                                     <th data-bind="style: { borderBottomColor: teams.away.color }">
-                                                        <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.away.logo"></svg>
+                                                        <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
                                                         <h6 class="text-center" data-bind="text: teams.away.shortName"></h6>
                                                     </th>
                                                 </thead>
                                                 <tbody data-bind="foreach: scoringPlays">
                                                     <tr>
-                                                        <td>
-                                                            <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: $parent.teams[$data.possession].logo">
-                                                            </svg>
+                                                        <td data-bind="html: $root.logo($parent.teams[$data.possession].logo, 25, 'pull-left pbp-logo')">
                                                         </td>
                                                         <td data-bind="text: possession"></td>
                                                         <td data-bind="text: $parent.getQuarterName(quarter)"></td>
@@ -283,11 +280,11 @@
                                                 <thead>
                                                     <th></th>
                                                     <th data-bind="style: { borderBottomColor: teams.home.color }">
-                                                        <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.home.logo"></svg>
+                                                        <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
                                                         <h6 class="text-center" data-bind="text: teams.home.shortName, style: { borderTopColor: teams.home.color }"></h6>
                                                     </th>
                                                     <th data-bind="style: { borderBottomColor: teams.away.color }">
-                                                        <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.away.logo"></svg>
+                                                        <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
                                                         <h6 class="text-center" data-bind="text: teams.away.shortName"></h6>
                                                     </th>
                                                 </thead>
@@ -370,7 +367,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.home.logo"></svg>
+                                            <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
                                             <h4 data-bind="text: teams.home.name + ' Passing'"></h4>
                                             <table class="table">
                                                 <thead>
@@ -400,7 +397,7 @@
                                             </table>
                                         </div>
                                         <div class="col-md-6">
-                                            <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.away.logo"></svg>
+                                            <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
                                             <h4 data-bind="text: teams.away.name + ' Passing'"></h4>
                                             <table class="table">
                                                 <thead>
@@ -432,7 +429,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.home.logo"></svg>
+                                            <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
                                             <h4 data-bind="text: teams.home.name + ' Rushing'"></h4>
                                             <table class="table">
                                                 <thead>
@@ -458,7 +455,7 @@
                                             </table>
                                         </div>
                                         <div class="col-md-6">
-                                            <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.away.logo"></svg>
+                                            <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
                                             <h4 data-bind="text: teams.away.name + ' Rushing'"></h4>
                                             <table class="table">
                                                 <thead>
@@ -486,7 +483,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.home.logo"></svg>
+                                            <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
                                             <h4 data-bind="text: teams.home.name + ' Receiving'"></h4>
                                             <table class="table">
                                                 <thead>
@@ -510,7 +507,7 @@
                                             </table>
                                         </div>
                                         <div class="col-md-6">
-                                            <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.away.logo"></svg>
+                                            <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
                                             <h4 data-bind="text: teams.away.name + ' Receiving'"></h4>
                                             <table class="table">
                                                 <thead>
@@ -536,7 +533,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.home.logo"></svg>
+                                            <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
                                             <h4 data-bind="text: teams.home.name + ' Defense'"></h4>
                                             <table class="table">
                                                 <thead>
@@ -558,7 +555,7 @@
                                             </table>
                                         </div>
                                         <div class="col-md-6">
-                                            <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.away.logo"></svg>
+                                            <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
                                             <h4 data-bind="text: teams.away.name + ' Defense'"></h4>
                                             <table class="table">
                                                 <thead>
@@ -582,7 +579,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.home.logo"></svg>
+                                            <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
                                             <h4 data-bind="text: teams.home.name + ' Kicking'"></h4>
                                             <table class="table">
                                                 <thead>
@@ -606,7 +603,7 @@
                                             </table>
                                         </div>
                                         <div class="col-md-6">
-                                            <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.away.logo"></svg>
+                                            <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
                                             <h4 data-bind="text: teams.away.name + ' Kicking'"></h4>
                                             <table class="table">
                                                 <thead>
@@ -633,7 +630,7 @@
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.home.logo"></svg>
+                                            <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
                                             <h4 data-bind="text: teams.home.name + ' Punting'"></h4>
                                             <table class="table">
                                                 <thead>
@@ -659,7 +656,7 @@
                                             </table>
                                         </div>
                                         <div class="col-md-6">
-                                            <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.away.logo"></svg>
+                                            <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
                                             <h4 data-bind="text: teams.away.name + ' Punting'"></h4>
                                             <table class="table">
                                                 <thead>
@@ -687,7 +684,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.home.logo"></svg>
+                                            <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
                                             <h4 data-bind="text: teams.home.name + ' Returns'"></h4>
                                             <table class="table">
                                                 <thead>
@@ -726,7 +723,7 @@
                                             </table>
                                         </div>
                                         <div class="col-md-6">
-                                            <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="25" height="25" data-bind="html: teams.away.logo"></svg>
+                                            <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
                                             <h4 data-bind="text: teams.away.name + ' Returns'"></h4>
                                             <table class="table">
                                                 <thead>
@@ -831,9 +828,7 @@
                         </div>
 
 
-                        <div class="col-md-3">
-                            <svg class="pull-right" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="120" height="120" data-bind="html: logo">
-                            </svg>
+                        <div class="col-md-3" data-bind="html: $root.logo(logo, 120, 'pull-right')">
                         </div>
                         <div class="col-md-1"></div>
                     </div>
@@ -1395,8 +1390,7 @@
             <thead>
                 <tr>
                     <td>
-                        <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="39" height="39" data-bind="html: $parents[0].teams[$data[0].possession].logo">
-                        </svg>
+                        <div data-bind="html: $root.logo($parents[0].teams[$data[0].possession].logo, 39, 'pull-left pbp-logo')"></div>
                         <h4 data-bind="text: $data[0].possession"></h4>
                     </td>
 
@@ -1453,8 +1447,7 @@
             <thead>
                 <tr>
                     <td>
-                        <svg class="pull-left pbp-logo" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="39" height="39" data-bind="html: $parents[1].teams[$data[0].possession].logo">
-                        </svg>
+                        <div data-bind="html: $root.logo($parents[0].teams[$data[0].possession].logo, 39, 'pull-left pbp-logo')"></div>
                         <h4 data-bind="text: $data[0].possession"></h4>
                     </td>
 
@@ -1523,8 +1516,7 @@
                     <div class="col-xs-6 text-center">
                         <h4 data-bind="text: teams['away'].institution.name"></h4>
                     </div>
-                    <div class="col-xs-6">
-                        <svg class="center-block" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="80" height="80" data-bind="html: teams['away'].logo"></svg>
+                    <div class="col-xs-6" data-bind="html: $root.logo(teams['away'].logo, 80, 'center-block')">
                     </div>
                 </div>
                 <div class="row">
@@ -1606,8 +1598,7 @@
             </div>
             <div class="col-md-3 col-xs-4">
                 <div class="row">
-                    <div class="col-xs-6">
-                        <svg class="center-block" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="80" height="80" data-bind="html: teams['home'].logo"></svg>
+                    <div class="col-xs-6" data-bind="html: $root.logo(teams['home'].logo, 80, 'center-block')">
                     </div>
                     <div class="col-xs-6 text-center">
                         <h4 data-bind="text: teams['home'].institution.name"></h4>
@@ -1729,8 +1720,8 @@
                     <div class="col-xs-6 text-center">
                         <h4 data-bind="text: teams['away'].institution.name"></h4>
                     </div>
-                    <div class="col-xs-6">
-                        <svg class="center-block" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="80" height="80" data-bind="html: teams['away'].logo"></svg>
+                    <div class="col-xs-6"  data-bind="html: $root.logo(teams['away'].logo, 80, 'center-block')">
+                        
                     </div>
                 </div>
                 <div class="row">
@@ -1748,8 +1739,8 @@
             </div>
             <div class="col-md-3 col-xs-4">
                 <div class="row">
-                    <div class="col-xs-6">
-                        <svg class="center-block" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="80" height="80" data-bind="html: teams['home'].logo"></svg>
+                    <div class="col-xs-6" data-bind="html: $root.logo(teams['home'].logo, 80, 'center-block')">
+                        
                     </div>
                     <div class="col-xs-6 text-center">
                         <h4 data-bind="text: teams['home'].institution.name"></h4>

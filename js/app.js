@@ -11,7 +11,7 @@ $(document).ready(function() {
 
         vm.upcomingGames = ko.observableArray();
         vm.bowlGames = ko.observableArray();
-        vm.weeks = ko.observableArray(_.range(0,9));
+        vm.weeks = ko.observableArray(_.range(0, 9));
         vm.teamPath = "../team/";
 
 
@@ -21,10 +21,16 @@ $(document).ready(function() {
             });
         });
 
-        vm.gameTemplate = function(game){
+        vm.gameTemplate = function(game) {
             return game.startTime > new Date().getTime() ? 'preview-template' : "score-template";
         }
 
+        vm.logo = function(logo, size, klass) {
+            if (klass) {
+                return '<svg class="'+klass+'" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="'+size+'" height="'+size+'">' + logo + "</svg>"
+            }
+            return '<svg viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" width="'+size+'" height="'+size+'">' + logo + "</svg>"
+        }
 
 
         vm.loadGame = function(vm) {
@@ -92,7 +98,7 @@ $(document).ready(function() {
 
         _.times(6, function(index) {
             var matchId = 100 + index;
-            
+
             var gameToAdd = genball.generators.bowlGame(
                 playData[0], kickdata[0], team(teamGenerator.newTeam(true)),
                 matchId, bowlSchedule[index], seed + matchId, false);
