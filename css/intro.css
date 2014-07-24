@@ -14,6 +14,10 @@ body {
     text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
     height: 100%;
     background-color: #333;
+    background-image: url(../img/logobig500bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }
 .stitch {
     background: url(../img/leather.jpg);

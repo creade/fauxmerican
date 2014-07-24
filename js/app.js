@@ -156,5 +156,6 @@ $(document).ready(function() {
         pager.extendWithPage(viewModel);
         ko.applyBindings(viewModel);
         pager.start();
+        $("#load-screen").remove();
     })
 });

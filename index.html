@@ -25,6 +25,22 @@
 </head>
 
 <body>
+    <div id="load-screen">
+        <div class="container">
+            <div class="row">
+                <div class="text-center col-xs-12">
+                    <h1 class='loadingText'>REALIGNING</h1>
+                    <div>
+                        <img src="img/logobig500.png">
+                    </div>
+  
+  </div>
+</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <nav class="navbar navbar-default">
         <div class="navbar-header">
             <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
@@ -1447,7 +1463,7 @@
             <thead>
                 <tr>
                     <td>
-                        <div data-bind="html: $root.logo($parents[0].teams[$data[0].possession].logo, 39, 'pull-left pbp-logo')"></div>
+                        <div data-bind="html: $root.logo($parents[1].teams[$data[0].possession].logo, 39, 'pull-left pbp-logo')"></div>
                         <h4 data-bind="text: $data[0].possession"></h4>
                     </td>
 
