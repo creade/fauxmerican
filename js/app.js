@@ -144,7 +144,7 @@ $(document).ready(function() {
 
         setInterval(function() {
             _.each(viewModel.upcomingGames(), function(match) {
-                if (!match.completed && match.startTime.isBefore(new Date().getTime())) {
+                if (!match.completed() && match.startTime.isBefore(new Date().getTime())) {
                     match.action(viewModel);
                     if (match.completed()) {
                         viewModel.upcomingGames.remove(match);

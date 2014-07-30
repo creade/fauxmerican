@@ -322,8 +322,8 @@
                                                     </tr>
                                                     <tr>
                                                         <td>Total Yards</td>
-                                                        <td data-bind="text: teams.home.stats[gameId]['PY'] + teams.home.stats[gameId]['RYDS']"></td>
-                                                        <td data-bind="text: teams.away.stats[gameId]['PY'] + teams.away.stats[gameId]['RYDS']"></td>
+                                                        <td data-bind="text: (teams.home.stats[gameId]['PY']||0) + (teams.home.stats[gameId]['RYDS']||0)"></td>
+                                                        <td data-bind="text: (teams.away.stats[gameId]['PY']||0) + (teams.away.stats[gameId]['RYDS']||0)"></td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="3"><b>Passing</b>
@@ -336,8 +336,8 @@
                                                     </tr>
                                                     <tr>
                                                         <td>Completions - Attempts</td>
-                                                        <td data-bind="text: teams.home.stats[gameId]['C'] + ' - '+ teams.home.stats[gameId]['PA'] "></td>
-                                                        <td data-bind="text: teams.away.stats[gameId]['C'] + ' - '+ teams.away.stats[gameId]['PA'] "></td>
+                                                        <td data-bind="text: (teams.home.stats[gameId]['C']||0) + ' - '+ (teams.home.stats[gameId]['PA']||0) "></td>
+                                                        <td data-bind="text: (teams.away.stats[gameId]['C']||0) + ' - '+ (teams.away.stats[gameId]['PA']||0) "></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Yards per Attempt</td>
