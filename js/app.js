@@ -98,9 +98,10 @@ $(document).ready(function() {
 
         _.times(6, function(index) {
             var matchId = 100 + index;
-
+            var bowlOpponent = team(teamGenerator.newTeam(true));
+            viewModel.otherTeams.push(bowlOpponent);
             var gameToAdd = genball.generators.bowlGame(
-                playData[0], kickdata[0], team(teamGenerator.newTeam(true)),
+                playData[0], kickdata[0], bowlOpponent,
                 matchId, bowlSchedule[index], seed + matchId, false);
 
             viewModel.bowlGames.push(gameToAdd);
