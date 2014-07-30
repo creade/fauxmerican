@@ -1523,7 +1523,12 @@
         </div>
         <div class="row">
             <div class="col-xs-12">
-                <h5 data-bind='text: $root.formatLocalDate(startTime)'></h5>
+                <h5 data-bind='text: $root.formatLocalDate(startTime) + " - " + teams.home.stadium'></h5>
+            </div>
+        </div>
+        <div class="row" data-bind="if: name">
+            <div class="col-xs-12 text-center">
+                <h3 data-bind='text: name'></h5>
             </div>
         </div>
         <div class="row">
@@ -1696,12 +1701,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-4 col-md-offset-4 text-center">
+            <div class="col-md-4 col-xs-6 col-md-offset-4 col-xs-offset-3 text-center">
                 <a data-bind="page-href: '../../game/'+gameId">Play by play</a>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-4 col-md-offset-4">
+            <div class="col-md-4 col-xs-6 col-md-offset-4 col-xs-offset-3">
                 <h4>Top Performers</h4>
                 <p>
                     <b>Passing:</b>
@@ -1720,16 +1725,18 @@
                 </p>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-12 text-right" data-bind="text: teams.home.stadium"></div>
-        </div>
+        
     </script>
 
     <script type="text/html" id="preview-template">
         <div class="row">
             <hr/>
         </div>
-        
+        <div class="row" data-bind="if: name">
+            <div class="col-xs-12 text-center">
+                <h3 data-bind='text: name'></h5>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-3 col-xs-4">
                 <div class="row">

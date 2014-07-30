@@ -72,8 +72,10 @@ $(document).ready(function() {
         $.getJSON("js/data/kickdata.json"),
         $.getJSON("img/logos.json")
     ).done(function(data, firstNames, lastNames, playData, kickdata, logos) {
-
-        var teamGenerator = genball.generators.teams(data, firstNames, lastNames, logos);
+        var lastNameGenerator = genball.generators.lastNameGenerator(lastNames);
+        var firstNameGenerator = genball.generators.firstNameGenerator(firstNames);
+        var teamGenerator = genball.generators.teams(data, firstNameGenerator, lastNameGenerator, logos);
+        var gameNameGenerator = genball.generators.gameName(firstNameGenerator, lastNameGenerator);
         var seed;
         var startWeek;
         if (window.location.hash.split("/")[1]) {
@@ -102,7 +104,7 @@ $(document).ready(function() {
             viewModel.otherTeams.push(bowlOpponent);
             var gameToAdd = genball.generators.bowlGame(
                 playData[0], kickdata[0], bowlOpponent,
-                matchId, bowlSchedule[index], seed + matchId, false);
+                matchId, bowlSchedule[index], seed + matchId, gameNameGenerator.nextBowlName(), false);
 
             viewModel.bowlGames.push(gameToAdd);
         });
@@ -112,9 +114,14 @@ $(document).ready(function() {
         _.each(schedule, function(match) {
             var homeTeam = viewModel.teams()[match.teams[0]];
             var awayTeam = viewModel.teams()[match.teams[1]];
+            var name = "";
+            if(Math.random()<.1 && gameNameGenerator.rivalryGamesLeft()){
+                name = gameNameGenerator.nextRivalryGame();
+            }
+
             var gameToAdd = game(genball.generators.game(
                 playData[0], kickdata[0], homeTeam, awayTeam,
-                match.id, match.time, seed + match.id, match.week, false));
+                match.id, match.time, seed + match.id, match.week, name, false));
 
             viewModel.games.push(gameToAdd);
             viewModel.upcomingGames.push(gameToAdd);
