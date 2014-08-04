@@ -82,7 +82,7 @@ $(document).ready(function() {
             seed = window.location.hash.split("/")[1];
             startWeek = parseInt(seed.split("-")[1]);
         } else {
-            startWeek = moment().week();
+            startWeek = 1;
             seed = Math.random().toString(36).substring(7) + "-" + startWeek;
             window.location.hash = '#!/' + seed + "/";
 
