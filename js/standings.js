@@ -21,7 +21,9 @@ var standings = function(teams) {
                     wins: team.record.wins,
                     ranking: ranking,
                     losses: team.record.losses,
-                    skill: team.skill
+                    skill: team.skill,
+                    defSkill: team.defSkill
+
                 }
             })
             .value()
