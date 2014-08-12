@@ -464,7 +464,7 @@
                                                         <td data-bind="text: player.position"></td>
                                                         <td data-bind="text: player.stats[$parent.gameId]['RA']"></td>
                                                         <td data-bind="text: player.stats[$parent.gameId]['RYDS'] || '0'"></td>
-                                                        <td data-bind="text: (player.stats[$parent.gameId]['RYDS'] / player.stats[$parent.gameId]['RA']).toFixed(1) || '0'"></td>
+                                                        <td data-bind="text: ((player.stats[$parent.gameId]['RYDS'] / player.stats[$parent.gameId]['RA'])|| 0).toFixed(1) "></td>
                                                         <td data-bind="text: player.stats[$parent.gameId]['RTDS'] || '0'"></td>
                                                     </tr>
                                                 </tbody>
@@ -490,7 +490,7 @@
                                                         <td data-bind="text: player.position"></td>
                                                         <td data-bind="text: player.stats[$parent.gameId]['RA']"></td>
                                                         <td data-bind="text: player.stats[$parent.gameId]['RYDS'] || '0'"></td>
-                                                        <td data-bind="text: (player.stats[$parent.gameId]['RYDS'] / player.stats[$parent.gameId]['RA']).toFixed(1) || '0'"></td>
+                                                        <td data-bind="text: ((player.stats[$parent.gameId]['RYDS'] / player.stats[$parent.gameId]['RA']) || 0).toFixed(1) "></td>
                                                         <td data-bind="text: player.stats[$parent.gameId]['RTDS'] || '0'"></td>
                                                     </tr>
                                                 </tbody>
@@ -665,7 +665,7 @@
                                                         <td data-bind="text: player.position"></td>
                                                         <td data-bind="text: player.stats[$parent.gameId]['P']"></td>
                                                         <td data-bind="text: player.stats[$parent.gameId]['PUYDS']"></td>
-                                                        <td data-bind="text: (player.stats[$parent.gameId]['PUYDS'] / player.stats[$parent.gameId]['P']).toFixed(1) || '0'"></td>
+                                                        <td data-bind="text: ((player.stats[$parent.gameId]['PUYDS'] / player.stats[$parent.gameId]['P']) || 0).toFixed(1) "></td>
                                                         <td data-bind="text: player.stats[$parent.gameId]['PL']"></td>
                                                     </tr>
                                                 </tbody>
@@ -691,7 +691,7 @@
                                                         <td data-bind="text: player.position"></td>
                                                         <td data-bind="text: player.stats[$parent.gameId]['P']"></td>
                                                         <td data-bind="text: player.stats[$parent.gameId]['PUYDS']"></td>
-                                                        <td data-bind="text: (player.stats[$parent.gameId]['PUYDS'] / player.stats[$parent.gameId]['P']).toFixed(1) || '0'"></td>
+                                                        <td data-bind="text: ((player.stats[$parent.gameId]['PUYDS'] / player.stats[$parent.gameId]['P'])|| 0).toFixed(1) "></td>
                                                         <td data-bind="text: player.stats[$parent.gameId]['PL']"></td>
                                                     </tr>
                                                 </tbody>
@@ -940,7 +940,7 @@
                                                         <td data-bind="text: player.position"></td>
                                                         <td data-bind="text: player.seasonStats['RA']"></td>
                                                         <td data-bind="text: player.seasonStats['RYDS'] || '0'"></td>
-                                                        <td data-bind="text: (player.seasonStats['RYDS'] / player.seasonStats['RA']).toFixed(1) || '0'"></td>
+                                                        <td data-bind="text: ((player.seasonStats['RYDS'] / player.seasonStats['RA']) || 0).toFixed(1) "></td>
                                                         <td data-bind="text: player.seasonStats['RTDS'] || '0'"></td>
                                                     </tr>
                                                 </tbody>
@@ -1048,7 +1048,7 @@
                                                         <td data-bind="text: player.position"></td>
                                                         <td data-bind="text: player.seasonStats['P']"></td>
                                                         <td data-bind="text: player.seasonStats['PUYDS']"></td>
-                                                        <td data-bind="text: (player.seasonStats['PUYDS'] / player.seasonStats['P']).toFixed(1) || '0'"></td>
+                                                        <td data-bind="text: ((player.seasonStats['PUYDS'] / player.seasonStats['P']) || 0).toFixed(1)"></td>
                                                         <td data-bind="text: player.seasonStats['PL']"></td>
                                                     </tr>
                                                 </tbody>
@@ -1204,7 +1204,7 @@
                                                     </td>
                                                     <td data-bind="text: player.seasonStats['RA']"></td>
                                                     <td data-bind="text: player.seasonStats['RYDS'] || '0'"></td>
-                                                    <td data-bind="text: (player.seasonStats['RYDS'] / player.seasonStats['RA']).toFixed(1) || '0'"></td>
+                                                    <td data-bind="text: ((player.seasonStats['RYDS'] / player.seasonStats['RA']) || 0).toFixed(1)"></td>
                                                     <td data-bind="text: player.seasonStats['RTDS'] || '0'"></td>
                                                 </tr>
                                             </tbody>
@@ -1340,7 +1340,7 @@
                                                     </td>
                                                     <td data-bind="text: player.seasonStats['P']"></td>
                                                     <td data-bind="text: player.seasonStats['PUYDS']"></td>
-                                                    <td data-bind="text: (player.seasonStats['PUYDS'] / player.seasonStats['P']).toFixed(1) || '0'"></td>
+                                                    <td data-bind="text: ((player.seasonStats['PUYDS'] / player.seasonStats['P'])|| 0).toFixed(1)"></td>
                                                     <td data-bind="text: player.seasonStats['PL']"></td>
                                                 </tr>
                                             </tbody>

@@ -28,23 +28,23 @@ var stats = function(teams) {
     statsVM.puntingPlayers = _.flatten(statsVM.puntingPlayers);
 
     statsVM.passingPlayers = _.sortBy(statsVM.passingPlayers, function(player) {
-        return -1 * player.player.seasonStats["PY"];
+        return -1 * (player.player.seasonStats["PY"] || 0)
     });
 
     statsVM.rushingPlayers = _.sortBy(statsVM.rushingPlayers, function(player) {
-        return -1 * player.player.seasonStats["RYDS"];
+        return -1 * (player.player.seasonStats["RYDS"] || 0);
     });
 
     statsVM.receivingPlayers = _.sortBy(statsVM.receivingPlayers, function(player) {
-        return -1 * player.player.seasonStats["RECY"];
+        return -1 * (player.player.seasonStats["RECY"] || 0);
     });
 	
     statsVM.kickingPlayers = _.sortBy(statsVM.kickingPlayers, function(player) {
-        return -1 * player.player.seasonStats["FGM"];
+        return -1 * (player.player.seasonStats["FGM"] || 0);
     });
 
 	statsVM.puntingPlayers = _.sortBy(statsVM.puntingPlayers, function(player) {
-        return -1 * player.player.seasonStats["PUYDS"];
+        return -1 * (player.player.seasonStats["PUYDS"] || 0);
     });
 
 	statsVM.defensivePlayers = _.sortBy(statsVM.defensivePlayers, function(player) {
