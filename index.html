@@ -154,6 +154,7 @@
                                 <!-- /ko-->
                                 <!-- /ko-->
                             </h2>
+                            <h4 data-bind="text: teams['away'].record.history[week + 1] || teams['away'].record.history[week]"></h4>
                             <h2 data-bind="text: scoreboard.awayScores.total"></h2>
                         </div>
                         <div class="col-xs-6 col-md-3">
@@ -167,6 +168,7 @@
                                 <!-- /ko-->
                                 <!-- /ko-->
                             </h2>
+                            <h4 data-bind="text: teams['home'].record.history[week + 1] || teams['home'].record.history[week]"></h4>
                             <h2 data-bind="text: scoreboard.homeScores.total"></h2>
                         </div>
                     </div>
@@ -835,15 +837,19 @@
                                 <h2 class="col-md-12" data-bind="text: institution.name"></h2>
                             </div>
                             <div class="row">
-                                <h1 class="col-md-12">
+                                <h1 class="col-md-12    ">
                                     <small data-bind="text: _.last(rankings)"></small>
                                     <!-- ko text: name -->
                                     <!-- /ko-->
                                 </h1>
+
+                            </div>
+                            <div class="row">
+                                <div  class="col-md-12">
+                                    <h3 class="team-record" data-bind="text: _.last(record.history)"></h3>
+                                </div>
                             </div>
                         </div>
-
-
                         <div class="col-md-3" data-bind="html: $root.logo(logo, 120, 'pull-right')">
                         </div>
                         <div class="col-md-1"></div>
@@ -1542,6 +1548,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12 text-center">
+                        <h4 data-bind="text: teams['away'].record.history[week + 1] || teams['away'].record.history[week]"></h4>
                         <h4 data-bind="text: teams['away'].rankings[week]"></h4>
                     </div>
                 </div>
@@ -1627,6 +1634,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12 text-center">
+                        <h4 data-bind="text: teams['home'].record.history[week + 1] || teams['home'].record.history[week]"></h4>
                         <h4 data-bind="text: teams['home'].rankings[week]"></h4>
                     </div>
                 </div>
@@ -1748,6 +1756,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12 text-center">
+                        <h4 data-bind="text: teams['away'].record.history[week + 1] || teams['away'].record.history[week]"></h4>
                         <h4 data-bind="text: teams['away'].rankings[week]"></h4>
                     </div>
                 </div>
@@ -1768,6 +1777,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12 text-center">
+                        <h4 data-bind="text: teams['home'].record.history[week + 1] || teams['home'].record.history[week]"></h4>
                         <h4 data-bind="text: teams['home'].rankings[week]"></h4>
                     </div>
                 </div>
