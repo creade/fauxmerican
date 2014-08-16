@@ -560,6 +560,7 @@
                                                         <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
                                                         <th data-bind="style: { borderBottomColor: teams.home.color }">FUMB REC.</th>
                                                         <th data-bind="style: { borderBottomColor: teams.home.color }">INT</th>
+                                                        <th data-bind="style: { borderBottomColor: teams.home.color }">SACK</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody data-bind="foreach: getDefensivePlayers(teams.home)">
@@ -568,6 +569,7 @@
                                                         <td data-bind="text: player.position"></td>
                                                         <td data-bind="text: player.stats[$parent.gameId]['FR'] || ''"></td>
                                                         <td data-bind="text: player.stats[$parent.gameId]['INTD'] || ''"></td>
+                                                        <td data-bind="text: player.stats[$parent.gameId]['SK'] || ''"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -582,6 +584,7 @@
                                                         <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
                                                         <th data-bind="style: { borderBottomColor: teams.away.color }">FUMB REC.</th>
                                                         <th data-bind="style: { borderBottomColor: teams.away.color }">INT</th>
+                                                        <th data-bind="style: { borderBottomColor: teams.away.color }">SACK</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody data-bind="foreach: getDefensivePlayers(teams.away)">
@@ -590,6 +593,7 @@
                                                         <td data-bind="text: player.position"></td>
                                                         <td data-bind="text: player.stats[$parent.gameId]['FR'] || ''"></td>
                                                         <td data-bind="text: player.stats[$parent.gameId]['INTD'] || ''"></td>
+                                                        <td data-bind="text: player.stats[$parent.gameId]['SK'] || ''"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -988,6 +992,7 @@
                                                         <th data-bind="style: { borderBottomColor: color }">POS</th>
                                                         <th data-bind="style: { borderBottomColor: color }">FUMB REC.</th>
                                                         <th data-bind="style: { borderBottomColor: color }">INT</th>
+                                                        <th data-bind="style: { borderBottomColor: color }">SACK</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody data-bind="foreach: getDefensivePlayers()">
@@ -996,6 +1001,7 @@
                                                         <td data-bind="text: player.position"></td>
                                                         <td data-bind="text: player.seasonStats['FR'] || ''"></td>
                                                         <td data-bind="text: player.seasonStats['INTD'] || ''"></td>
+                                                        <td data-bind="text: player.seasonStats['SK'] || ''"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -1263,6 +1269,7 @@
                                                     <th>TEAM</th>
                                                     <th>FUMB REC.</th>
                                                     <th>INT</th>
+                                                    <th>SACK</th>
                                                 </tr>
                                             </thead>
                                             <tbody data-bind="foreach: defensivePlayers">
@@ -1274,6 +1281,7 @@
                                                     </td>
                                                     <td data-bind="text: player.seasonStats['FR'] || ''"></td>
                                                     <td data-bind="text: player.seasonStats['INTD'] || ''"></td>
+                                                    <td data-bind="text: player.seasonStats['SK'] || ''"></td>
                                                 </tr>
                                             </tbody>
                                         </table>

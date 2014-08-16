@@ -74,7 +74,7 @@ var team = function(team, schedule) {
     }
     var selectDefensivePlayers = function(player) {
         var stats = player.seasonStats;
-        return !!stats && (stats["FR"] || stats["INTD"]);
+        return !!stats && (stats["FR"] || stats["INTD"] || stats["SK"]);
     }
     var mapDefensivePlayers = function(player) {
         return {
@@ -123,7 +123,7 @@ var team = function(team, schedule) {
     team.getDefensivePlayers = function() {
         return _.chain(team.players)
             .select(selectDefensivePlayers)
-            .map(mapKickingPlayers)
+            .map(mapDefensivePlayers)
             .value();
     };
 

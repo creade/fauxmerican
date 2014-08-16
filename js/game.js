@@ -214,7 +214,7 @@ var game = function(data) {
         return _.chain(team.players)
             .select(function(player) {
                 var stats = player.stats[data.gameId];
-                return !!stats && (stats["FR"] || stats["INTD"]);
+                return !!stats && (stats["FR"] || stats["INTD"]||stats["SK"]);
             })
             .map(function(player) {
                 return {
