@@ -28,6 +28,12 @@ _.mixin({
 });
 
 _.mixin({
+    signChange: function(a, b){
+        return(a < 0 && b >= 0 || a >= 0 && b < 0);
+    }
+})
+
+_.mixin({
     normal: function(mean, stdev){
         var normsInv = function (p, mu, sigma)
         {
