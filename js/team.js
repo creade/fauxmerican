@@ -80,7 +80,8 @@ var team = function(team, schedule) {
         return {
             player: player,
             team: team.shortName,
-            teamId: team.id
+            teamId: team.id,
+            points: ((player.seasonStats["INTD"] || 0) + (player.seasonStats["FR"] || 0) + (player.seasonStats["SK"] || 0))
         }
     }
     var selectReturnPlayers = function(player) {
@@ -124,6 +125,8 @@ var team = function(team, schedule) {
         return _.chain(team.players)
             .select(selectDefensivePlayers)
             .map(mapDefensivePlayers)
+            .sortBy("points")
+            .reverse()
             .value();
     };
 

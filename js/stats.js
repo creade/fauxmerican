@@ -51,9 +51,8 @@ var stats = function(teams) {
         return -1 * (player.player.seasonStats["FR"] || 0);
     });
 
-
 	statsVM.defensivePlayers = _.sortBy(statsVM.defensivePlayers, function(player) {
-        return -1 * (player.player.seasonStats["INTD"] || 0);
+        return -1 * ((player.player.seasonStats["INTD"] || 0) + (player.player.seasonStats["FR"] || 0) + (player.player.seasonStats["SK"] || 0))
     });
 
 
