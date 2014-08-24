@@ -30,7 +30,7 @@ var game = function(data) {
 
     data.atFormatter = function(play) {
         if (play.at === 50) {
-            return "50";
+            return "MIDFIELD";
         } else if (play.at < 50) {
             return data.teams[otherTeam(play.possession)].shortName + " " + play.at;
         } else {
