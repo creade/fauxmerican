@@ -6650,11 +6650,6 @@
     "Lon":-93.8376687
   },
   {
-    "N":"Happyland",
-    "Lat":34.7967543,
-    "Lon":-96.5494529
-  },
-  {
     "N":"Centennial",
     "Lat":32.2257164,
     "Lon":-94.0651884
@@ -9524,7 +9519,6 @@
 {"N":"Eagles", "L":["eagle", "hawk"], "C":""},
 {"N":"Engineers", "L":[], "C":""},
 {"N":"Evangels", "L":[], "C":""},
-{"N":"Excalibur", "L":[], "C":""},
 {"N":"Explorers", "L":[], "C":""},
 {"N":"Falcons", "L":["eagle", "hawk"], "C":""},
 {"N":"Christians", "L":[], "C":""},
