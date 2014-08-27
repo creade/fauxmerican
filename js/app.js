@@ -20,6 +20,11 @@ $(document).ready(function() {
                 return match.week === viewModel.currentWeek();
             });
         });
+        vm.gamesForThisWeek = ko.computed(function() {
+            return _.select(vm.games(), function(match) {
+                return match.week === viewModel.thisWeek();
+            });
+        });
 
         vm.gameTemplate = function(game) {
             return game.startTime > new Date().getTime() ? 'preview-template' : "score-template";
@@ -50,6 +55,10 @@ $(document).ready(function() {
 
         vm.loadStandings = function(vm) {
             vm(standings(viewModel.teams()));
+        }
+
+        vm.loadMain = function(vm){
+            vm(main(viewModel.gamesForThisWeek, viewModel.teams))
         }
 
         vm.currentWeek = ko.observable(0);
@@ -84,11 +93,14 @@ $(document).ready(function() {
             seed = window.location.hash.split("/")[1];
             startWeek = parseInt(seed.split("-")[1]);
         } else {
-            startWeek = 1;
+            startWeek = 32;
+            // startWeek = moment().week();
             seed = Math.random().toString(36).substring(7) + "-" + startWeek;
             window.location.hash = '#!/' + seed + "/";
 
         }
+
+        viewModel.thisWeek(0);
         console.log("SEED: " + seed)
         Math.seedrandom(seed);
 

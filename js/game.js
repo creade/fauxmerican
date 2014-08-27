@@ -6,9 +6,11 @@ var game = function(data) {
         4: "4th"
     };
 
+    data.teamPath = "../team/"
+
     data.action = function() {
         data.playUntil(new Date().getTime());
-        
+
     }
 
     data.getQuarterName = function(quarter) {
@@ -214,7 +216,7 @@ var game = function(data) {
         return _.chain(team.players)
             .select(function(player) {
                 var stats = player.stats[data.gameId];
-                return !!stats && (stats["FR"] || stats["INTD"]||stats["SK"]);
+                return !!stats && (stats["FR"] || stats["INTD"] || stats["SK"]);
             })
             .map(function(player) {
                 return {
@@ -288,14 +290,59 @@ var game = function(data) {
         }
     };
 
+    var getTopPasserData = function() {
+        return _.chain([data.getPassingPlayers(data.teams.home), data.getPassingPlayers(data.teams.away)])
+            .flatten()
+            .compact()
+            .map(function(player) {
+                return {
+                    player: player,
+                    gameId: data.gameId
+                }
+            })
+            .value();
+    };
+
+    var getTopRusherData = function() {
+        return _.chain([data.getRushingPlayers(data.teams.home), data.getRushingPlayers(data.teams.away)])
+            .flatten()
+            .compact()
+            .map(function(player) {
+                return {
+                    player: player,
+                    gameId: data.gameId
+                }
+            })
+            .value();
+    };
+
+    var getTopReceiverData = function() {
+        return _.chain([data.getReceivingPlayers(data.teams.home), data.getReceivingPlayers(data.teams.away)])
+            .flatten()
+            .compact()
+            .map(function(player) {
+                return {
+                    player: player,
+                    gameId: data.gameId
+                }
+            })
+            .value();
+    };
+
     data.topPasser = ko.observable();
     data.topRusher = ko.observable();
     data.topReceiver = ko.observable();
+    data.topPasserData = ko.observable();
+    data.topRusherData = ko.observable();
+    data.topReceiverData = ko.observable();
 
     data.plays.subscribe(function() {
         data.topPasser(getTopPasser());
         data.topRusher(getTopRusher());
         data.topReceiver(getTopReceiver());
+        data.topPasserData(getTopPasserData());
+        data.topRusherData(getTopRusherData());
+        data.topReceiverData(getTopReceiverData());
     })
 
     var playsForQ = function(q) {
