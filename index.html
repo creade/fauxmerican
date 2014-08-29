@@ -37,32 +37,30 @@
             </div>
         </div>
     </div>
+<nav class="navbar navbar-default" role="navigation">
+    <div >
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                <a class="dropdown-toggle navs" data-toggle="dropdown" href="#">Teams</a>
+                <ul class="dropdown-menu" data-bind="foreach: teams">
+                    <li>
+                        <a data-bind="page-href: 'team/'+$index(), text: name"></a>
+                    </li>
+                </ul>
+            </li>
+            <li><a data-bind="page-href: 'scores'" class="navs">Scores</a>
+            </li>
+            <li class="fauxlogo">
+                <a data-bind="page-href: 'main'"><img src="img/g_logo_100.png" width="100" height="100"></a>
+            </li>
+            <li><a data-bind="page-href: 'standings'" class="navs">Standings</a>
+            </li>
+            <li><a data-bind="page-href: 'statistics'" class="navs">Statistics</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
-    <nav class="navbar navbar-default">
-        <div class="navbar-header">
-            <button class="navbar-toggle" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
-                <span class="sr-only">Toggle navigation</span>
-            </button> <a class="navbar-brand" data-bind="page-href: 'main'">FAUX</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Teams</a>
-                    <ul class="dropdown-menu" data-bind="foreach: teams">
-                        <li>
-                            <a data-bind="page-href: 'team/'+$index(), text: name"></a>
-                        </li>
-                    </ul>
-                </li>
-                <li><a data-bind="page-href: 'scores'">Scores</a>
-                </li>
-                <li><a data-bind="page-href: 'standings'">Standings</a>
-                </li>
-                <li><a data-bind="page-href: 'statistics'">Statistics</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
     <div style="padding-top: 30px;">
         <div data-bind="page: {id: 'main', role: 'start', withOnShow: loadMain}">
             <div class="container page-container">
@@ -73,14 +71,15 @@
                             <div class="col-xs-6">
 
                                 <div class="row">
-                                    <div class="col-xs-6" data-bind="html: $root.logo(home.logo, 75, 'pull-right')">
+                                    <div class="col-xs-6" data-bind="html: $root.logo(away.logo, 75, 'pull-right')">
                                     </div>
-                                    <div class="col-xs-6" data-bind="html: $root.logo(away.logo, 75, 'pull-left')">
+                                    <div class="col-xs-6" data-bind="html: $root.logo(home.logo, 75, 'pull-left')">
                                     </div>
+                                    
                                 </div>
                                 <div class="row">
                                     <h4 class="col-xs-12 text-center">
-                                        <a data-bind="text: headline"></a>
+                                        <a data-bind="text: headline, page-href: '../../game/'+gameId"></a>
                                     </h4>
                                 </div>
                             </div>
@@ -89,9 +88,10 @@
                             <div class="col-xs-6">
 
                                 <div class="row">
-                                    <div class="col-xs-6" data-bind="html: $root.logo(home.logo, 75, 'pull-right')">
+                                    
+                                    <div class="col-xs-6" data-bind="html: $root.logo(away.logo, 75, 'pull-right')">
                                     </div>
-                                    <div class="col-xs-6" data-bind="html: $root.logo(away.logo, 75, 'pull-left')">
+                                    <div class="col-xs-6" data-bind="html: $root.logo(home.logo, 75, 'pull-left')">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -359,12 +359,24 @@
                             <h4 data-bind="text: teams['home'].record.history[week + 1] || teams['home'].record.history[week]"></h4>
                             <h2 data-bind="text: scoreboard.homeScores.total"></h2>
                         </div>
+                        <div class="col-md-6 hidden-sm hidden-xs">
+                            <h1 data-bind="text: headlineOrLastPlay"></h1>
+                        </div>
+
                     </div>
+
                     <div class="row">
                         <div class="col-md-3">
-                            <h3 class="lead" data-bind="text: teams.home.stadium"></h3>
+                            <h3 class="lead" data-bind="text: stadium"></h3>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-xs-12 hidden-md hidden-lg">
+                            <h1 data-bind="text: headlineOrLastPlay"></h1>
+                        </div>
+                    </div>
+                    <!-- ko if: plays().length > 0 -->
+
                     <div class="row">
                         <div class="col-md-6">
                             <table class="table table-striped">
@@ -901,6 +913,7 @@
                                                     <tr>
                                                         <th colspan="2"></th>
                                                         <th colspan="4" class="text-center">KICKOFFS</th>
+                                                        <th></th>
                                                         <th colspan="4" class="text-center">PUNTS</th>
                                                     </tr>
                                                     <tr>
@@ -910,6 +923,7 @@
                                                         <th data-bind="style: { borderBottomColor: teams.home.color }">YDS</th>
                                                         <th data-bind="style: { borderBottomColor: teams.home.color }">LNG</th>
                                                         <th data-bind="style: { borderBottomColor: teams.home.color }">TD</th>
+                                                        <th data-bind="style: { borderBottomColor: teams.home.color }"></th>
                                                         <th data-bind="style: { borderBottomColor: teams.home.color }">ATT</th>
                                                         <th data-bind="style: { borderBottomColor: teams.home.color }">YDS</th>
                                                         <th data-bind="style: { borderBottomColor: teams.home.color }">LNG</th>
@@ -924,6 +938,7 @@
                                                         <td data-bind="text: stats[$parent.gameId]['KORYDS'] || ''"></td>
                                                         <td data-bind="text: stats[$parent.gameId]['KORL'] || ''"></td>
                                                         <td data-bind="text: stats[$parent.gameId]['KORTD'] || ''"></td>
+                                                        <td></td>
                                                         <td data-bind="text: stats[$parent.gameId]['PR'] || ''"></td>
                                                         <td data-bind="text: stats[$parent.gameId]['PRYDS'] || ''"></td>
                                                         <td data-bind="text: stats[$parent.gameId]['PRL'] || ''"></td>
@@ -940,6 +955,7 @@
                                                     <tr>
                                                         <th colspan="2"></th>
                                                         <th colspan="4" class="text-center">KICKOFFS</th>
+                                                        <th></th>
                                                         <th colspan="4" class="text-center">PUNTS</th>
                                                     </tr>
                                                     <tr>
@@ -949,6 +965,7 @@
                                                         <th data-bind="style: { borderBottomColor: teams.away.color }">YDS</th>
                                                         <th data-bind="style: { borderBottomColor: teams.away.color }">LNG</th>
                                                         <th data-bind="style: { borderBottomColor: teams.away.color }">TD</th>
+                                                        <th data-bind="style: { borderBottomColor: teams.away.color }"></th>
                                                         <th data-bind="style: { borderBottomColor: teams.away.color }">ATT</th>
                                                         <th data-bind="style: { borderBottomColor: teams.away.color }">YDS</th>
                                                         <th data-bind="style: { borderBottomColor: teams.away.color }">LNG</th>
@@ -963,6 +980,7 @@
                                                         <td data-bind="text: stats[$parent.gameId]['KORYDS'] || ''"></td>
                                                         <td data-bind="text: stats[$parent.gameId]['KORL'] || ''"></td>
                                                         <td data-bind="text: stats[$parent.gameId]['KORTD'] || ''"></td>
+                                                        <td></td>
                                                         <td data-bind="text: stats[$parent.gameId]['PR'] || ''"></td>
                                                         <td data-bind="text: stats[$parent.gameId]['PRYDS'] || ''"></td>
                                                         <td data-bind="text: stats[$parent.gameId]['PRL'] || ''"></td>
@@ -1017,7 +1035,524 @@
                             </div>
                         </div>
                     </div>
+                    <!-- /ko-->
+                    <!-- ko if: plays().length === 0 && !teams['away'].outOfConference && !teams['home'].outOfConference-->
+                     <div class="row">
+                                            <div class="col-xs-10 col-xs-offset-1">
+                                            <h4 class="text-center">Stat Comparison</h4>
+                                            <table class="table text-center">
+                                                <thead>
+                                                    <th data-bind="style: { borderBottomColor: teams.home.color }">
+                                                        <div data-bind="html: $root.logo(teams.home.logo, 40, 'pull-left pbp-logo')"></div>
+                                                        <h5 class="text-center" data-bind="text: teams.home.shortName, style: { borderTopColor: teams.home.color }"></h5>
+                                                    </th>
+                                                    <th></th>
+                                                    <th data-bind="style: { borderBottomColor: teams.away.color }">
+                                                        <div data-bind="html: $root.logo(teams.away.logo, 40, 'pull-left pbp-logo')"></div>
+                                                        <h5 class="text-center" data-bind="text: teams.away.shortName"></h5>
+                                                    </th>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td data-bind="text: teams.home.seasonStats['FD']"></td>
+                                                        <td>First Downs</td>
+                                                        <td data-bind="text: teams.away.seasonStats['FD']"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td data-bind="text: (teams.home.seasonStats['TDS'] || 0) + ' - '+ (teams.home.seasonStats['TDA'] || 0) "></td>
+                                                        <td>Third Down Efficiency</td>
+
+                                                        <td data-bind="text: (teams.away.seasonStats['TDS'] || 0) + ' - '+ (teams.away.seasonStats['TDA'] || 0) "></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td data-bind="text: (teams.home.seasonStats['FDS'] || 0) + ' - '+ (teams.home.seasonStats['FDA'] || 0) "></td>
+                                                        <td>Fourth Down Efficiency</td>
+                                                        <td data-bind="text: (teams.away.seasonStats['FDS'] || 0) + ' - '+ (teams.away.seasonStats['FDA'] || 0)"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td data-bind="text: (teams.home.stats[gameId]['PY']||0) + (teams.home.seasonStats['RYDS']||0)"></td>
+                                                        <td>Total Yards</td>
+                                                        <td data-bind="text: (teams.away.stats[gameId]['PY']||0) + (teams.away.seasonStats['RYDS']||0)"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3"><b>Passing</b>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td data-bind="text: teams.home.seasonStats['PY']"></td>
+                                                        <td>Yards</td>
+
+                                                        <td data-bind="text: teams.away.seasonStats['PY']"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td data-bind="text: (teams.home.seasonStats['C']||0) + ' - '+ (teams.home.seasonStats['PA']||0) "></td>
+                                                        <td>Completions - Attempts</td>
+
+                                                        <td data-bind="text: (teams.away.seasonStats['C']||0) + ' - '+ (teams.away.seasonStats['PA']||0) "></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td data-bind="text: (((teams.home.seasonStats['PY'] || 0) / (teams.home.seasonStats['PA'] || 0)) || 0).toFixed(1)"></td>
+                                                        <td>Yards per Attempt</td>
+
+                                                        <td data-bind="text: (((teams.away.seasonStats['PY'] || 0) / (teams.away.seasonStats['PA'] || 0)) || 0).toFixed(1)"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3"><b>Rushing</b>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td data-bind="text: teams.home.seasonStats['RYDS']"></td>
+                                                        <td>Yards</td>
+
+                                                        <td data-bind="text: teams.away.seasonStats['RYDS']"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td data-bind="text: teams.home.seasonStats['RA']"></td>
+                                                        <td>Attempts</td>
+
+                                                        <td data-bind="text: teams.away.seasonStats['RA']"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td data-bind="text: (((teams.home.seasonStats['RYDS'] || 0) / (teams.home.seasonStats['RA'] || 0)) || 0).toFixed(1)"></td>
+                                                        <td>Yards per Attempt</td>
+
+                                                        <td data-bind="text: (((teams.away.seasonStats['RYDS'] || 0) / (teams.away.seasonStats['RA'] || 0)) || 0).toFixed(1)"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3"><b>Turnovers</b>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td data-bind="text: teams.home.seasonStats['INT'] "></td>
+                                                        <td>Interceptions</td>
+
+                                                        <td data-bind="text: teams.away.seasonStats['INT'] "></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td data-bind="text: teams.home.seasonStats['FL'] "></td>
+                                                        <td>Fumbles Lost</td>
+
+                                                        <td data-bind="text: teams.away.seasonStats['FL'] "></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                        </div>
+
+                        <div class="row">
+    <div class="col-md-6">
+        <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
+        <h4 data-bind="text: teams.home.name + ' Passing'"></h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">NAME</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">C</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">PA</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">%</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">YDS</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">TD</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">INT</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: teams.home.getPassingPlayers()">
+                <tr>
+                    <td data-bind="text: player.fullName"></td>
+                    <td data-bind="text: player.position"></td>
+                    <td data-bind="text: player.seasonStats['C'] || '0'"></td>
+                    <td data-bind="text: player.seasonStats['PA']"></td>
+                    <td data-bind="text: ((((player.seasonStats['C'] || 0) / (player.seasonStats['PA'] || 0)) || 0)*100).toFixed(1)"></td>
+                    <td data-bind="text: player.seasonStats['PY'] || '0'"></td>
+                    <td data-bind="text: player.seasonStats['PTD'] || '0'"></td>
+                    <td data-bind="text: player.seasonStats['INT'] || '0'"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
+        <h4 data-bind="text: teams.away.name + ' Passing'"></h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">NAME</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">C</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">PA</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">%</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">YDS</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">TD</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">INT</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: teams.away.getPassingPlayers()">
+                <tr>
+                    <td data-bind="text: player.fullName"></td>
+                    <td data-bind="text: player.position"></td>
+                    <td data-bind="text: player.seasonStats['C'] || '0'"></td>
+                    <td data-bind="text: player.seasonStats['PA']"></td>
+                    <td data-bind="text: ((((player.seasonStats['C'] || 0) / (player.seasonStats['PA'] || 0)) || 0)*100).toFixed(1)"></td>
+                    <td data-bind="text: player.seasonStats['PY'] || '0'"></td>
+                    <td data-bind="text: player.seasonStats['PTD'] || '0'"></td>
+                    <td data-bind="text: player.seasonStats['INT'] || '0'"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
+        <h4 data-bind="text: teams.home.name + ' Rushing'"></h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">NAME</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">CAR</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">YDS</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">AVG</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">TD</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: teams.home.getRushingPlayers()">
+                <tr>
+                    <td data-bind="text: player.fullName"></td>
+                    <td data-bind="text: player.position"></td>
+                    <td data-bind="text: player.seasonStats['RA']"></td>
+                    <td data-bind="text: player.seasonStats['RYDS'] || '0'"></td>
+                    <td data-bind="text: ((player.seasonStats['RYDS'] / player.seasonStats['RA'])|| 0).toFixed(1) "></td>
+                    <td data-bind="text: player.seasonStats['RTDS'] || '0'"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
+        <h4 data-bind="text: teams.away.name + ' Rushing'"></h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">NAME</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">CAR</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">YDS</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">AVG</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">TD</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: teams.away.getRushingPlayers()">
+                <tr>
+                    <td data-bind="text: player.fullName"></td>
+                    <td data-bind="text: player.position"></td>
+                    <td data-bind="text: player.seasonStats['RA']"></td>
+                    <td data-bind="text: player.seasonStats['RYDS'] || '0'"></td>
+                    <td data-bind="text: ((player.seasonStats['RYDS'] / player.seasonStats['RA']) || 0).toFixed(1) "></td>
+                    <td data-bind="text: player.seasonStats['RTDS'] || '0'"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
+        <h4 data-bind="text: teams.home.name + ' Receiving'"></h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">NAME</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">REC</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">YDS</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">TD</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: teams.home.getReceivingPlayers()">
+                <tr>
+                    <td data-bind="text: player.fullName"></td>
+                    <td data-bind="text: player.position"></td>
+                    <td data-bind="text: player.seasonStats['R']"></td>
+                    <td data-bind="text: player.seasonStats['RECY'] || '0'"></td>
+                    <td data-bind="text: player.seasonStats['RECTD'] || '0'"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
+        <h4 data-bind="text: teams.away.name + ' Receiving'"></h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">NAME</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">REC</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">YDS</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">TD</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: teams.away.getReceivingPlayers()">
+                <tr>
+                    <td data-bind="text: player.fullName"></td>
+                    <td data-bind="text: player.position"></td>
+                    <td data-bind="text: player.seasonStats['R']"></td>
+                    <td data-bind="text: player.seasonStats['RECY'] || '0'"></td>
+                    <td data-bind="text: player.seasonStats['RECTD'] || '0'"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
+        <h4 data-bind="text: teams.home.name + ' Defense'"></h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">NAME</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">FUMB REC.</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">INT</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">SACK</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: teams.home.getDefensivePlayers()">
+                <tr>
+                    <td data-bind="text: player.fullName"></td>
+                    <td data-bind="text: player.position"></td>
+                    <td data-bind="text: player.seasonStats['FR'] || ''"></td>
+                    <td data-bind="text: player.seasonStats['INTD'] || ''"></td>
+                    <td data-bind="text: player.seasonStats['SK'] || ''"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
+        <h4 data-bind="text: teams.away.name + ' Defense'"></h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">NAME</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">FUMB REC.</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">INT</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">SACK</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: teams.away.getDefensivePlayers()">
+                <tr>
+                    <td data-bind="text: player.fullName"></td>
+                    <td data-bind="text: player.position"></td>
+                    <td data-bind="text: player.seasonStats['FR'] || ''"></td>
+                    <td data-bind="text: player.seasonStats['INTD'] || ''"></td>
+                    <td data-bind="text: player.seasonStats['SK'] || ''"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
+        <h4 data-bind="text: teams.home.name + ' Kicking'"></h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">NAME</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">FG</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">LONG</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">XP</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: teams.home.getKickingPlayers()">
+                <tr>
+                    <td data-bind="text: player.fullName"></td>
+                    <td data-bind="text: player.position"></td>
+                    <td data-bind="text: player.seasonStats['FGA'] ? (player.seasonStats['FGM'] || '0') + ' - '+ (player.seasonStats['FGA'] || '0') : ''"></td>
+                    <td data-bind="text: player.seasonStats['FGL'] || ''"></td>
+                    <td data-bind="text: player.seasonStats['XPM'] ? (player.seasonStats['XPM'] || '0') + ' - '+ (player.seasonStats['XPA'] || '0') : ''"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
+        <h4 data-bind="text: teams.away.name + ' Kicking'"></h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">NAME</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">FG</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">LONG</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">XP</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: teams.away.getKickingPlayers()">
+                <tr>
+                    <td data-bind="text: player.fullName"></td>
+                    <td data-bind="text: player.position"></td>
+                    <td data-bind="text: player.seasonStats['FGA'] ? (player.seasonStats['FGM'] || '0') + ' - '+ (player.seasonStats['FGA'] || '0') : ''"></td>
+                    <td data-bind="text: player.seasonStats['FGL'] || ''"></td>
+                    <td data-bind="text: player.seasonStats['XPM'] ? (player.seasonStats['XPM'] || '0') + ' - '+ (player.seasonStats['XPA'] || '0') : ''"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
+        <h4 data-bind="text: teams.home.name + ' Punting'"></h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">NAME</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">P</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">YDS</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">AVG</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">LONG</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: teams.home.getPuntingPlayers()">
+                <tr>
+                    <td data-bind="text: player.fullName"></td>
+                    <td data-bind="text: player.position"></td>
+                    <td data-bind="text: player.seasonStats['P']"></td>
+                    <td data-bind="text: player.seasonStats['PUYDS']"></td>
+                    <td data-bind="text: ((player.seasonStats['PUYDS'] / player.seasonStats['P']) || 0).toFixed(1) "></td>
+                    <td data-bind="text: player.seasonStats['PL']"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
+        <h4 data-bind="text: teams.away.name + ' Punting'"></h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">NAME</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">P</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">YDS</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">AVG</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">LONG</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: teams.away.getPuntingPlayers()">
+                <tr>
+                    <td data-bind="text: player.fullName"></td>
+                    <td data-bind="text: player.position"></td>
+                    <td data-bind="text: player.seasonStats['P']"></td>
+                    <td data-bind="text: player.seasonStats['PUYDS']"></td>
+                    <td data-bind="text: ((player.seasonStats['PUYDS'] / player.seasonStats['P'])|| 0).toFixed(1) "></td>
+                    <td data-bind="text: player.seasonStats['PL']"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
+        <h4 data-bind="text: teams.home.name + ' Returns'"></h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan="2"></th>
+                    <th colspan="4" class="text-center">KICKOFFS</th>
+                    <th></th>
+                    <th colspan="4" class="text-center">PUNTS</th>
+                </tr>
+                <tr>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">NAME</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">ATT</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">YDS</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">LNG</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">TD</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }"></th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">ATT</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">YDS</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">LNG</th>
+                    <th data-bind="style: { borderBottomColor: teams.home.color }">TD</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: teams.home.getReturnPlayers()">
+                <tr>
+                    <td data-bind="text: player.fullName"></td>
+                    <td data-bind="text: player.position"></td>
+                    <td data-bind="text: player.seasonStats['KOR'] || ''"></td>
+                    <td data-bind="text: player.seasonStats['KORYDS'] || ''"></td>
+                    <td data-bind="text: player.seasonStats['KORL'] || ''"></td>
+                    <td data-bind="text: player.seasonStats['KORTD'] || ''"></td>
+                    <td></td>
+                    <td data-bind="text: player.seasonStats['PR'] || ''"></td>
+                    <td data-bind="text: player.seasonStats['PRYDS'] || ''"></td>
+                    <td data-bind="text: player.seasonStats['PRL'] || ''"></td>
+                    <td data-bind="text: player.seasonStats['PRTD'] || ''"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
+        <h4 data-bind="text: teams.away.name + ' Returns'"></h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan="2"></th>
+                    <th colspan="4" class="text-center">KICKOFFS</th>
+                    <th></th>
+                    <th colspan="4" class="text-center">PUNTS</th>
+                </tr>
+                <tr>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">NAME</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">ATT</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">YDS</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">LNG</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">TD</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }"></th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">ATT</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">YDS</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">LNG</th>
+                    <th data-bind="style: { borderBottomColor: teams.away.color }">TD</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: teams.away.getReturnPlayers()">
+                <tr>
+                    <td data-bind="text: player.fullName"></td>
+                    <td data-bind="text: player.position"></td>
+                    <td data-bind="text: player.seasonStats['KOR'] || ''"></td>
+                    <td data-bind="text: player.seasonStats['KORYDS'] || ''"></td>
+                    <td data-bind="text: player.seasonStats['KORL'] || ''"></td>
+                    <td data-bind="text: player.seasonStats['KORTD'] || ''"></td>
+                    <td></td>
+                    <td data-bind="text: player.seasonStats['PR'] || ''"></td>
+                    <td data-bind="text: player.seasonStats['PRYDS'] || ''"></td>
+                    <td data-bind="text: player.seasonStats['PRL'] || ''"></td>
+                    <td data-bind="text: player.seasonStats['PRTD'] || ''"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+                    <!-- /ko-->
                 </div>
+                
             </div>
         </div>
         <div data-bind="page: {id: 'team'}">
@@ -1263,6 +1798,7 @@
                                                     <tr>
                                                         <th colspan="2"></th>
                                                         <th colspan="4" class="text-center">KICKOFFS</th>
+                                                        <th></th>
                                                         <th colspan="4" class="text-center">PUNTS</th>
                                                     </tr>
                                                     <tr>
@@ -1272,6 +1808,7 @@
                                                         <th data-bind="style: { borderBottomColor: color }">YDS</th>
                                                         <th data-bind="style: { borderBottomColor: color }">LNG</th>
                                                         <th data-bind="style: { borderBottomColor: color }">TD</th>
+                                                        <th data-bind="style: { borderBottomColor: color }"></th>
                                                         <th data-bind="style: { borderBottomColor: color }">ATT</th>
                                                         <th data-bind="style: { borderBottomColor: color }">YDS</th>
                                                         <th data-bind="style: { borderBottomColor: color }">LNG</th>
@@ -1286,6 +1823,7 @@
                                                         <td data-bind="text: player.seasonStats['KORYDS'] || ''"></td>
                                                         <td data-bind="text: player.seasonStats['KORL'] || ''"></td>
                                                         <td data-bind="text: player.seasonStats['KORTD'] || ''"></td>
+                                                        <td></td>
                                                         <td data-bind="text: player.seasonStats['PR'] || ''"></td>
                                                         <td data-bind="text: player.seasonStats['PRYDS'] || ''"></td>
                                                         <td data-bind="text: player.seasonStats['PRL'] || ''"></td>
@@ -1560,6 +2098,7 @@
                                                 <tr>
                                                     <th colspan="2"></th>
                                                     <th colspan="4" class="text-center">KICKOFFS</th>
+                                                    <th></th>
                                                     <th colspan="4" class="text-center">PUNTS</th>
                                                 </tr>
                                                 <tr>
@@ -1570,6 +2109,7 @@
                                                     <th>YDS</th>
                                                     <th>LNG</th>
                                                     <th>TD</th>
+                                                    <th></th>
                                                     <th>ATT</th>
                                                     <th>YDS</th>
                                                     <th>LNG</th>
@@ -1587,6 +2127,7 @@
                                                     <td data-bind="text: player.seasonStats['KORYDS'] || ''"></td>
                                                     <td data-bind="text: player.seasonStats['KORL'] || ''"></td>
                                                     <td data-bind="text: player.seasonStats['KORTD'] || ''"></td>
+                                                    <td ></td>
                                                     <td data-bind="text: player.seasonStats['PR'] || ''"></td>
                                                     <td data-bind="text: player.seasonStats['PRYDS'] || ''"></td>
                                                     <td data-bind="text: player.seasonStats['PRL'] || ''"></td>
@@ -1726,7 +2267,7 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <h5 data-bind='text: $root.formatLocalDate(startTime) + " - " + teams.home.stadium'></h5>
+        <h5 data-bind='text: $root.formatLocalDate(startTime) + " - " + stadium'></h5>
     </div>
 </div>
 <div class="row">
@@ -1921,7 +2462,7 @@
 <div class="row">
     <div class="col-md-4 col-xs-6 col-md-offset-4 col-xs-offset-3 text-center">
         <a data-bind="page-href: '../../game/'+gameId">Play by play</a>
-        <h4 data-bind="text: headline"></h4>
+        <h4 data-bind="text: headlineOrLastPlay"></h4>
     </div>
 </div>
 <div class="row">
@@ -1951,7 +2492,7 @@
 
     <script type="text/html" id="preview-template">
         
-<div class="row" data-bind="if: name">
+<div class="row preview" data-bind="if: name">
     <div class="col-xs-12 text-center">
         <h3 data-bind='text: name'></h3>
     </div>
@@ -1976,6 +2517,7 @@
     <div class="col-xs-4 text-center">
         <h2 data-bind='text: $root.formatLocalDate(startTime)'></h2>
         <h4 data-bind="text: headline"></h4>
+        <h4><a data-bind="page-href: '../../game/'+gameId">Preview</a></h4>
     </div>
 
     <div class="col-xs-4">
@@ -1999,7 +2541,7 @@
 
 
 <div class="row ">
-    <div class="col-xs-12 text-right separator" data-bind="text: teams.home.stadium"></div>
+    <div class="col-xs-12 text-right separator" data-bind="text: stadium"></div>
 </div>
 
 </script>

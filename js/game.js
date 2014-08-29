@@ -1,4 +1,4 @@
-var game = function(data) {
+var game = function(data, home, away) {
     var quarterNames = {
         1: "1st",
         2: "2nd",
@@ -328,6 +328,13 @@ var game = function(data) {
             })
             .value();
     };
+
+    data.headlineOrLastPlay = ko.computed(function(){
+        if(data.plays().length > 0 && !data.completed()){
+            return "LAST PLAY: " + _.last(data.plays()).commentary;
+        } 
+        return data.headline();
+    })
 
     data.topPasser = ko.observable();
     data.topRusher = ko.observable();

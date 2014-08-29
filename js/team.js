@@ -1,4 +1,4 @@
-var team = function(team, schedule) {
+var team = function(team) {
     team.games = [];
 
     team.getPassingPlayers = function() {
