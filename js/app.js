@@ -89,24 +89,29 @@ $(document).ready(function() {
 
         var seed;
         var startWeek;
+        var startYear;
         if (window.location.hash.split("/")[1]) {
             seed = window.location.hash.split("/")[1];
-            startWeek = parseInt(seed.split("-")[1]);
+            var datePart = seed.split("-")[1]
+            startWeek = parseInt(datePart.slice(0,2));
+            startYear = 2000 + parseInt(datePart.slice(2,4));
         } else {
-            // startWeek = 32;
             startWeek = moment().week();
-            seed = Math.random().toString(36).substring(7) + "-" + startWeek;
+            startYear = moment().year();
+            seed = Math.random().toString(36).substring(7) + "-" + startWeek+""+startYear.toString().slice(2,4);
             window.location.hash = '#!/' + seed + "/";
 
         }
+            viewModel.startWeek = startWeek;
+            viewModel.startYear = startYear;
 
         viewModel.thisWeek(0);
         console.log("SEED: " + seed)
         Math.seedrandom(seed);
 
-        var schedule = genball.generators.schedule().schedule(startWeek);
-        var eventSchedule = genball.generators.schedule().scheduleEvents(startWeek);
-        var bowlSchedule = genball.generators.schedule().bowlSchedule(startWeek);
+        var schedule = genball.generators.schedule().schedule(startWeek, startYear);
+        var eventSchedule = genball.generators.schedule().scheduleEvents(startWeek, startYear);
+        var bowlSchedule = genball.generators.schedule().bowlSchedule(startWeek, startYear);
 
         _.times(10, function() {
             viewModel.teams.push(team(teamGenerator.newTeam(false)));

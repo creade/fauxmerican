@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title></title>
+    <title>THE FAUXMERICAN ATHLETIC CONFERENCE</title>
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/starter-template.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Holtwood+One+SC|Graduate|Lily+Script+One|Roboto:400,700' rel='stylesheet' type='text/css'>
@@ -22,6 +23,15 @@
     <script src="js/app.js" type="text/javascript"></script>
     <script src="js/stats.js" type="text/javascript"></script>
     <script src="js/standings.js" type="text/javascript"></script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-65596926-1', 'auto');
+        ga('send', 'pageview');
+    </script>
 </head>
 
 <body>
@@ -37,29 +47,30 @@
             </div>
         </div>
     </div>
-<nav class="navbar navbar-default" role="navigation">
-    <div >
-        <ul class="nav navbar-nav">
-            <li class="dropdown">
-                <a class="dropdown-toggle navs" data-toggle="dropdown" href="#">Teams</a>
-                <ul class="dropdown-menu" data-bind="foreach: teams">
-                    <li>
-                        <a data-bind="page-href: 'team/'+$index(), text: name"></a>
-                    </li>
-                </ul>
-            </li>
-            <li><a data-bind="page-href: 'scores'" class="navs">Scores</a>
-            </li>
-            <li class="fauxlogo">
-                <a data-bind="page-href: 'main'"><img src="img/g_logo_100.png" width="100" height="100"></a>
-            </li>
-            <li><a data-bind="page-href: 'standings'" class="navs">Standings</a>
-            </li>
-            <li><a data-bind="page-href: 'statistics'" class="navs">Statistics</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+    <nav class="navbar navbar-default" role="navigation">
+        <div>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle navs" data-toggle="dropdown" href="#">Teams</a>
+                    <ul class="dropdown-menu" data-bind="foreach: teams">
+                        <li>
+                            <a data-bind="page-href: 'team/'+$index(), text: name"></a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a data-bind="page-href: 'scores'" class="navs">Scores</a>
+                </li>
+                <li class="fauxlogo">
+                    <a data-bind="page-href: 'main'"><img src="img/g_logo_100.png" width="100" height="100">
+                    </a>
+                </li>
+                <li><a data-bind="page-href: 'standings'" class="navs">Standings</a>
+                </li>
+                <li><a data-bind="page-href: 'statistics'" class="navs">Statistics</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
     <div style="padding-top: 30px;">
         <div data-bind="page: {id: 'main', role: 'start', withOnShow: loadMain}">
@@ -75,7 +86,7 @@
                                     </div>
                                     <div class="col-xs-6" data-bind="html: $root.logo(home.logo, 75, 'pull-left')">
                                     </div>
-                                    
+
                                 </div>
                                 <div class="row">
                                     <h4 class="col-xs-12 text-center">
@@ -88,7 +99,7 @@
                             <div class="col-xs-6">
 
                                 <div class="row">
-                                    
+
                                     <div class="col-xs-6" data-bind="html: $root.logo(away.logo, 75, 'pull-right')">
                                     </div>
                                     <div class="col-xs-6" data-bind="html: $root.logo(home.logo, 75, 'pull-left')">
@@ -126,29 +137,29 @@
                     </div>
                     <!-- /ko-->
                     <!-- ko if: scoringFeed().length === 0-->
-                        <div class="col-md-6">
-                            <h3>STANDINGS</h3>
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>Ranking</th>
-                                        <th>Team</th>
-                                        <th>Wins</th>
-                                        <th>Losses</th>
-                                    </tr>
-                                </thead>
-                                <tbody data-bind="foreach: teamsByWins">
-                                    <tr>
-                                        <td data-bind="text: ranking"></td>
-                                        <td>
-                                            <a data-bind="page-href: '../../team/'+id, text: name"></a>
-                                        </td>
-                                        <td data-bind="text: wins"></td>
-                                        <td data-bind="text: losses"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="col-md-6">
+                        <h3>STANDINGS</h3>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Ranking</th>
+                                    <th>Team</th>
+                                    <th>Wins</th>
+                                    <th>Losses</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: teamsByWins">
+                                <tr>
+                                    <td data-bind="text: ranking"></td>
+                                    <td>
+                                        <a data-bind="page-href: '../../team/'+id, text: name"></a>
+                                    </td>
+                                    <td data-bind="text: wins"></td>
+                                    <td data-bind="text: losses"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <!-- /ko-->
                     <div class="col-md-6">
                         <h3 class="text-right">BOX SCORES</h3>
@@ -1037,522 +1048,522 @@
                     </div>
                     <!-- /ko-->
                     <!-- ko if: plays().length === 0 && !teams['away'].outOfConference && !teams['home'].outOfConference-->
-                     <div class="row">
-                                            <div class="col-xs-10 col-xs-offset-1">
-                                            <h4 class="text-center">Stat Comparison</h4>
-                                            <table class="table text-center">
-                                                <thead>
-                                                    <th data-bind="style: { borderBottomColor: teams.home.color }">
-                                                        <div data-bind="html: $root.logo(teams.home.logo, 40, 'pull-left pbp-logo')"></div>
-                                                        <h5 class="text-center" data-bind="text: teams.home.shortName, style: { borderTopColor: teams.home.color }"></h5>
-                                                    </th>
-                                                    <th></th>
-                                                    <th data-bind="style: { borderBottomColor: teams.away.color }">
-                                                        <div data-bind="html: $root.logo(teams.away.logo, 40, 'pull-left pbp-logo')"></div>
-                                                        <h5 class="text-center" data-bind="text: teams.away.shortName"></h5>
-                                                    </th>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td data-bind="text: teams.home.seasonStats['FD']"></td>
-                                                        <td>First Downs</td>
-                                                        <td data-bind="text: teams.away.seasonStats['FD']"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td data-bind="text: (teams.home.seasonStats['TDS'] || 0) + ' - '+ (teams.home.seasonStats['TDA'] || 0) "></td>
-                                                        <td>Third Down Efficiency</td>
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <h4 class="text-center">Stat Comparison</h4>
+                            <table class="table text-center">
+                                <thead>
+                                    <th data-bind="style: { borderBottomColor: teams.home.color }">
+                                        <div data-bind="html: $root.logo(teams.home.logo, 40, 'pull-left pbp-logo')"></div>
+                                        <h5 class="text-center" data-bind="text: teams.home.shortName, style: { borderTopColor: teams.home.color }"></h5>
+                                    </th>
+                                    <th></th>
+                                    <th data-bind="style: { borderBottomColor: teams.away.color }">
+                                        <div data-bind="html: $root.logo(teams.away.logo, 40, 'pull-left pbp-logo')"></div>
+                                        <h5 class="text-center" data-bind="text: teams.away.shortName"></h5>
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td data-bind="text: teams.home.seasonStats['FD']"></td>
+                                        <td>First Downs</td>
+                                        <td data-bind="text: teams.away.seasonStats['FD']"></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-bind="text: (teams.home.seasonStats['TDS'] || 0) + ' - '+ (teams.home.seasonStats['TDA'] || 0) "></td>
+                                        <td>Third Down Efficiency</td>
 
-                                                        <td data-bind="text: (teams.away.seasonStats['TDS'] || 0) + ' - '+ (teams.away.seasonStats['TDA'] || 0) "></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td data-bind="text: (teams.home.seasonStats['FDS'] || 0) + ' - '+ (teams.home.seasonStats['FDA'] || 0) "></td>
-                                                        <td>Fourth Down Efficiency</td>
-                                                        <td data-bind="text: (teams.away.seasonStats['FDS'] || 0) + ' - '+ (teams.away.seasonStats['FDA'] || 0)"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td data-bind="text: (teams.home.stats[gameId]['PY']||0) + (teams.home.seasonStats['RYDS']||0)"></td>
-                                                        <td>Total Yards</td>
-                                                        <td data-bind="text: (teams.away.stats[gameId]['PY']||0) + (teams.away.seasonStats['RYDS']||0)"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="3"><b>Passing</b>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td data-bind="text: teams.home.seasonStats['PY']"></td>
-                                                        <td>Yards</td>
+                                        <td data-bind="text: (teams.away.seasonStats['TDS'] || 0) + ' - '+ (teams.away.seasonStats['TDA'] || 0) "></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-bind="text: (teams.home.seasonStats['FDS'] || 0) + ' - '+ (teams.home.seasonStats['FDA'] || 0) "></td>
+                                        <td>Fourth Down Efficiency</td>
+                                        <td data-bind="text: (teams.away.seasonStats['FDS'] || 0) + ' - '+ (teams.away.seasonStats['FDA'] || 0)"></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-bind="text: (teams.home.stats[gameId]['PY']||0) + (teams.home.seasonStats['RYDS']||0)"></td>
+                                        <td>Total Yards</td>
+                                        <td data-bind="text: (teams.away.stats[gameId]['PY']||0) + (teams.away.seasonStats['RYDS']||0)"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3"><b>Passing</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-bind="text: teams.home.seasonStats['PY']"></td>
+                                        <td>Yards</td>
 
-                                                        <td data-bind="text: teams.away.seasonStats['PY']"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td data-bind="text: (teams.home.seasonStats['C']||0) + ' - '+ (teams.home.seasonStats['PA']||0) "></td>
-                                                        <td>Completions - Attempts</td>
+                                        <td data-bind="text: teams.away.seasonStats['PY']"></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-bind="text: (teams.home.seasonStats['C']||0) + ' - '+ (teams.home.seasonStats['PA']||0) "></td>
+                                        <td>Completions - Attempts</td>
 
-                                                        <td data-bind="text: (teams.away.seasonStats['C']||0) + ' - '+ (teams.away.seasonStats['PA']||0) "></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td data-bind="text: (((teams.home.seasonStats['PY'] || 0) / (teams.home.seasonStats['PA'] || 0)) || 0).toFixed(1)"></td>
-                                                        <td>Yards per Attempt</td>
+                                        <td data-bind="text: (teams.away.seasonStats['C']||0) + ' - '+ (teams.away.seasonStats['PA']||0) "></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-bind="text: (((teams.home.seasonStats['PY'] || 0) / (teams.home.seasonStats['PA'] || 0)) || 0).toFixed(1)"></td>
+                                        <td>Yards per Attempt</td>
 
-                                                        <td data-bind="text: (((teams.away.seasonStats['PY'] || 0) / (teams.away.seasonStats['PA'] || 0)) || 0).toFixed(1)"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="3"><b>Rushing</b>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td data-bind="text: teams.home.seasonStats['RYDS']"></td>
-                                                        <td>Yards</td>
+                                        <td data-bind="text: (((teams.away.seasonStats['PY'] || 0) / (teams.away.seasonStats['PA'] || 0)) || 0).toFixed(1)"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3"><b>Rushing</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-bind="text: teams.home.seasonStats['RYDS']"></td>
+                                        <td>Yards</td>
 
-                                                        <td data-bind="text: teams.away.seasonStats['RYDS']"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td data-bind="text: teams.home.seasonStats['RA']"></td>
-                                                        <td>Attempts</td>
+                                        <td data-bind="text: teams.away.seasonStats['RYDS']"></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-bind="text: teams.home.seasonStats['RA']"></td>
+                                        <td>Attempts</td>
 
-                                                        <td data-bind="text: teams.away.seasonStats['RA']"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td data-bind="text: (((teams.home.seasonStats['RYDS'] || 0) / (teams.home.seasonStats['RA'] || 0)) || 0).toFixed(1)"></td>
-                                                        <td>Yards per Attempt</td>
+                                        <td data-bind="text: teams.away.seasonStats['RA']"></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-bind="text: (((teams.home.seasonStats['RYDS'] || 0) / (teams.home.seasonStats['RA'] || 0)) || 0).toFixed(1)"></td>
+                                        <td>Yards per Attempt</td>
 
-                                                        <td data-bind="text: (((teams.away.seasonStats['RYDS'] || 0) / (teams.away.seasonStats['RA'] || 0)) || 0).toFixed(1)"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="3"><b>Turnovers</b>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td data-bind="text: teams.home.seasonStats['INT'] "></td>
-                                                        <td>Interceptions</td>
+                                        <td data-bind="text: (((teams.away.seasonStats['RYDS'] || 0) / (teams.away.seasonStats['RA'] || 0)) || 0).toFixed(1)"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3"><b>Turnovers</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td data-bind="text: teams.home.seasonStats['INT'] "></td>
+                                        <td>Interceptions</td>
 
-                                                        <td data-bind="text: teams.away.seasonStats['INT'] "></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td data-bind="text: teams.home.seasonStats['FL'] "></td>
-                                                        <td>Fumbles Lost</td>
+                                        <td data-bind="text: teams.away.seasonStats['INT'] "></td>
+                                    </tr>
+                                    <tr>
+                                        <td data-bind="text: teams.home.seasonStats['FL'] "></td>
+                                        <td>Fumbles Lost</td>
 
-                                                        <td data-bind="text: teams.away.seasonStats['FL'] "></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                        <td data-bind="text: teams.away.seasonStats['FL'] "></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
+                    </div>
 
-                        <div class="row">
-    <div class="col-md-6">
-        <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
-        <h4 data-bind="text: teams.home.name + ' Passing'"></h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">NAME</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">C</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">PA</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">%</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">YDS</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">TD</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">INT</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: teams.home.getPassingPlayers()">
-                <tr>
-                    <td data-bind="text: player.fullName"></td>
-                    <td data-bind="text: player.position"></td>
-                    <td data-bind="text: player.seasonStats['C'] || '0'"></td>
-                    <td data-bind="text: player.seasonStats['PA']"></td>
-                    <td data-bind="text: ((((player.seasonStats['C'] || 0) / (player.seasonStats['PA'] || 0)) || 0)*100).toFixed(1)"></td>
-                    <td data-bind="text: player.seasonStats['PY'] || '0'"></td>
-                    <td data-bind="text: player.seasonStats['PTD'] || '0'"></td>
-                    <td data-bind="text: player.seasonStats['INT'] || '0'"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-md-6">
-        <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
-        <h4 data-bind="text: teams.away.name + ' Passing'"></h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">NAME</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">C</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">PA</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">%</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">YDS</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">TD</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">INT</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: teams.away.getPassingPlayers()">
-                <tr>
-                    <td data-bind="text: player.fullName"></td>
-                    <td data-bind="text: player.position"></td>
-                    <td data-bind="text: player.seasonStats['C'] || '0'"></td>
-                    <td data-bind="text: player.seasonStats['PA']"></td>
-                    <td data-bind="text: ((((player.seasonStats['C'] || 0) / (player.seasonStats['PA'] || 0)) || 0)*100).toFixed(1)"></td>
-                    <td data-bind="text: player.seasonStats['PY'] || '0'"></td>
-                    <td data-bind="text: player.seasonStats['PTD'] || '0'"></td>
-                    <td data-bind="text: player.seasonStats['INT'] || '0'"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6">
-        <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
-        <h4 data-bind="text: teams.home.name + ' Rushing'"></h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">NAME</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">CAR</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">YDS</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">AVG</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">TD</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: teams.home.getRushingPlayers()">
-                <tr>
-                    <td data-bind="text: player.fullName"></td>
-                    <td data-bind="text: player.position"></td>
-                    <td data-bind="text: player.seasonStats['RA']"></td>
-                    <td data-bind="text: player.seasonStats['RYDS'] || '0'"></td>
-                    <td data-bind="text: ((player.seasonStats['RYDS'] / player.seasonStats['RA'])|| 0).toFixed(1) "></td>
-                    <td data-bind="text: player.seasonStats['RTDS'] || '0'"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-md-6">
-        <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
-        <h4 data-bind="text: teams.away.name + ' Rushing'"></h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">NAME</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">CAR</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">YDS</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">AVG</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">TD</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: teams.away.getRushingPlayers()">
-                <tr>
-                    <td data-bind="text: player.fullName"></td>
-                    <td data-bind="text: player.position"></td>
-                    <td data-bind="text: player.seasonStats['RA']"></td>
-                    <td data-bind="text: player.seasonStats['RYDS'] || '0'"></td>
-                    <td data-bind="text: ((player.seasonStats['RYDS'] / player.seasonStats['RA']) || 0).toFixed(1) "></td>
-                    <td data-bind="text: player.seasonStats['RTDS'] || '0'"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6">
-        <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
-        <h4 data-bind="text: teams.home.name + ' Receiving'"></h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">NAME</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">REC</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">YDS</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">TD</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: teams.home.getReceivingPlayers()">
-                <tr>
-                    <td data-bind="text: player.fullName"></td>
-                    <td data-bind="text: player.position"></td>
-                    <td data-bind="text: player.seasonStats['R']"></td>
-                    <td data-bind="text: player.seasonStats['RECY'] || '0'"></td>
-                    <td data-bind="text: player.seasonStats['RECTD'] || '0'"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-md-6">
-        <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
-        <h4 data-bind="text: teams.away.name + ' Receiving'"></h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">NAME</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">REC</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">YDS</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">TD</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: teams.away.getReceivingPlayers()">
-                <tr>
-                    <td data-bind="text: player.fullName"></td>
-                    <td data-bind="text: player.position"></td>
-                    <td data-bind="text: player.seasonStats['R']"></td>
-                    <td data-bind="text: player.seasonStats['RECY'] || '0'"></td>
-                    <td data-bind="text: player.seasonStats['RECTD'] || '0'"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6">
-        <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
-        <h4 data-bind="text: teams.home.name + ' Defense'"></h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">NAME</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">FUMB REC.</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">INT</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">SACK</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: teams.home.getDefensivePlayers()">
-                <tr>
-                    <td data-bind="text: player.fullName"></td>
-                    <td data-bind="text: player.position"></td>
-                    <td data-bind="text: player.seasonStats['FR'] || ''"></td>
-                    <td data-bind="text: player.seasonStats['INTD'] || ''"></td>
-                    <td data-bind="text: player.seasonStats['SK'] || ''"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-md-6">
-        <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
-        <h4 data-bind="text: teams.away.name + ' Defense'"></h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">NAME</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">FUMB REC.</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">INT</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">SACK</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: teams.away.getDefensivePlayers()">
-                <tr>
-                    <td data-bind="text: player.fullName"></td>
-                    <td data-bind="text: player.position"></td>
-                    <td data-bind="text: player.seasonStats['FR'] || ''"></td>
-                    <td data-bind="text: player.seasonStats['INTD'] || ''"></td>
-                    <td data-bind="text: player.seasonStats['SK'] || ''"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6">
-        <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
-        <h4 data-bind="text: teams.home.name + ' Kicking'"></h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">NAME</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">FG</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">LONG</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">XP</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: teams.home.getKickingPlayers()">
-                <tr>
-                    <td data-bind="text: player.fullName"></td>
-                    <td data-bind="text: player.position"></td>
-                    <td data-bind="text: player.seasonStats['FGA'] ? (player.seasonStats['FGM'] || '0') + ' - '+ (player.seasonStats['FGA'] || '0') : ''"></td>
-                    <td data-bind="text: player.seasonStats['FGL'] || ''"></td>
-                    <td data-bind="text: player.seasonStats['XPM'] ? (player.seasonStats['XPM'] || '0') + ' - '+ (player.seasonStats['XPA'] || '0') : ''"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-md-6">
-        <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
-        <h4 data-bind="text: teams.away.name + ' Kicking'"></h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">NAME</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">FG</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">LONG</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">XP</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: teams.away.getKickingPlayers()">
-                <tr>
-                    <td data-bind="text: player.fullName"></td>
-                    <td data-bind="text: player.position"></td>
-                    <td data-bind="text: player.seasonStats['FGA'] ? (player.seasonStats['FGM'] || '0') + ' - '+ (player.seasonStats['FGA'] || '0') : ''"></td>
-                    <td data-bind="text: player.seasonStats['FGL'] || ''"></td>
-                    <td data-bind="text: player.seasonStats['XPM'] ? (player.seasonStats['XPM'] || '0') + ' - '+ (player.seasonStats['XPA'] || '0') : ''"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
+                            <h4 data-bind="text: teams.home.name + ' Passing'"></h4>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">NAME</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">C</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">PA</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">%</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">YDS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">TD</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">INT</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: teams.home.getPassingPlayers()">
+                                    <tr>
+                                        <td data-bind="text: player.fullName"></td>
+                                        <td data-bind="text: player.position"></td>
+                                        <td data-bind="text: player.seasonStats['C'] || '0'"></td>
+                                        <td data-bind="text: player.seasonStats['PA']"></td>
+                                        <td data-bind="text: ((((player.seasonStats['C'] || 0) / (player.seasonStats['PA'] || 0)) || 0)*100).toFixed(1)"></td>
+                                        <td data-bind="text: player.seasonStats['PY'] || '0'"></td>
+                                        <td data-bind="text: player.seasonStats['PTD'] || '0'"></td>
+                                        <td data-bind="text: player.seasonStats['INT'] || '0'"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
+                            <h4 data-bind="text: teams.away.name + ' Passing'"></h4>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">NAME</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">C</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">PA</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">%</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">YDS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">TD</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">INT</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: teams.away.getPassingPlayers()">
+                                    <tr>
+                                        <td data-bind="text: player.fullName"></td>
+                                        <td data-bind="text: player.position"></td>
+                                        <td data-bind="text: player.seasonStats['C'] || '0'"></td>
+                                        <td data-bind="text: player.seasonStats['PA']"></td>
+                                        <td data-bind="text: ((((player.seasonStats['C'] || 0) / (player.seasonStats['PA'] || 0)) || 0)*100).toFixed(1)"></td>
+                                        <td data-bind="text: player.seasonStats['PY'] || '0'"></td>
+                                        <td data-bind="text: player.seasonStats['PTD'] || '0'"></td>
+                                        <td data-bind="text: player.seasonStats['INT'] || '0'"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
+                            <h4 data-bind="text: teams.home.name + ' Rushing'"></h4>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">NAME</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">CAR</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">YDS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">AVG</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">TD</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: teams.home.getRushingPlayers()">
+                                    <tr>
+                                        <td data-bind="text: player.fullName"></td>
+                                        <td data-bind="text: player.position"></td>
+                                        <td data-bind="text: player.seasonStats['RA']"></td>
+                                        <td data-bind="text: player.seasonStats['RYDS'] || '0'"></td>
+                                        <td data-bind="text: ((player.seasonStats['RYDS'] / player.seasonStats['RA'])|| 0).toFixed(1) "></td>
+                                        <td data-bind="text: player.seasonStats['RTDS'] || '0'"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
+                            <h4 data-bind="text: teams.away.name + ' Rushing'"></h4>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">NAME</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">CAR</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">YDS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">AVG</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">TD</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: teams.away.getRushingPlayers()">
+                                    <tr>
+                                        <td data-bind="text: player.fullName"></td>
+                                        <td data-bind="text: player.position"></td>
+                                        <td data-bind="text: player.seasonStats['RA']"></td>
+                                        <td data-bind="text: player.seasonStats['RYDS'] || '0'"></td>
+                                        <td data-bind="text: ((player.seasonStats['RYDS'] / player.seasonStats['RA']) || 0).toFixed(1) "></td>
+                                        <td data-bind="text: player.seasonStats['RTDS'] || '0'"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
+                            <h4 data-bind="text: teams.home.name + ' Receiving'"></h4>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">NAME</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">REC</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">YDS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">TD</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: teams.home.getReceivingPlayers()">
+                                    <tr>
+                                        <td data-bind="text: player.fullName"></td>
+                                        <td data-bind="text: player.position"></td>
+                                        <td data-bind="text: player.seasonStats['R']"></td>
+                                        <td data-bind="text: player.seasonStats['RECY'] || '0'"></td>
+                                        <td data-bind="text: player.seasonStats['RECTD'] || '0'"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
+                            <h4 data-bind="text: teams.away.name + ' Receiving'"></h4>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">NAME</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">REC</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">YDS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">TD</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: teams.away.getReceivingPlayers()">
+                                    <tr>
+                                        <td data-bind="text: player.fullName"></td>
+                                        <td data-bind="text: player.position"></td>
+                                        <td data-bind="text: player.seasonStats['R']"></td>
+                                        <td data-bind="text: player.seasonStats['RECY'] || '0'"></td>
+                                        <td data-bind="text: player.seasonStats['RECTD'] || '0'"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
+                            <h4 data-bind="text: teams.home.name + ' Defense'"></h4>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">NAME</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">FUMB REC.</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">INT</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">SACK</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: teams.home.getDefensivePlayers()">
+                                    <tr>
+                                        <td data-bind="text: player.fullName"></td>
+                                        <td data-bind="text: player.position"></td>
+                                        <td data-bind="text: player.seasonStats['FR'] || ''"></td>
+                                        <td data-bind="text: player.seasonStats['INTD'] || ''"></td>
+                                        <td data-bind="text: player.seasonStats['SK'] || ''"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
+                            <h4 data-bind="text: teams.away.name + ' Defense'"></h4>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">NAME</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">FUMB REC.</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">INT</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">SACK</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: teams.away.getDefensivePlayers()">
+                                    <tr>
+                                        <td data-bind="text: player.fullName"></td>
+                                        <td data-bind="text: player.position"></td>
+                                        <td data-bind="text: player.seasonStats['FR'] || ''"></td>
+                                        <td data-bind="text: player.seasonStats['INTD'] || ''"></td>
+                                        <td data-bind="text: player.seasonStats['SK'] || ''"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
+                            <h4 data-bind="text: teams.home.name + ' Kicking'"></h4>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">NAME</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">FG</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">LONG</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">XP</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: teams.home.getKickingPlayers()">
+                                    <tr>
+                                        <td data-bind="text: player.fullName"></td>
+                                        <td data-bind="text: player.position"></td>
+                                        <td data-bind="text: player.seasonStats['FGA'] ? (player.seasonStats['FGM'] || '0') + ' - '+ (player.seasonStats['FGA'] || '0') : ''"></td>
+                                        <td data-bind="text: player.seasonStats['FGL'] || ''"></td>
+                                        <td data-bind="text: player.seasonStats['XPM'] ? (player.seasonStats['XPM'] || '0') + ' - '+ (player.seasonStats['XPA'] || '0') : ''"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
+                            <h4 data-bind="text: teams.away.name + ' Kicking'"></h4>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">NAME</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">FG</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">LONG</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">XP</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: teams.away.getKickingPlayers()">
+                                    <tr>
+                                        <td data-bind="text: player.fullName"></td>
+                                        <td data-bind="text: player.position"></td>
+                                        <td data-bind="text: player.seasonStats['FGA'] ? (player.seasonStats['FGM'] || '0') + ' - '+ (player.seasonStats['FGA'] || '0') : ''"></td>
+                                        <td data-bind="text: player.seasonStats['FGL'] || ''"></td>
+                                        <td data-bind="text: player.seasonStats['XPM'] ? (player.seasonStats['XPM'] || '0') + ' - '+ (player.seasonStats['XPA'] || '0') : ''"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
-<div class="row">
-    <div class="col-md-6">
-        <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
-        <h4 data-bind="text: teams.home.name + ' Punting'"></h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">NAME</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">P</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">YDS</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">AVG</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">LONG</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: teams.home.getPuntingPlayers()">
-                <tr>
-                    <td data-bind="text: player.fullName"></td>
-                    <td data-bind="text: player.position"></td>
-                    <td data-bind="text: player.seasonStats['P']"></td>
-                    <td data-bind="text: player.seasonStats['PUYDS']"></td>
-                    <td data-bind="text: ((player.seasonStats['PUYDS'] / player.seasonStats['P']) || 0).toFixed(1) "></td>
-                    <td data-bind="text: player.seasonStats['PL']"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-md-6">
-        <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
-        <h4 data-bind="text: teams.away.name + ' Punting'"></h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">NAME</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">P</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">YDS</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">AVG</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">LONG</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: teams.away.getPuntingPlayers()">
-                <tr>
-                    <td data-bind="text: player.fullName"></td>
-                    <td data-bind="text: player.position"></td>
-                    <td data-bind="text: player.seasonStats['P']"></td>
-                    <td data-bind="text: player.seasonStats['PUYDS']"></td>
-                    <td data-bind="text: ((player.seasonStats['PUYDS'] / player.seasonStats['P'])|| 0).toFixed(1) "></td>
-                    <td data-bind="text: player.seasonStats['PL']"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-6">
-        <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
-        <h4 data-bind="text: teams.home.name + ' Returns'"></h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th colspan="2"></th>
-                    <th colspan="4" class="text-center">KICKOFFS</th>
-                    <th></th>
-                    <th colspan="4" class="text-center">PUNTS</th>
-                </tr>
-                <tr>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">NAME</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">ATT</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">YDS</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">LNG</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">TD</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }"></th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">ATT</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">YDS</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">LNG</th>
-                    <th data-bind="style: { borderBottomColor: teams.home.color }">TD</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: teams.home.getReturnPlayers()">
-                <tr>
-                    <td data-bind="text: player.fullName"></td>
-                    <td data-bind="text: player.position"></td>
-                    <td data-bind="text: player.seasonStats['KOR'] || ''"></td>
-                    <td data-bind="text: player.seasonStats['KORYDS'] || ''"></td>
-                    <td data-bind="text: player.seasonStats['KORL'] || ''"></td>
-                    <td data-bind="text: player.seasonStats['KORTD'] || ''"></td>
-                    <td></td>
-                    <td data-bind="text: player.seasonStats['PR'] || ''"></td>
-                    <td data-bind="text: player.seasonStats['PRYDS'] || ''"></td>
-                    <td data-bind="text: player.seasonStats['PRL'] || ''"></td>
-                    <td data-bind="text: player.seasonStats['PRTD'] || ''"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-md-6">
-        <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
-        <h4 data-bind="text: teams.away.name + ' Returns'"></h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th colspan="2"></th>
-                    <th colspan="4" class="text-center">KICKOFFS</th>
-                    <th></th>
-                    <th colspan="4" class="text-center">PUNTS</th>
-                </tr>
-                <tr>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">NAME</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">ATT</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">YDS</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">LNG</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">TD</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }"></th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">ATT</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">YDS</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">LNG</th>
-                    <th data-bind="style: { borderBottomColor: teams.away.color }">TD</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: teams.away.getReturnPlayers()">
-                <tr>
-                    <td data-bind="text: player.fullName"></td>
-                    <td data-bind="text: player.position"></td>
-                    <td data-bind="text: player.seasonStats['KOR'] || ''"></td>
-                    <td data-bind="text: player.seasonStats['KORYDS'] || ''"></td>
-                    <td data-bind="text: player.seasonStats['KORL'] || ''"></td>
-                    <td data-bind="text: player.seasonStats['KORTD'] || ''"></td>
-                    <td></td>
-                    <td data-bind="text: player.seasonStats['PR'] || ''"></td>
-                    <td data-bind="text: player.seasonStats['PRYDS'] || ''"></td>
-                    <td data-bind="text: player.seasonStats['PRL'] || ''"></td>
-                    <td data-bind="text: player.seasonStats['PRTD'] || ''"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
+                            <h4 data-bind="text: teams.home.name + ' Punting'"></h4>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">NAME</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">P</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">YDS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">AVG</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">LONG</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: teams.home.getPuntingPlayers()">
+                                    <tr>
+                                        <td data-bind="text: player.fullName"></td>
+                                        <td data-bind="text: player.position"></td>
+                                        <td data-bind="text: player.seasonStats['P']"></td>
+                                        <td data-bind="text: player.seasonStats['PUYDS']"></td>
+                                        <td data-bind="text: ((player.seasonStats['PUYDS'] / player.seasonStats['P']) || 0).toFixed(1) "></td>
+                                        <td data-bind="text: player.seasonStats['PL']"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
+                            <h4 data-bind="text: teams.away.name + ' Punting'"></h4>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">NAME</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">P</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">YDS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">AVG</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">LONG</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: teams.away.getPuntingPlayers()">
+                                    <tr>
+                                        <td data-bind="text: player.fullName"></td>
+                                        <td data-bind="text: player.position"></td>
+                                        <td data-bind="text: player.seasonStats['P']"></td>
+                                        <td data-bind="text: player.seasonStats['PUYDS']"></td>
+                                        <td data-bind="text: ((player.seasonStats['PUYDS'] / player.seasonStats['P'])|| 0).toFixed(1) "></td>
+                                        <td data-bind="text: player.seasonStats['PL']"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div data-bind="html: $root.logo(teams.home.logo, 30, 'pull-left pbp-logo')"></div>
+                            <h4 data-bind="text: teams.home.name + ' Returns'"></h4>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2"></th>
+                                        <th colspan="4" class="text-center">KICKOFFS</th>
+                                        <th></th>
+                                        <th colspan="4" class="text-center">PUNTS</th>
+                                    </tr>
+                                    <tr>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">NAME</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">POS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">ATT</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">YDS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">LNG</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">TD</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }"></th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">ATT</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">YDS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">LNG</th>
+                                        <th data-bind="style: { borderBottomColor: teams.home.color }">TD</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: teams.home.getReturnPlayers()">
+                                    <tr>
+                                        <td data-bind="text: player.fullName"></td>
+                                        <td data-bind="text: player.position"></td>
+                                        <td data-bind="text: player.seasonStats['KOR'] || ''"></td>
+                                        <td data-bind="text: player.seasonStats['KORYDS'] || ''"></td>
+                                        <td data-bind="text: player.seasonStats['KORL'] || ''"></td>
+                                        <td data-bind="text: player.seasonStats['KORTD'] || ''"></td>
+                                        <td></td>
+                                        <td data-bind="text: player.seasonStats['PR'] || ''"></td>
+                                        <td data-bind="text: player.seasonStats['PRYDS'] || ''"></td>
+                                        <td data-bind="text: player.seasonStats['PRL'] || ''"></td>
+                                        <td data-bind="text: player.seasonStats['PRTD'] || ''"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-6">
+                            <div data-bind="html: $root.logo(teams.away.logo, 30, 'pull-left pbp-logo')"></div>
+                            <h4 data-bind="text: teams.away.name + ' Returns'"></h4>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2"></th>
+                                        <th colspan="4" class="text-center">KICKOFFS</th>
+                                        <th></th>
+                                        <th colspan="4" class="text-center">PUNTS</th>
+                                    </tr>
+                                    <tr>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">NAME</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">POS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">ATT</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">YDS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">LNG</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">TD</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }"></th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">ATT</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">YDS</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">LNG</th>
+                                        <th data-bind="style: { borderBottomColor: teams.away.color }">TD</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: teams.away.getReturnPlayers()">
+                                    <tr>
+                                        <td data-bind="text: player.fullName"></td>
+                                        <td data-bind="text: player.position"></td>
+                                        <td data-bind="text: player.seasonStats['KOR'] || ''"></td>
+                                        <td data-bind="text: player.seasonStats['KORYDS'] || ''"></td>
+                                        <td data-bind="text: player.seasonStats['KORL'] || ''"></td>
+                                        <td data-bind="text: player.seasonStats['KORTD'] || ''"></td>
+                                        <td></td>
+                                        <td data-bind="text: player.seasonStats['PR'] || ''"></td>
+                                        <td data-bind="text: player.seasonStats['PRYDS'] || ''"></td>
+                                        <td data-bind="text: player.seasonStats['PRL'] || ''"></td>
+                                        <td data-bind="text: player.seasonStats['PRTD'] || ''"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
 
 
 
                     <!-- /ko-->
                 </div>
-                
+
             </div>
         </div>
         <div data-bind="page: {id: 'team'}">
@@ -2127,7 +2138,7 @@
                                                     <td data-bind="text: player.seasonStats['KORYDS'] || ''"></td>
                                                     <td data-bind="text: player.seasonStats['KORL'] || ''"></td>
                                                     <td data-bind="text: player.seasonStats['KORTD'] || ''"></td>
-                                                    <td ></td>
+                                                    <td></td>
                                                     <td data-bind="text: player.seasonStats['PR'] || ''"></td>
                                                     <td data-bind="text: player.seasonStats['PRYDS'] || ''"></td>
                                                     <td data-bind="text: player.seasonStats['PRL'] || ''"></td>
@@ -2146,479 +2157,479 @@
     </div>
 
     <script type="text/html" id="pbpTemplate">
-<table class="table">
-    <thead>
-        <tr>
-            <td>
-                <div data-bind="html: $root.logo($parents[0].teams[$data[0].possession].logo, 39, 'pull-left pbp-logo')"></div>
-                <h4 data-bind="text: $data[0].possession"></h4>
-            </td>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>
+                        <div data-bind="html: $root.logo($parents[0].teams[$data[0].possession].logo, 39, 'pull-left pbp-logo')"></div>
+                        <h4 data-bind="text: $data[0].possession"></h4>
+                    </td>
 
-            <td></td>
+                    <td></td>
 
-            <td>
-                <h4>
+                    <td>
+                        <h4>
                     <small data-bind="text: $parents[0].teams.home.name"></small>
                 </h4>
-            </td>
+                    </td>
 
-            <td>
-                <h4>
+                    <td>
+                        <h4>
                     <small data-bind="text: $parents[0].teams.away.name"></small>
                 </h4>
-            </td>
-        </tr>
-    </thead>
+                    </td>
+                </tr>
+            </thead>
 
-    <tbody>
-        <tr>
-            <td data-bind="text: $parents[0].downAndDistance($data[0]), style: { borderTopColor: $parents[0].teams[$data[0].possession].color}"></td>
+            <tbody>
+                <tr>
+                    <td data-bind="text: $parents[0].downAndDistance($data[0]), style: { borderTopColor: $parents[0].teams[$data[0].possession].color}"></td>
 
-            <td data-bind="text: $data[0].commentary, style: { borderTopColor: $parents[0].teams[$data[0].possession].color}"></td>
+                    <td data-bind="text: $data[0].commentary, style: { borderTopColor: $parents[0].teams[$data[0].possession].color}"></td>
 
-            <td data-bind="text: $data[0].homeScore, style: { borderTopColor: $parents[0].teams.home.color }"></td>
+                    <td data-bind="text: $data[0].homeScore, style: { borderTopColor: $parents[0].teams.home.color }"></td>
 
-            <td data-bind="text: $data[0].awayScore, style: { borderTopColor: $parents[0].teams.away.color }"></td>
-        </tr>
-        <!-- ko foreach: _.rest($data) -->
-        <tr>
-            <td data-bind="text: $parents[1].downAndDistance($data)"></td>
+                    <td data-bind="text: $data[0].awayScore, style: { borderTopColor: $parents[0].teams.away.color }"></td>
+                </tr>
+                <!-- ko foreach: _.rest($data) -->
+                <tr>
+                    <td data-bind="text: $parents[1].downAndDistance($data)"></td>
 
-            <td data-bind="text: commentary"></td>
+                    <td data-bind="text: commentary"></td>
 
-            <td data-bind="text: homeScore"></td>
+                    <td data-bind="text: homeScore"></td>
 
-            <td data-bind="text: awayScore"></td>
-        </tr>
-        <!-- /ko-->
-        <!-- ko if: !!$parents[0].driveSummaries()[$data[0].driveNumber].ending && !_.last($data).quarterChange-->
-        <tr>
-            <td></td>
-            <td data-bind="text: $parents[0].getDriveSummary($data[0].driveNumber)"></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <!-- /ko-->
-    </tbody>
-</table>
+                    <td data-bind="text: awayScore"></td>
+                </tr>
+                <!-- /ko-->
+                <!-- ko if: !!$parents[0].driveSummaries()[$data[0].driveNumber].ending && !_.last($data).quarterChange-->
+                <tr>
+                    <td></td>
+                    <td data-bind="text: $parents[0].getDriveSummary($data[0].driveNumber)"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <!-- /ko-->
+            </tbody>
+        </table>
 
     </script>
     <script type="text/html" id="oTPbpTemplate">
-    <table class="table">
-    <thead>
-        <tr>
-            <td>
-                <div data-bind="html: $root.logo($parents[1].teams[$data[0].possession].logo, 39, 'pull-left pbp-logo')"></div>
-                <h4 data-bind="text: $data[0].possession"></h4>
-            </td>
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>
+                        <div data-bind="html: $root.logo($parents[1].teams[$data[0].possession].logo, 39, 'pull-left pbp-logo')"></div>
+                        <h4 data-bind="text: $data[0].possession"></h4>
+                    </td>
 
-            <td></td>
+                    <td></td>
 
-            <td>
-                <h4>
+                    <td>
+                        <h4>
                     <small data-bind="text: $parents[1].teams.home.name"></small>
                 </h4>
-            </td>
+                    </td>
 
-            <td>
-                <h4>
+                    <td>
+                        <h4>
                     <small data-bind="text: $parents[1].teams.away.name"></small>
                 </h4>
-            </td>
-        </tr>
-    </thead>
+                    </td>
+                </tr>
+            </thead>
 
-    <tbody>
-        <tr>
-            <td data-bind="text: $parents[1].downAndDistance($data[0]), style: { borderTopColor: $parents[1].teams[$data[0].possession].color}"></td>
+            <tbody>
+                <tr>
+                    <td data-bind="text: $parents[1].downAndDistance($data[0]), style: { borderTopColor: $parents[1].teams[$data[0].possession].color}"></td>
 
-            <td data-bind="text: $data[0].commentary, style: { borderTopColor: $parents[1].teams[$data[0].possession].color}"></td>
+                    <td data-bind="text: $data[0].commentary, style: { borderTopColor: $parents[1].teams[$data[0].possession].color}"></td>
 
-            <td data-bind="text: $data[0].homeScore, style: { borderTopColor: $parents[1].teams.home.color }"></td>
+                    <td data-bind="text: $data[0].homeScore, style: { borderTopColor: $parents[1].teams.home.color }"></td>
 
-            <td data-bind="text: $data[0].awayScore, style: { borderTopColor: $parents[1].teams.away.color }"></td>
-        </tr>
-        <!-- ko foreach: _.rest($data) -->
-        <tr>
-            <td data-bind="text: $parents[2].downAndDistance($data)"></td>
+                    <td data-bind="text: $data[0].awayScore, style: { borderTopColor: $parents[1].teams.away.color }"></td>
+                </tr>
+                <!-- ko foreach: _.rest($data) -->
+                <tr>
+                    <td data-bind="text: $parents[2].downAndDistance($data)"></td>
 
-            <td data-bind="text: commentary"></td>
+                    <td data-bind="text: commentary"></td>
 
-            <td data-bind="text: homeScore"></td>
+                    <td data-bind="text: homeScore"></td>
 
-            <td data-bind="text: awayScore"></td>
-        </tr>
-        <!-- /ko-->
-        <!-- ko if: !!$parents[1].driveSummaries()[$data[0].driveNumber].ending && !_.last($data).quarterChange-->
-        <tr>
-            <td></td>
-            <td data-bind="text: $parents[1].getDriveSummary($data[0].driveNumber)"></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <!-- /ko-->
+                    <td data-bind="text: awayScore"></td>
+                </tr>
+                <!-- /ko-->
+                <!-- ko if: !!$parents[1].driveSummaries()[$data[0].driveNumber].ending && !_.last($data).quarterChange-->
+                <tr>
+                    <td></td>
+                    <td data-bind="text: $parents[1].getDriveSummary($data[0].driveNumber)"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <!-- /ko-->
 
-    </tbody>
-</table>
+            </tbody>
+        </table>
     </script>
 
     <script type="text/html" id="score-template">
-<div class="row">
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        <h5 data-bind='text: $root.formatLocalDate(startTime) + " - " + stadium'></h5>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-3 col-xs-4">
         <div class="row">
-            <div class="col-xs-6 text-center">
-                <h4 data-bind="text: teams['away'].institution.name"></h4>
-            </div>
-            <div class="col-xs-6" data-bind="html: $root.logo(teams['away'].logo, 80, 'center-block')">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 text-center">
-                <h4 data-bind="text: teams['away'].record.history[week + 1] || teams['away'].record.history[week]"></h4>
-                <h4 data-bind="text: teams['away'].rankings[week]"></h4>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-1 col-xs-2 text-center">
-        <span class='score' data-bind="text: awayTotal"></span>
-    </div>
-    <div class="col-md-4 hidden-sm hidden-xs">
-        <div class="row" data-bind="if: name">
-            <div class="col-xs-12 text-center">
-                <h3 data-bind='text: name'></h3>
-            </div>
         </div>
         <div class="row">
             <div class="col-xs-12">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <!-- ko if: plays().length === 0 -->
-                            <th></th>
-                            <!-- /ko-->
-                            <!-- ko if: plays().length !== 0 && !completed()-->
-                            <th data-bind="text:getQuarterName(_.last(plays()).quarter) + '     ' +clock(_.last(plays()).clock)"></th>
-                            <!-- /ko-->
-                            <!-- ko if: plays().length !== 0 && completed()-->
-                            <th>Final</th>
-                            <!-- /ko-->
-                            <th>1</th>
-                            <th>2</th>
-                            <th>3</th>
-                            <th>4</th>
-                            <!-- ko foreach: OTs -->
-                            <th data-bind="text: 'OT ' + $data"></th>
-                            <!-- /ko-->
-                            <th>F</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <!-- ko if: !teams['away'].outOfConference -->
-                                <a data-bind="page-href: $parent.teamPath+teams['away'].id, text: teams['away'].institution.shortName"></a>
-                                <!-- /ko-->
-                                <!-- ko if: teams['away'].outOfConference -->
-                                <!-- ko text: teams['away'].institution.shortName  -->
-                                <!-- /ko-->
-                                <!-- /ko-->
-                            </td>
-                            <td data-bind="text: awayOne"></td>
-                            <td data-bind="text: awayTwo"></td>
-                            <td data-bind="text: awayThree"></td>
-                            <td data-bind="text: awayFour"></td>
-                            <!-- ko foreach: awayOTs-->
-                            <td data-bind="text: $data"></td>
-                            <!-- /ko-->
-                            <td data-bind="text: awayTotal"></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <!-- ko if: !teams['home'].outOfConference -->
-                                <a data-bind="page-href: $parent.teamPath+teams['home'].id, text: teams['home'].institution.shortName"></a>
-                                <!-- /ko-->
-                                <!-- ko if: teams['home'].outOfConference -->
-                                <!-- ko text: teams['home'].institution.shortName  -->
-                                <!-- /ko-->
-                                <!-- /ko-->
-                            </td>
-                            <td data-bind="text: homeOne"></td>
-                            <td data-bind="text: homeTwo"></td>
-                            <td data-bind="text: homeThree"></td>
-                            <td data-bind="text: homeFour"></td>
-                            <!-- ko foreach: homeOTs-->
-                            <td data-bind="text: $data"></td>
-                            <!-- /ko-->
-                            <td data-bind="text: homeTotal"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-1 col-xs-2 text-center">
-        <span class='score' data-bind="text: homeTotal"></span>
-    </div>
-    <div class="col-md-3 col-xs-4">
-        <div class="row">
-            <div class="col-xs-6" data-bind="html: $root.logo(teams['home'].logo, 80, 'center-block')">
-            </div>
-            <div class="col-xs-6 text-center">
-                <h4 data-bind="text: teams['home'].institution.name"></h4>
+                <h5 data-bind='text: $root.formatLocalDate(startTime) + " - " + stadium'></h5>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12 text-center">
-                <h4 data-bind="text: teams['home'].record.history[week + 1] || teams['home'].record.history[week]"></h4>
-                <h4 data-bind="text: teams['home'].rankings[week]"></h4>
+            <div class="col-md-3 col-xs-4">
+                <div class="row">
+                    <div class="col-xs-6 text-center">
+                        <h4 data-bind="text: teams['away'].institution.name"></h4>
+                    </div>
+                    <div class="col-xs-6" data-bind="html: $root.logo(teams['away'].logo, 80, 'center-block')">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <h4 data-bind="text: teams['away'].record.history[week + 1] || teams['away'].record.history[week]"></h4>
+                        <h4 data-bind="text: teams['away'].rankings[week]"></h4>
+                    </div>
+                </div>
             </div>
-        </div>
+            <div class="col-md-1 col-xs-2 text-center">
+                <span class='score' data-bind="text: awayTotal"></span>
+            </div>
+            <div class="col-md-4 hidden-sm hidden-xs">
+                <div class="row" data-bind="if: name">
+                    <div class="col-xs-12 text-center">
+                        <h3 data-bind='text: name'></h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <!-- ko if: plays().length === 0 -->
+                                    <th></th>
+                                    <!-- /ko-->
+                                    <!-- ko if: plays().length !== 0 && !completed()-->
+                                    <th data-bind="text:getQuarterName(_.last(plays()).quarter) + '     ' +clock(_.last(plays()).clock)"></th>
+                                    <!-- /ko-->
+                                    <!-- ko if: plays().length !== 0 && completed()-->
+                                    <th>Final</th>
+                                    <!-- /ko-->
+                                    <th>1</th>
+                                    <th>2</th>
+                                    <th>3</th>
+                                    <th>4</th>
+                                    <!-- ko foreach: OTs -->
+                                    <th data-bind="text: 'OT ' + $data"></th>
+                                    <!-- /ko-->
+                                    <th>F</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <!-- ko if: !teams['away'].outOfConference -->
+                                        <a data-bind="page-href: $parent.teamPath+teams['away'].id, text: teams['away'].institution.shortName"></a>
+                                        <!-- /ko-->
+                                        <!-- ko if: teams['away'].outOfConference -->
+                                        <!-- ko text: teams['away'].institution.shortName  -->
+                                        <!-- /ko-->
+                                        <!-- /ko-->
+                                    </td>
+                                    <td data-bind="text: awayOne"></td>
+                                    <td data-bind="text: awayTwo"></td>
+                                    <td data-bind="text: awayThree"></td>
+                                    <td data-bind="text: awayFour"></td>
+                                    <!-- ko foreach: awayOTs-->
+                                    <td data-bind="text: $data"></td>
+                                    <!-- /ko-->
+                                    <td data-bind="text: awayTotal"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <!-- ko if: !teams['home'].outOfConference -->
+                                        <a data-bind="page-href: $parent.teamPath+teams['home'].id, text: teams['home'].institution.shortName"></a>
+                                        <!-- /ko-->
+                                        <!-- ko if: teams['home'].outOfConference -->
+                                        <!-- ko text: teams['home'].institution.shortName  -->
+                                        <!-- /ko-->
+                                        <!-- /ko-->
+                                    </td>
+                                    <td data-bind="text: homeOne"></td>
+                                    <td data-bind="text: homeTwo"></td>
+                                    <td data-bind="text: homeThree"></td>
+                                    <td data-bind="text: homeFour"></td>
+                                    <!-- ko foreach: homeOTs-->
+                                    <td data-bind="text: $data"></td>
+                                    <!-- /ko-->
+                                    <td data-bind="text: homeTotal"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1 col-xs-2 text-center">
+                <span class='score' data-bind="text: homeTotal"></span>
+            </div>
+            <div class="col-md-3 col-xs-4">
+                <div class="row">
+                    <div class="col-xs-6" data-bind="html: $root.logo(teams['home'].logo, 80, 'center-block')">
+                    </div>
+                    <div class="col-xs-6 text-center">
+                        <h4 data-bind="text: teams['home'].institution.name"></h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <h4 data-bind="text: teams['home'].record.history[week + 1] || teams['home'].record.history[week]"></h4>
+                        <h4 data-bind="text: teams['home'].rankings[week]"></h4>
+                    </div>
+                </div>
 
-    </div>
-</div>
-<div class="visible-sm visible-xs row">
-    <div class="col-xs-12">
-        <div class="row" data-bind="if: name">
-            <div class="col-xs-12 text-center">
-                <h3 data-bind='text: name'></h3>
+            </div>
+        </div>
+        <div class="visible-sm visible-xs row">
+            <div class="col-xs-12">
+                <div class="row" data-bind="if: name">
+                    <div class="col-xs-12 text-center">
+                        <h3 data-bind='text: name'></h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <!-- ko if: plays().length === 0 -->
+                                    <th></th>
+                                    <!-- /ko-->
+                                    <!-- ko if: plays().length !== 0 && !completed()-->
+                                    <th data-bind="text:getQuarterName(_.last(plays()).quarter) + clock(_.last(plays()).clock)"></th>
+                                    <!-- /ko-->
+                                    <!-- ko if: plays().length !== 0 && completed()-->
+                                    <th>Final</th>
+                                    <!-- /ko-->
+                                    <th>1</th>
+                                    <th>2</th>
+                                    <th>3</th>
+                                    <th>4</th>
+                                    <!-- ko foreach: OTs -->
+                                    <th data-bind="text: 'OT ' + $data"></th>
+                                    <!-- /ko-->
+                                    <th>F</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <!-- ko if: !teams['home'].outOfConference -->
+                                        <a data-bind="page-href: $parent.teamPath+teams['home'].id, text: teams['home'].institution.shortName"></a>
+                                        <!-- /ko-->
+                                        <!-- ko if: teams['home'].outOfConference -->
+                                        <!-- ko text: teams['home'].institution.shortName  -->
+                                        <!-- /ko-->
+                                        <!-- /ko-->
+                                    </td>
+                                    <td data-bind="text: homeOne"></td>
+                                    <td data-bind="text: homeTwo"></td>
+                                    <td data-bind="text: homeThree"></td>
+                                    <td data-bind="text: homeFour"></td>
+                                    <!-- ko foreach: homeOTs-->
+                                    <td data-bind="text: $data"></td>
+                                    <!-- /ko-->
+                                    <td data-bind="text: homeTotal"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <!-- ko if: !teams['away'].outOfConference -->
+                                        <a data-bind="page-href: $parent.teamPath+teams['away'].id, text: teams['away'].institution.shortName"></a>
+                                        <!-- /ko-->
+                                        <!-- ko if: teams['away'].outOfConference -->
+                                        <!-- ko text: teams['away'].institution.shortName  -->
+                                        <!-- /ko-->
+                                        <!-- /ko-->
+                                    </td>
+                                    <td data-bind="text: awayOne"></td>
+                                    <td data-bind="text: awayTwo"></td>
+                                    <td data-bind="text: awayThree"></td>
+                                    <td data-bind="text: awayFour"></td>
+                                    <!-- ko foreach: awayOTs-->
+                                    <td data-bind="text: $data"></td>
+                                    <!-- /ko-->
+                                    <td data-bind="text: awayTotal"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <!-- ko if: plays().length === 0 -->
-                            <th></th>
-                            <!-- /ko-->
-                            <!-- ko if: plays().length !== 0 && !completed()-->
-                            <th data-bind="text:getQuarterName(_.last(plays()).quarter) + clock(_.last(plays()).clock)"></th>
-                            <!-- /ko-->
-                            <!-- ko if: plays().length !== 0 && completed()-->
-                            <th>Final</th>
-                            <!-- /ko-->
-                            <th>1</th>
-                            <th>2</th>
-                            <th>3</th>
-                            <th>4</th>
-                            <!-- ko foreach: OTs -->
-                            <th data-bind="text: 'OT ' + $data"></th>
-                            <!-- /ko-->
-                            <th>F</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <!-- ko if: !teams['home'].outOfConference -->
-                                <a data-bind="page-href: $parent.teamPath+teams['home'].id, text: teams['home'].institution.shortName"></a>
-                                <!-- /ko-->
-                                <!-- ko if: teams['home'].outOfConference -->
-                                <!-- ko text: teams['home'].institution.shortName  -->
-                                <!-- /ko-->
-                                <!-- /ko-->
-                            </td>
-                            <td data-bind="text: homeOne"></td>
-                            <td data-bind="text: homeTwo"></td>
-                            <td data-bind="text: homeThree"></td>
-                            <td data-bind="text: homeFour"></td>
-                            <!-- ko foreach: homeOTs-->
-                            <td data-bind="text: $data"></td>
-                            <!-- /ko-->
-                            <td data-bind="text: homeTotal"></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <!-- ko if: !teams['away'].outOfConference -->
-                                <a data-bind="page-href: $parent.teamPath+teams['away'].id, text: teams['away'].institution.shortName"></a>
-                                <!-- /ko-->
-                                <!-- ko if: teams['away'].outOfConference -->
-                                <!-- ko text: teams['away'].institution.shortName  -->
-                                <!-- /ko-->
-                                <!-- /ko-->
-                            </td>
-                            <td data-bind="text: awayOne"></td>
-                            <td data-bind="text: awayTwo"></td>
-                            <td data-bind="text: awayThree"></td>
-                            <td data-bind="text: awayFour"></td>
-                            <!-- ko foreach: awayOTs-->
-                            <td data-bind="text: $data"></td>
-                            <!-- /ko-->
-                            <td data-bind="text: awayTotal"></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="col-md-4 col-xs-6 col-md-offset-4 col-xs-offset-3 text-center">
+                <a data-bind="page-href: '../../game/'+gameId">Play by play</a>
+                <h4 data-bind="text: headlineOrLastPlay"></h4>
             </div>
         </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-4 col-xs-6 col-md-offset-4 col-xs-offset-3 text-center">
-        <a data-bind="page-href: '../../game/'+gameId">Play by play</a>
-        <h4 data-bind="text: headlineOrLastPlay"></h4>
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-4 col-xs-6 col-md-offset-4 col-xs-offset-3">
-        <h4>Top Performers</h4>
-        <p>
-            <b>Passing:</b>
-            <!-- ko text: topPasser() -->
-            <!-- /ko-->
-        </p>
-        <p>
-            <b>Rushing:</b>
-            <!-- ko text: topRusher() -->
-            <!-- /ko-->
-        </p>
-        <p>
-            <b>Receiving:</b>
-            <!-- ko text: topReceiver() -->
-            <!-- /ko-->
-        </p>
-    </div>
-</div>
-<div class="row ">
-    <div class="col-xs-12 text-right separator"></div>
-</div>
+        <div class="row">
+            <div class="col-md-4 col-xs-6 col-md-offset-4 col-xs-offset-3">
+                <h4>Top Performers</h4>
+                <p>
+                    <b>Passing:</b>
+                    <!-- ko text: topPasser() -->
+                    <!-- /ko-->
+                </p>
+                <p>
+                    <b>Rushing:</b>
+                    <!-- ko text: topRusher() -->
+                    <!-- /ko-->
+                </p>
+                <p>
+                    <b>Receiving:</b>
+                    <!-- ko text: topReceiver() -->
+                    <!-- /ko-->
+                </p>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-xs-12 text-right separator"></div>
+        </div>
     </script>
 
     <script type="text/html" id="preview-template">
-        
-<div class="row preview" data-bind="if: name">
-    <div class="col-xs-12 text-center">
-        <h3 data-bind='text: name'></h3>
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-4">
-        <div class="row">
-            <div class="col-xs-6 text-center">
-                <h4 data-bind="text: teams['away'].institution.name"></h4>
-            </div>
-            <div class="col-xs-6" data-bind="html: $root.logo(teams['away'].logo, 80, 'center-block')">
-            </div>
-        </div>
-        <div class="row">
+
+        <div class="row preview" data-bind="if: name">
             <div class="col-xs-12 text-center">
-                <h4 data-bind="text: _.last(teams['away'].record.history)"></h4>
-                <h4 data-bind="text: _.last(teams['away'].rankings)"></h4>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-xs-4 text-center">
-        <h2 data-bind='text: $root.formatLocalDate(startTime)'></h2>
-        <h4 data-bind="text: headline"></h4>
-        <h4><a data-bind="page-href: '../../game/'+gameId">Preview</a></h4>
-    </div>
-
-    <div class="col-xs-4">
-        <div class="row">
-            <div class="col-xs-6" data-bind="html: $root.logo(teams['home'].logo, 80, 'center-block')">
-
-            </div>
-            <div class="col-xs-6 text-center">
-                <h4 data-bind="text: teams['home'].institution.name"></h4>
+                <h3 data-bind='text: name'></h3>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12 text-center">
-                <h4 data-bind="text: _.last(teams['home'].record.history)"></h4>
-                <h4 data-bind="text: _.last(teams['home'].rankings)"></h4>
+            <div class="col-xs-4">
+                <div class="row">
+                    <div class="col-xs-6 text-center">
+                        <h4 data-bind="text: teams['away'].institution.name"></h4>
+                    </div>
+                    <div class="col-xs-6" data-bind="html: $root.logo(teams['away'].logo, 80, 'center-block')">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <h4 data-bind="text: _.last(teams['away'].record.history)"></h4>
+                        <h4 data-bind="text: _.last(teams['away'].rankings)"></h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-4 text-center">
+                <h2 data-bind='text: $root.formatLocalDate(startTime)'></h2>
+                <h4 data-bind="text: headline"></h4>
+                <h4><a data-bind="page-href: '../../game/'+gameId">Preview</a></h4>
+            </div>
+
+            <div class="col-xs-4">
+                <div class="row">
+                    <div class="col-xs-6" data-bind="html: $root.logo(teams['home'].logo, 80, 'center-block')">
+
+                    </div>
+                    <div class="col-xs-6 text-center">
+                        <h4 data-bind="text: teams['home'].institution.name"></h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <h4 data-bind="text: _.last(teams['home'].record.history)"></h4>
+                        <h4 data-bind="text: _.last(teams['home'].rankings)"></h4>
+                    </div>
+                </div>
+
             </div>
         </div>
 
-    </div>
-</div>
 
+        <div class="row ">
+            <div class="col-xs-12 text-right separator" data-bind="text: stadium"></div>
+        </div>
 
-<div class="row ">
-    <div class="col-xs-12 text-right separator" data-bind="text: stadium"></div>
-</div>
+    </script>
 
-</script>
+    <script type="text/html" id="boxscore-template">
 
-<script  type="text/html" id="boxscore-template">
-    
-    <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <!-- ko if: plays().length === 0 -->
-                            <th colspan="2" data-bind="text: $root.formatLocalDate(startTime)"></th>
-                            <!-- /ko-->
-                            <!-- ko if: plays().length !== 0 && !completed()-->
-                            <th colspan="2" data-bind="text:getQuarterName(_.last(plays()).quarter) +' '+  clock(_.last(plays()).clock)"></th>
-                            <!-- /ko-->
-                            <!-- ko if: plays().length !== 0 && completed()-->
-                            <th colspan="2" >Final</th>
-                            <!-- /ko-->
-                            <th class="text-center" >1</th>
-                            <th class="text-center" >2</th>
-                            <th class="text-center" >3</th>
-                            <th class="text-center" >4</th>
-                            <!-- ko foreach: OTs -->
-                            <th class="text-center" data-bind="text: 'OT ' + $data"></th>
-                            <!-- /ko-->
-                            <th class="text-center" >F</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="text-center"  data-bind="html: $root.logo(teams['home'].logo, 25)"></td>
-                            <td class="text-center">
-                                <!-- ko if: !teams['home'].outOfConference -->
-                                <a data-bind="page-href: $parent.teamPath+teams['home'].id, text: teams['home'].institution.shortName"></a>
-                                <!-- /ko-->
-                                <!-- ko if: teams['home'].outOfConference -->
-                                <!-- ko text: teams['home'].institution.shortName  -->
-                                <!-- /ko-->
-                                <!-- /ko-->
-                            </td>
-                            <td class="text-center" data-bind="text: homeOne"></td>
-                            <td class="text-center" data-bind="text: homeTwo"></td>
-                            <td class="text-center" data-bind="text: homeThree"></td>
-                            <td class="text-center" data-bind="text: homeFour"></td>
-                            <!-- ko foreach: homeOTs-->
-                            <td class="text-center" data-bind="text: $data"></td>
-                            <!-- /ko-->
-                            <td class="text-center" data-bind="text: homeTotal"></td>
-                        </tr>
-                        <tr>
-                            <td class="text-center" data-bind="html: $root.logo(teams['away'].logo, 25)"></td>
-                            <td class="text-center">
-                                <!-- ko if: !teams['away'].outOfConference -->
-                                <a data-bind="page-href: $parent.teamPath+teams['away'].id, text: teams['away'].institution.shortName"></a>
-                                <!-- /ko-->
-                                <!-- ko if: teams['away'].outOfConference -->
-                                <!-- ko text: teams['away'].institution.shortName  -->
-                                <!-- /ko-->
-                                <!-- /ko-->
-                            </td>
-                            <td class="text-center" data-bind="text: awayOne"></td>
-                            <td class="text-center" data-bind="text: awayTwo"></td>
-                            <td class="text-center" data-bind="text: awayThree"></td>
-                            <td class="text-center" data-bind="text: awayFour"></td>
-                            <!-- ko foreach: awayOTs-->
-                            <td class="text-center" data-bind="text: $data"></td>
-                            <!-- /ko-->
-                            <td class="text-center" data-bind="text: awayTotal"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="100%" class="text-center">
-                                <a data-bind="page-href: '../../game/'+gameId">MORE</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-</script>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <!-- ko if: plays().length === 0 -->
+                    <th colspan="2" data-bind="text: $root.formatLocalDate(startTime)"></th>
+                    <!-- /ko-->
+                    <!-- ko if: plays().length !== 0 && !completed()-->
+                    <th colspan="2" data-bind="text:getQuarterName(_.last(plays()).quarter) +' '+  clock(_.last(plays()).clock)"></th>
+                    <!-- /ko-->
+                    <!-- ko if: plays().length !== 0 && completed()-->
+                    <th colspan="2">Final</th>
+                    <!-- /ko-->
+                    <th class="text-center">1</th>
+                    <th class="text-center">2</th>
+                    <th class="text-center">3</th>
+                    <th class="text-center">4</th>
+                    <!-- ko foreach: OTs -->
+                    <th class="text-center" data-bind="text: 'OT ' + $data"></th>
+                    <!-- /ko-->
+                    <th class="text-center">F</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center" data-bind="html: $root.logo(teams['home'].logo, 25)"></td>
+                    <td class="text-center">
+                        <!-- ko if: !teams['home'].outOfConference -->
+                        <a data-bind="page-href: $parent.teamPath+teams['home'].id, text: teams['home'].institution.shortName"></a>
+                        <!-- /ko-->
+                        <!-- ko if: teams['home'].outOfConference -->
+                        <!-- ko text: teams['home'].institution.shortName  -->
+                        <!-- /ko-->
+                        <!-- /ko-->
+                    </td>
+                    <td class="text-center" data-bind="text: homeOne"></td>
+                    <td class="text-center" data-bind="text: homeTwo"></td>
+                    <td class="text-center" data-bind="text: homeThree"></td>
+                    <td class="text-center" data-bind="text: homeFour"></td>
+                    <!-- ko foreach: homeOTs-->
+                    <td class="text-center" data-bind="text: $data"></td>
+                    <!-- /ko-->
+                    <td class="text-center" data-bind="text: homeTotal"></td>
+                </tr>
+                <tr>
+                    <td class="text-center" data-bind="html: $root.logo(teams['away'].logo, 25)"></td>
+                    <td class="text-center">
+                        <!-- ko if: !teams['away'].outOfConference -->
+                        <a data-bind="page-href: $parent.teamPath+teams['away'].id, text: teams['away'].institution.shortName"></a>
+                        <!-- /ko-->
+                        <!-- ko if: teams['away'].outOfConference -->
+                        <!-- ko text: teams['away'].institution.shortName  -->
+                        <!-- /ko-->
+                        <!-- /ko-->
+                    </td>
+                    <td class="text-center" data-bind="text: awayOne"></td>
+                    <td class="text-center" data-bind="text: awayTwo"></td>
+                    <td class="text-center" data-bind="text: awayThree"></td>
+                    <td class="text-center" data-bind="text: awayFour"></td>
+                    <!-- ko foreach: awayOTs-->
+                    <td class="text-center" data-bind="text: $data"></td>
+                    <!-- /ko-->
+                    <td class="text-center" data-bind="text: awayTotal"></td>
+                </tr>
+                <tr>
+                    <td colspan="100%" class="text-center">
+                        <a data-bind="page-href: '../../game/'+gameId">MORE</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </script>
 
 </body>
 

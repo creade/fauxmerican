@@ -2415,7 +2415,7 @@
     "Lon":-86.4556398
   },
   {
-    "N":"Anaqua Addition Colonia",
+    "N":"Anaqua Colonia",
     "Lat":26.1622971,
     "Lon":-98.0152819
   },
@@ -9523,7 +9523,6 @@
 {"N":"Firebirds", "L":["eagle", "hawk"], "C":""},
 {"N":"Christians", "L":[], "C":""},
 {"N":"Irish", "L":[], "C":""},
-{"N":"Knights", "L":["sword", "knight2"], "C":""},
 {"N":"Muskies", "L":[], "C":""},
 {"N":"Saints", "L":[], "C":""},
 {"N":"Scots", "L":[], "C":""},
@@ -9704,7 +9703,6 @@
 {"N":"Scarlet Raiders", "L":["pirate"], "C":"crimson"},
 {"N":"Scarlet Raptors", "L":[], "C":"crimson"},
 {"N":"Scarlet Wave", "L":["wave"], "C":"crimson"},
-{"N":"Scots", "L":[], "C":""},
 {"N":"Screaming Eagles", "L":["eagle", "hawk"], "C":""},
 {"N":"Sea Devils", "L":["skull"], "C":""},
 {"N":"Sea Warriors", "L":["sword"], "C":""},

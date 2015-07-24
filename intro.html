@@ -4,7 +4,7 @@
 <head>
 
 
-    <title>Cover Template for Bootstrap</title>
+<title>THE FAUXMERICAN ATHLETIC CONFERENCE</title>
 
     <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="/css/intro.css" rel="stylesheet">
@@ -79,7 +79,9 @@
             viewModel.currentSaturday(viewModel.currentSaturday().subtract(7, 'day'))
         }
         viewModel.link = ko.computed(function() {
-            return "/#!/" + Math.random().toString(36).substring(7) + "-" + viewModel.currentSaturday().week() + "/";
+            return "/#!/" + Math.random().toString(36).substring(7) + "-" + viewModel.currentSaturday().week() + 
+            (parseInt(viewModel.currentSaturday().year().toString().slice(2,4)))
+            +"/";
         });
 
         ko.applyBindings(viewModel);
